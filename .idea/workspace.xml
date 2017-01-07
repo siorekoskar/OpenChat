@@ -6,9 +6,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/ChatsPanel.class" afterPath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/ChatsPanel.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/MainFrame.class" afterPath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/MainFrame.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/chatgui/ActiveUsersPanel.java" afterPath="$PROJECT_DIR$/src/chat/chatgui/ActiveUsersPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/chatgui/ChatsPanel.java" afterPath="$PROJECT_DIR$/src/chat/chatgui/ChatsPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/chatgui/MainFrame.java" afterPath="$PROJECT_DIR$/src/chat/chatgui/MainFrame.java" />
     </list>
     <ignored path="OpenChat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -682,7 +679,7 @@
       <workItem from="1483743606461" duration="11402000" />
       <workItem from="1483756207864" duration="49000" />
       <workItem from="1483756312550" duration="46000" />
-      <workItem from="1483791251024" duration="10387000" />
+      <workItem from="1483791251024" duration="10400000" />
     </task>
     <task id="LOCAL-00001" summary="added layoutComponents() method to MessagePanel">
       <created>1483793216336</created>
@@ -726,11 +723,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483809376178</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="layout adjustements in MainFrame - deleted borders from JPanels, revised UserPanel with buttons only">
+      <created>1483810061735</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1483810061735</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21884000" />
+    <option name="totallyTimeSpent" value="21897000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="808" y="28" width="993" height="1056" extended-state="0" />
