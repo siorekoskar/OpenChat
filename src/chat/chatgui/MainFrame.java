@@ -33,10 +33,7 @@ public class MainFrame  extends JFrame {
         /////////////////////////LAYOUT////////////////////
 
         setLayout(new BorderLayout());
-        userPanel.setBorder(BorderFactory.createEtchedBorder());
-        chatsPanel.setBorder(BorderFactory.createEtchedBorder());
-        messagePanel.setBorder(BorderFactory.createEtchedBorder());
-        activeUsersPanel.setBorder(BorderFactory.createEtchedBorder());
+
         add(userPanel, BorderLayout.BEFORE_FIRST_LINE);
         add(chatsPanel, BorderLayout.WEST);
         add(messagePanel, BorderLayout.CENTER);
@@ -48,12 +45,8 @@ public class MainFrame  extends JFrame {
         JMenuBar menuBar = new JMenuBar();
 
         JMenu fileMenu = new JMenu("User Panel");
-        JMenuItem exportDataItem = new JMenuItem("Login");
-        JMenuItem importDataItem = new JMenuItem("Logout");
         JMenuItem exitItem = new JMenuItem("Exit");
 
-        fileMenu.add(exportDataItem);
-        fileMenu.add(importDataItem);
         fileMenu.addSeparator();
         fileMenu.add(exitItem);
 
@@ -64,9 +57,12 @@ public class MainFrame  extends JFrame {
         showUsersItem.setSelected(true);
         JCheckBoxMenuItem showChatsItem = new JCheckBoxMenuItem("Chats");
         showChatsItem.setSelected(true);
+        JCheckBoxMenuItem showUserPanelItem = new JCheckBoxMenuItem("User Panel");
+        showUserPanelItem.setSelected(true);
 
         showMenu.add(showChatsItem);
         showMenu.add(showUsersItem);
+        showMenu.add(showUserPanelItem);
         windowMenu.add(showMenu);
 
         menuBar.add(fileMenu);
@@ -87,6 +83,16 @@ public class MainFrame  extends JFrame {
                 activeUsersPanel.setVisible(menuItem.isSelected());
             }
         });
+
+        showUserPanelItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem)ev.getSource();
+                userPanel.setVisible(menuItem.isSelected());
+            }
+        });
+
+
 
         return menuBar;
     }

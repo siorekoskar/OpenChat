@@ -8,7 +8,30 @@ import java.awt.*;
  */
 public class UserPanel extends JPanel {
 
-    private JLabel setUsernameLabel;
+
+    private JButton logoutButton;
+    private JButton chatManagerButton;
+    private JButton inboxButton;
+
+
+    public UserPanel() {
+        /*temporaryUserButton = new JButton("Temporary name");
+        loginButton = new JButton("Login");
+        RegisterButton = new JButton("Register");*/
+
+        chatManagerButton = new JButton("Chat Manager");
+        inboxButton = new JButton("Inbox");
+        logoutButton = new JButton("Logout");
+
+        setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        add(inboxButton);
+        add(chatManagerButton);
+        add(logoutButton);
+
+    }
+
+    /*private JLabel setUsernameLabel;
     private JLabel setPasswordLabel;
     private JButton setUsernameButton;
     private JButton registerUserButton;
@@ -36,5 +59,5 @@ public class UserPanel extends JPanel {
         add(registerUserButton);
         add(createChatButton);
 
-    }
+    }*/
 }
