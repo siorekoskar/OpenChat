@@ -679,7 +679,7 @@
       <workItem from="1483743606461" duration="11402000" />
       <workItem from="1483756207864" duration="49000" />
       <workItem from="1483756312550" duration="46000" />
-      <workItem from="1483791251024" duration="10400000" />
+      <workItem from="1483791251024" duration="10411000" />
     </task>
     <task id="LOCAL-00001" summary="added layoutComponents() method to MessagePanel">
       <created>1483793216336</created>
@@ -730,11 +730,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483810061735</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="layout adjustmenets">
+      <created>1483810078023</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1483810078023</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21897000" />
+    <option name="totallyTimeSpent" value="21908000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="808" y="28" width="993" height="1056" extended-state="0" />
@@ -783,7 +790,8 @@
     <MESSAGE value="added menu to MainFrame" />
     <MESSAGE value="added userPopupMenu to ActiveUsersPanel" />
     <MESSAGE value="layout adjustements in MainFrame - deleted borders from JPanels, revised UserPanel with buttons only" />
-    <option name="LAST_COMMIT_MESSAGE" value="layout adjustements in MainFrame - deleted borders from JPanels, revised UserPanel with buttons only" />
+    <MESSAGE value="layout adjustmenets" />
+    <option name="LAST_COMMIT_MESSAGE" value="layout adjustmenets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
