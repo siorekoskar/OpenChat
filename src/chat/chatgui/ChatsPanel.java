@@ -44,10 +44,11 @@ public class ChatsPanel extends JPanel {
         gc.weighty = 1;
         gc.gridx = 0;
         gc.gridy = 0;
-        gc.insets = new Insets(2,4,4,4);
+
         gc.fill = GridBagConstraints.BOTH;
         add(chatsPublicListScrollable, gc);
 
+        gc.insets = new Insets(4,0,0,0);
         gc.gridy = 1;
         add(chatsPrivateListScrollable, gc);
 

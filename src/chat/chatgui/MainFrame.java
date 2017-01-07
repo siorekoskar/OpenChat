@@ -19,6 +19,7 @@ public class MainFrame  extends JFrame {
         super("Chat");
 
         setSize(800, 600);
+        setMinimumSize(new Dimension(400,400));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);
@@ -34,6 +35,8 @@ public class MainFrame  extends JFrame {
 
         setLayout(new BorderLayout());
 
+        chatsPanel.setBorder(BorderFactory.createEmptyBorder(2,4,4,4));
+        activeUsersPanel.setBorder(BorderFactory.createEmptyBorder(2,4,4,4));
         add(userPanel, BorderLayout.BEFORE_FIRST_LINE);
         add(chatsPanel, BorderLayout.WEST);
         add(messagePanel, BorderLayout.CENTER);

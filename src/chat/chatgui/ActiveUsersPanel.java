@@ -18,8 +18,6 @@ public class ActiveUsersPanel extends JPanel {
 
     public ActiveUsersPanel(){
 
-
-
         DefaultListModel activeUsersModel = new DefaultListModel();
         activeUsersPanel = new JList(activeUsersModel);
         activeUsersPanel.setBorder(BorderFactory.createTitledBorder("Active users:"));
