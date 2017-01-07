@@ -27,6 +27,14 @@ public class MessagePanel extends JPanel {
         sendMessageButton.setPreferredSize(buttonDim);
 
         add(messagesArea);
+
+        layoutComponents();
+
+
+    }
+
+    private void layoutComponents(){
+
         setLayout(new GridBagLayout());
 
         GridBagConstraints gc = new GridBagConstraints();
@@ -82,8 +90,6 @@ public class MessagePanel extends JPanel {
         gc.gridwidth = GridBagConstraints.HORIZONTAL;
         gc.anchor = GridBagConstraints.LINE_END;
         add(sendFileButton, gc);
-
-
     }
 
 }
