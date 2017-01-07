@@ -21,8 +21,10 @@ public class ChatsPanel extends JPanel {
 
         //////////////////////TEMP
         for (int i = 0; i < 40; i++) {
-            chatPublicModel.addElement("Public chat:  " + i);
             chatPrivateModel.addElement("Private chat:" + i);
+        }
+        for (int i = 0; i < 2; i++) {
+            chatPublicModel.addElement("Public chat:  " + i);
         }
 
         JScrollPane chatsPublicListScrollable = new JScrollPane(publicChatsList);

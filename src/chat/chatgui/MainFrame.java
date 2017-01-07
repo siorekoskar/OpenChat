@@ -2,6 +2,8 @@ package chat.chatgui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Oskar on 07/01/2017.
@@ -26,6 +28,7 @@ public class MainFrame  extends JFrame {
         userPanel = new UserPanel();
         activeUsersPanel = new ActiveUsersPanel();
         messagePanel = new MessagePanel();
+        setJMenuBar(createMenuBar());
 
         /////////////////////////LAYOUT////////////////////
 
@@ -39,54 +42,52 @@ public class MainFrame  extends JFrame {
         add(messagePanel, BorderLayout.CENTER);
         add(activeUsersPanel, BorderLayout.EAST);
 
-        //setLayout(new GridBagLayout());
-       /* GridBagConstraints gc = new GridBagConstraints();
+    }
 
-        /////////////////////////UserPanel////////////////////
-        gc.weightx = 3;
-        gc.weighty = 0.1;
+    private JMenuBar createMenuBar(){
+        JMenuBar menuBar = new JMenuBar();
 
-        gc.gridx = 0;
-        gc.gridy = 0;
-        gc.fill = GridBagConstraints.NONE;
-        gc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gc.insets = new Insets(2,2,2,2);
-        userPanel.setBorder(BorderFactory.createEtchedBorder());
-        add(userPanel, gc);*/
+        JMenu fileMenu = new JMenu("User Panel");
+        JMenuItem exportDataItem = new JMenuItem("Login");
+        JMenuItem importDataItem = new JMenuItem("Logout");
+        JMenuItem exitItem = new JMenuItem("Exit");
 
-        /////////////////////////ChatsActivePanel////////////////
-        /*gc.weightx = 0.6;
-        gc.weighty = 1;
+        fileMenu.add(exportDataItem);
+        fileMenu.add(importDataItem);
+        fileMenu.addSeparator();
+        fileMenu.add(exitItem);
 
-        gc.gridx = 0;
-        gc.gridy = 1;
+        JMenu windowMenu = new JMenu("Window");
+        JMenu showMenu = new JMenu("Show");
 
-        //chatsPanel.setBorder(BorderFactory.createEtchedBorder());
-        gc.fill = GridBagConstraints.NONE;
-        add(chatsPanel);*/
+        JCheckBoxMenuItem showUsersItem = new JCheckBoxMenuItem("Users");
+        showUsersItem.setSelected(true);
+        JCheckBoxMenuItem showChatsItem = new JCheckBoxMenuItem("Chats");
+        showChatsItem.setSelected(true);
 
+        showMenu.add(showChatsItem);
+        showMenu.add(showUsersItem);
+        windowMenu.add(showMenu);
 
-        /////////////////////////MessagePanel////////////////////
-        /*gc.weightx = 1;
-        gc.weighty = 1;
+        menuBar.add(fileMenu);
+        menuBar.add(windowMenu);
 
-        gc.gridx = 0;
-        gc.gridy = 1;
+        showChatsItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem)ev.getSource();
+                chatsPanel.setVisible(menuItem.isSelected());
+            }
+        });
 
-        messagePanel.setBorder(BorderFactory.createEtchedBorder());
-        gc.fill = GridBagConstraints.NONE;
-        add(messagePanel, gc);*/
+        showUsersItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ev) {
+                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem)ev.getSource();
+                activeUsersPanel.setVisible(menuItem.isSelected());
+            }
+        });
 
-        /////////////////////////ActiveUsersPanel////////////////
-      /*  gc.weightx = 1;
-        gc.weighty = 1;
-
-        gc.gridx = 2;
-        gc.gridy = 1;
-
-        gc.fill = GridBagConstraints.NONE;
-        activeUsersPanel.setBorder(BorderFactory.createEtchedBorder());
-        add(activeUsersPanel);*/
-
+        return menuBar;
     }
 }
