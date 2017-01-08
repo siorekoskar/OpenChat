@@ -1,6 +1,6 @@
-package chat.chatgui;
+package chat.gui;
 
-import chat.chatgui.listenersinterfaces.UserPanelListener;
+import chat.gui.listenersinterfaces.UserPanelListener;
 
 import javax.swing.*;
 import java.awt.*;

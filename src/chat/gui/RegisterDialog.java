@@ -1,32 +1,27 @@
-package chat.chatgui;
+package chat.gui;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 /**
  * Created by Oskar on 08/01/2017.
  */
-public class LoginDialog extends JDialog {
-    private JButton loginButton;
+public class RegisterDialog extends JDialog {
+
     private JButton quitButton;
     private JTextField userField;
     private JPasswordField passField;
     private JButton registerButton;
     private RegisterDialog registerDialog;
 
-    public LoginDialog(JFrame parent){
-        super(parent, "Login", false);
+    public RegisterDialog(JFrame parent){
+        super(parent, "Register", false);
 
-        loginButton = new JButton("Login");
         quitButton = new JButton("Quit");
         registerButton = new JButton("Register");
-
-        registerDialog = new RegisterDialog(parent);
 
         userField = new JTextField(10);
         passField = new JPasswordField(10);
@@ -34,28 +29,13 @@ public class LoginDialog extends JDialog {
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(0);
-            }
-        });
-
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                registerDialog.setVisible(true);
-            }
-        });
-
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                parent.setEnabled(true);
+                setVisible(false);
             }
         });
 
         layoutControls();
         setSize(340, 250);
         setLocationRelativeTo(parent);
-
     }
 
     private void layoutControls(){
@@ -63,7 +43,7 @@ public class LoginDialog extends JDialog {
         JPanel buttonsPanel = new JPanel();
 
         int space = 15;
-        Border titledBorder = BorderFactory.createTitledBorder("Login details");
+        Border titledBorder = BorderFactory.createTitledBorder("Register");
         Border spaceBorder = BorderFactory.createEmptyBorder(space,space,space,space);
 
         controlsPanel.setBorder(BorderFactory.createCompoundBorder(spaceBorder, titledBorder));
@@ -73,7 +53,6 @@ public class LoginDialog extends JDialog {
         GridBagConstraints gc = new GridBagConstraints();
 
         Insets rightPadding = new Insets(0, 0, 0, 15);
-        Insets leftPadding = new Insets(0, 15, 0, 0);
         Insets noPadding = new Insets(0, 0, 0, 0);
 
         gc.gridy = 0;
@@ -114,18 +93,14 @@ public class LoginDialog extends JDialog {
 
         ///////////////////////buttons panel///////////
 
-        JPanel subPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        subPanel.add(loginButton);
-        subPanel.add(quitButton);
-
         buttonsPanel.setLayout(new BorderLayout());
 
-        buttonsPanel.add(subPanel, BorderLayout.EAST);
+        buttonsPanel.add(quitButton, BorderLayout.EAST);
         buttonsPanel.add(registerButton, BorderLayout.WEST);
 
         Dimension btnSize = registerButton.getPreferredSize();
         quitButton.setPreferredSize(btnSize);
-        loginButton.setPreferredSize(btnSize);
+        registerButton.setPreferredSize(btnSize);
 
         //add sub panels to dialog
         setLayout(new BorderLayout());
@@ -133,4 +108,5 @@ public class LoginDialog extends JDialog {
         add(buttonsPanel, BorderLayout.SOUTH);
 
     }
+
 }

@@ -1,4 +1,4 @@
-package chat.chatgui.listenersinterfaces;
+package chat.gui.listenersinterfaces;
 
 /**
  * Created by Oskar on 08/01/2017.

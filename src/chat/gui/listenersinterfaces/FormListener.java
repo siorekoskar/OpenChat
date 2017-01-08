@@ -1,6 +1,6 @@
-package chat.chatgui.listenersinterfaces;
+package chat.gui.listenersinterfaces;
 
-import chat.chatgui.FormEvent;
+import chat.gui.FormEvent;
 
 import java.util.EventListener;
 

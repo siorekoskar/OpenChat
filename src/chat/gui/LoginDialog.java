@@ -1,4 +1,4 @@
-package chat.chatgui;
+package chat.gui;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,19 +9,22 @@ import java.awt.event.ActionListener;
 /**
  * Created by Oskar on 08/01/2017.
  */
-public class RegisterDialog extends JDialog {
-
+public class LoginDialog extends JDialog {
+    private JButton loginButton;
     private JButton quitButton;
     private JTextField userField;
     private JPasswordField passField;
     private JButton registerButton;
     private RegisterDialog registerDialog;
 
-    public RegisterDialog(JFrame parent){
-        super(parent, "Register", false);
+    public LoginDialog(JFrame parent){
+        super(parent, "Login", false);
 
+        loginButton = new JButton("Login");
         quitButton = new JButton("Quit");
         registerButton = new JButton("Register");
+
+        registerDialog = new RegisterDialog(parent);
 
         userField = new JTextField(10);
         passField = new JPasswordField(10);
@@ -29,13 +32,28 @@ public class RegisterDialog extends JDialog {
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+                System.exit(0);
+            }
+        });
+
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registerDialog.setVisible(true);
+            }
+        });
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                parent.setEnabled(true);
             }
         });
 
         layoutControls();
         setSize(340, 250);
         setLocationRelativeTo(parent);
+
     }
 
     private void layoutControls(){
@@ -43,7 +61,7 @@ public class RegisterDialog extends JDialog {
         JPanel buttonsPanel = new JPanel();
 
         int space = 15;
-        Border titledBorder = BorderFactory.createTitledBorder("Register");
+        Border titledBorder = BorderFactory.createTitledBorder("Login details");
         Border spaceBorder = BorderFactory.createEmptyBorder(space,space,space,space);
 
         controlsPanel.setBorder(BorderFactory.createCompoundBorder(spaceBorder, titledBorder));
@@ -53,6 +71,7 @@ public class RegisterDialog extends JDialog {
         GridBagConstraints gc = new GridBagConstraints();
 
         Insets rightPadding = new Insets(0, 0, 0, 15);
+        Insets leftPadding = new Insets(0, 15, 0, 0);
         Insets noPadding = new Insets(0, 0, 0, 0);
 
         gc.gridy = 0;
@@ -93,14 +112,18 @@ public class RegisterDialog extends JDialog {
 
         ///////////////////////buttons panel///////////
 
+        JPanel subPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        subPanel.add(loginButton);
+        subPanel.add(quitButton);
+
         buttonsPanel.setLayout(new BorderLayout());
 
-        buttonsPanel.add(quitButton, BorderLayout.EAST);
+        buttonsPanel.add(subPanel, BorderLayout.EAST);
         buttonsPanel.add(registerButton, BorderLayout.WEST);
 
         Dimension btnSize = registerButton.getPreferredSize();
         quitButton.setPreferredSize(btnSize);
-        registerButton.setPreferredSize(btnSize);
+        loginButton.setPreferredSize(btnSize);
 
         //add sub panels to dialog
         setLayout(new BorderLayout());
@@ -108,5 +131,4 @@ public class RegisterDialog extends JDialog {
         add(buttonsPanel, BorderLayout.SOUTH);
 
     }
-
 }

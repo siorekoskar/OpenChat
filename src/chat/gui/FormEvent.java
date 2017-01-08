@@ -1,4 +1,4 @@
-package chat.chatgui;
+package chat.gui;
 
 import java.util.EventObject;
 
