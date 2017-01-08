@@ -57,10 +57,27 @@ public class LoginDialog extends JDialog {
                 FormEvent ev = new FormEvent(this, login, password);
 
                 if(formListener != null){
-                    formListener.formEventOccured(ev);
+                    formListener.loginEventOccured(ev);
                 }
 
                 parent.setEnabled(true);
+            }
+        });
+
+        registerDialog.setFormListener(new FormListener() {
+            @Override
+            public void loginEventOccured(FormEvent e) {}
+
+            @Override
+            public void registeredEventOccured(FormEvent e) {
+                String login = e.getLogin();
+                String password = e.getPass();
+
+                FormEvent ev = new FormEvent(this, login, password);
+
+                if(formListener != null){
+                    formListener.registeredEventOccured(ev);
+                }
             }
         });
 

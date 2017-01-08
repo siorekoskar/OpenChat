@@ -1,5 +1,7 @@
 package chat.gui;
 
+import chat.gui.listenersinterfaces.FormListener;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -15,7 +17,8 @@ public class RegisterDialog extends JDialog {
     private JTextField userField;
     private JPasswordField passField;
     private JButton registerButton;
-    private RegisterDialog registerDialog;
+
+    private FormListener formListener;
 
     public RegisterDialog(JFrame parent){
         super(parent, "Register", false);
@@ -33,11 +36,32 @@ public class RegisterDialog extends JDialog {
             }
         });
 
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String login = userField.getText();
+                char[] pass = passField.getPassword();
+                String password = new String(pass);
+
+                FormEvent ev = new FormEvent(this, login, password);
+
+                if(formListener!= null){
+                    formListener.registeredEventOccured(ev);
+                }
+            }
+        });
+
         layoutControls();
         setSize(340, 250);
         setLocationRelativeTo(parent);
     }
 
+    public void setFormListener(FormListener formListener){
+        this.formListener = formListener;
+    }
+
+
+    //////////////////////LAYOUT//////////////////////////
     private void layoutControls(){
         JPanel controlsPanel = new JPanel();
         JPanel buttonsPanel = new JPanel();

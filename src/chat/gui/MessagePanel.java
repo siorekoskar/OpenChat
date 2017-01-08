@@ -43,6 +43,8 @@ public class MessagePanel extends JPanel implements ActionListener{
 
     }
 
+    //////////////////////LAYOUT//////////////////////////
+
     private void layoutComponents(){
 
         setLayout(new GridBagLayout());
@@ -126,6 +128,7 @@ public class MessagePanel extends JPanel implements ActionListener{
             }
         }
     }
+
 
 
     private static final String TEXT_SUBMIT = "text-submit";

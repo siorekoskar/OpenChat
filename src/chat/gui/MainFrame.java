@@ -81,7 +81,13 @@ public class MainFrame  extends JFrame {
         loginDialog.setFormListener(new FormListener(){
 
             @Override
-            public void formEventOccured(FormEvent e) {
+            public void loginEventOccured(FormEvent e) {
+                System.out.println(e.getLogin());
+            }
+
+            @Override
+            public void registeredEventOccured(FormEvent e) {
+                System.out.println(e.getLogin());
                 controller.addUser(e);
             }
         });
