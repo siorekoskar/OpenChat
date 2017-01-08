@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d1bbba1-6a5b-431b-bd5c-38d7032de415" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chat/TestDatabase.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chat/model/Database.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chat/model/User.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/ActiveUsersPanel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/ChatsPanel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/ClientGUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/ClientGUI.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/MainFrame.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/MessagePanel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/OpenChat/chat/chatgui/UserPanel.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/controller/Controller.java" afterPath="$PROJECT_DIR$/src/chat/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/FormEvent.java" afterPath="$PROJECT_DIR$/src/chat/gui/FormEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/LoginDialog.java" afterPath="$PROJECT_DIR$/src/chat/gui/LoginDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" />
     </list>
     <ignored path="OpenChat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -880,7 +866,7 @@
       <workItem from="1483756207864" duration="49000" />
       <workItem from="1483756312550" duration="46000" />
       <workItem from="1483791251024" duration="15979000" />
-      <workItem from="1483880334314" duration="20662000" />
+      <workItem from="1483880334314" duration="20705000" />
     </task>
     <task id="LOCAL-00001" summary="added layoutComponents() method to MessagePanel">
       <created>1483793216336</created>
@@ -980,11 +966,18 @@
       <option name="project" value="LOCAL" />
       <updated>1483896894081</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added formevent, simple model - database list and user class, controller">
+      <created>1483901370344</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1483901370344</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48138000" />
+    <option name="totallyTimeSpent" value="48181000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="892" y="38" width="1041" height="1056" extended-state="0" />
@@ -1040,7 +1033,8 @@
     <MESSAGE value="registerDialog added to logindialog" />
     <MESSAGE value="added formlistener and formevent&#10;" />
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="added formevent, simple model - database list and user class, controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="added formevent, simple model - database list and user class, controller" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
