@@ -1,35 +1,45 @@
 package chat.chatgui;
 
+import chat.chatgui.listenersinterfaces.MessageListener;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Oskar on 07/01/2017.
  */
-public class MessagePanel extends JPanel {
+public class MessagePanel extends JPanel implements ActionListener{
 
     private JButton sendMessageButton;
     private JButton sendFileButton;
-    private JTextArea newMessageArea;
+    private JTextArea inputTextArea;
     private JTextArea messagesArea;
 
+
+    private MessageListener messageListener;
+
     MessagePanel(){
-        newMessageArea = new JTextArea();
+        inputTextArea = new JTextArea();
         messagesArea = new JTextArea();
         sendFileButton = new JButton("Upload File");
         sendMessageButton = new JButton("Send");
 
         messagesArea.setEditable(false);
         messagesArea.setBorder(BorderFactory.createTitledBorder("CHATNAME"));
-        newMessageArea.setBorder(BorderFactory.createTitledBorder("Message"));
+        inputTextArea.setBorder(BorderFactory.createTitledBorder("Message"));
         Dimension buttonDim = new Dimension(100, 40);
         sendFileButton.setPreferredSize(buttonDim);
         sendMessageButton.setPreferredSize(buttonDim);
 
         add(messagesArea);
 
-        layoutComponents();
+        sendFileButton.addActionListener(this);
+        sendMessageButton.addActionListener(this);
+        initialize();
 
+        layoutComponents();
 
     }
 
@@ -63,7 +73,7 @@ public class MessagePanel extends JPanel {
         gc.fill = GridBagConstraints.BOTH;
 
         gc.insets = new Insets(2,2,2,2);
-        add(new JScrollPane(newMessageArea), gc);
+        add(new JScrollPane(inputTextArea), gc);
 
         ////////////////MESSAGE BUTTON/////////////////
 
@@ -90,6 +100,53 @@ public class MessagePanel extends JPanel {
         gc.gridwidth = GridBagConstraints.HORIZONTAL;
         gc.anchor = GridBagConstraints.LINE_END;
         add(sendFileButton, gc);
+
     }
 
+    public void setMessageListener(MessageListener messageListener) {
+        this.messageListener = messageListener;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        JButton clicked = (JButton)e.getSource();
+
+        if(messageListener!=null) {
+            if (clicked == sendMessageButton) {
+                String msg = inputTextArea.getText();
+                messageListener.messageSent(msg);
+                inputTextArea.setText("");
+
+                ///TEMP///////////////////
+                messagesArea.append(msg+"\n");
+            }
+            else if(clicked == sendFileButton){
+                messageListener.fileSent();
+            }
+        }
+    }
+
+
+    private static final String TEXT_SUBMIT = "text-submit";
+    private static final String INSERT_BREAK = "insert-break";
+    private void initialize() {
+        InputMap input = inputTextArea.getInputMap();
+        KeyStroke enter = KeyStroke.getKeyStroke("ENTER");
+        KeyStroke shiftEnter = KeyStroke.getKeyStroke("shift ENTER");
+        input.put(shiftEnter, INSERT_BREAK);  // input.get(enter)) = "insert-break"
+        input.put(enter, TEXT_SUBMIT);
+
+        ActionMap actions = inputTextArea.getActionMap();
+        actions.put(TEXT_SUBMIT, new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendMessageButton.doClick();
+            }
+        });
+    }
 }
+
+
+
+

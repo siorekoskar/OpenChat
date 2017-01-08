@@ -28,6 +28,7 @@ public class ActiveUsersPanel extends JPanel {
         popupUserMenu.add(new JMenuItem("Invite"));
         popupUserMenu.add(new JMenuItem("Kick"));
         popupUserMenu.add(new JMenuItem("Whisper"));
+
         activeUsersPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

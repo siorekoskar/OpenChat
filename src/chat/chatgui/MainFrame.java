@@ -1,9 +1,13 @@
 package chat.chatgui;
 
+import chat.chatgui.listenersinterfaces.MessageListener;
+import chat.chatgui.listenersinterfaces.UserPanelListener;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.prefs.Preferences;
 
 /**
  * Created by Oskar on 07/01/2017.
@@ -14,6 +18,9 @@ public class MainFrame  extends JFrame {
     private UserPanel userPanel;
     private ActiveUsersPanel activeUsersPanel;
     private MessagePanel messagePanel;
+    private Preferences preferenceLogin;
+    private JDialog loginDialog;
+
 
     public MainFrame() {
         super("Chat");
@@ -29,7 +36,40 @@ public class MainFrame  extends JFrame {
         userPanel = new UserPanel();
         activeUsersPanel = new ActiveUsersPanel();
         messagePanel = new MessagePanel();
+        loginDialog = new LoginDialog(this);
+
         setJMenuBar(createMenuBar());
+
+        //////////////////////LISTENERS/////////////////////
+        userPanel.setUserPanelListener(new UserPanelListener() {
+            @Override
+            public void logoutEventOccured() {
+                loginDialog.setVisible(true);
+                System.out.println("LOGOUT CLICKED");
+            }
+
+            @Override
+            public void chatboxEventOccured() {
+                System.out.println("CHAT");
+            }
+
+            @Override
+            public void inboxEventOccured() {
+
+            }
+        });
+
+        messagePanel.setMessageListener(new MessageListener() {
+            @Override
+            public void messageSent(String msg) {
+                System.out.println(msg);
+            }
+
+            @Override
+            public void fileSent() {
+                System.out.println("fileSent");
+            }
+        });
 
         /////////////////////////LAYOUT////////////////////
 
@@ -41,6 +81,16 @@ public class MainFrame  extends JFrame {
         add(chatsPanel, BorderLayout.WEST);
         add(messagePanel, BorderLayout.CENTER);
         add(activeUsersPanel, BorderLayout.EAST);
+
+
+
+
+        /*prefsItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                prefsDialog.setVisible(true);
+            }
+        });*/
 
     }
 
@@ -94,8 +144,6 @@ public class MainFrame  extends JFrame {
                 userPanel.setVisible(menuItem.isSelected());
             }
         });
-
-
 
         return menuBar;
     }

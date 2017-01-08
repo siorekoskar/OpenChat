@@ -1,23 +1,24 @@
 package chat.chatgui;
 
+import chat.chatgui.listenersinterfaces.UserPanelListener;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Oskar on 07/01/2017.
  */
-public class UserPanel extends JPanel {
-
+public class UserPanel extends JPanel implements ActionListener{
 
     private JButton logoutButton;
     private JButton chatManagerButton;
     private JButton inboxButton;
 
+    private UserPanelListener listener;
 
     public UserPanel() {
-        /*temporaryUserButton = new JButton("Temporary name");
-        loginButton = new JButton("Login");
-        RegisterButton = new JButton("Register");*/
 
         chatManagerButton = new JButton("Chat Manager");
         inboxButton = new JButton("Inbox");
@@ -29,35 +30,29 @@ public class UserPanel extends JPanel {
         add(chatManagerButton);
         add(logoutButton);
 
+        ////////////////LISTENERS/////////////////
+        logoutButton.addActionListener(this);
+        chatManagerButton.addActionListener(this);
+        inboxButton.addActionListener(this);
     }
 
-    /*private JLabel setUsernameLabel;
-    private JLabel setPasswordLabel;
-    private JButton setUsernameButton;
-    private JButton registerUserButton;
-    private JButton createChatButton;
-    private JTextField usernameField;
-    private JPasswordField passwordField;
+    public void setUserPanelListener(UserPanelListener listener) {
+        this.listener = listener;
+    }
 
-    public UserPanel() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton clicked = (JButton) e.getSource();
 
-        setUsernameLabel = new JLabel("Set username:");
-        setPasswordLabel = new JLabel("Set password:");
-        setUsernameButton = new JButton("Set");
-        registerUserButton = new JButton("Register");
-        createChatButton = new JButton("New Chat");
-        usernameField = new JTextField(10);
-        passwordField = new JPasswordField(10);
+        if (listener != null) {
+            if (clicked == logoutButton) {
+                listener.logoutEventOccured();
+            } else if (clicked == chatManagerButton){
+                listener.chatboxEventOccured();
+            } else if (clicked == inboxButton) {
+                listener.inboxEventOccured();
+            }
+        }
+    }
 
-        setLayout(new FlowLayout(FlowLayout.LEFT));
-
-        add(setUsernameLabel);
-        add(usernameField);
-        add(setUsernameButton);
-        add(setPasswordLabel);
-        add(passwordField);
-        add(registerUserButton);
-        add(createChatButton);
-
-    }*/
 }
