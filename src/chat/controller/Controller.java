@@ -24,11 +24,25 @@ public class Controller {
 
         User user = new User(login, pass);
 
+        System.out.println(login+ pass);
+
         db.addUser(user);
     }
 
     public void removeUser(int index){
         db.removeUser(index);
+    }
+
+    public boolean checkIfUserExists(FormEvent e) throws SQLException{
+
+        User user = new User(e.getLogin(), e.getPass());
+        return db.checkIfUserExists(user);
+      /* for(User user : getUsers()){
+           if(user.getLogin() == e.getLogin()){
+               return true;
+           }
+       }
+       return false;*/
     }
 
     public void save() throws SQLException{

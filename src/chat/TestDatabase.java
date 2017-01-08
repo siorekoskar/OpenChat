@@ -20,11 +20,33 @@ public class TestDatabase {
             e.printStackTrace();
         }
 
-        db.addUser(new User("okularki111", "mama123"));
-        db.addUser(new User("michael", "mama123"));
+        User okularki = new User("okularki111", "mama123");
+        User test = new User("test", "test");
+
+        try {
+            if (!db.checkIfUserExists(okularki)){
+                db.addUser(okularki);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } {
+        }
 
         try {
             db.save();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try{
+            System.out.println(db.checkIfUserExists(okularki));
+            System.out.println(db.checkIfUserExists(test));
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        try {
+            db.load();
         } catch (SQLException e) {
             e.printStackTrace();
         }

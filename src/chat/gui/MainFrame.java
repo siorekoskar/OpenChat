@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
 /**
@@ -51,7 +52,7 @@ public class MainFrame  extends JFrame {
             @Override
             public void logoutEventOccured() {
                 loginDialog.setVisible(true);
-                setEnabled(false);
+                //setEnabled(false);
                 System.out.println("LOGOUT CLICKED");
             }
 
@@ -88,7 +89,37 @@ public class MainFrame  extends JFrame {
             @Override
             public void registeredEventOccured(FormEvent e) {
                 System.out.println(e.getLogin());
-                controller.addUser(e);
+                System.out.println(e.getPass());
+
+                try {
+                    controller.connect();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+
+                try {
+                   // controller.checkIfUserExists(e);
+                    controller.load();
+
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+
+                try{
+                if(controller.checkIfUserExists(e)) {
+                    JOptionPane.showMessageDialog(MainFrame.this, "User already exists",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+
+                } else {
+                    controller.addUser(e);
+                    controller.save();
+                    JOptionPane.showMessageDialog(MainFrame.this, "Registered",
+                            "Your username: "+ e.getLogin(), JOptionPane.OK_OPTION);
+                }
+                } catch(SQLException e3){
+                    JOptionPane.showMessageDialog(MainFrame.this, "Unable to save to database",
+                            "Database Connection Problem", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 

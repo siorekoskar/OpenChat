@@ -48,6 +48,7 @@ public class RegisterDialog extends JDialog {
                 if(formListener!= null){
                     formListener.registeredEventOccured(ev);
                 }
+                setVisible(false);
             }
         });
 

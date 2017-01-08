@@ -60,7 +60,7 @@ public class LoginDialog extends JDialog {
                     formListener.loginEventOccured(ev);
                 }
 
-                parent.setEnabled(true);
+                //parent.setEnabled(true);
             }
         });
 
