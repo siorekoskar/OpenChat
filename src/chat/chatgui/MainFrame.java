@@ -45,6 +45,7 @@ public class MainFrame  extends JFrame {
             @Override
             public void logoutEventOccured() {
                 loginDialog.setVisible(true);
+                setEnabled(false);
                 System.out.println("LOGOUT CLICKED");
             }
 
@@ -82,15 +83,6 @@ public class MainFrame  extends JFrame {
         add(messagePanel, BorderLayout.CENTER);
         add(activeUsersPanel, BorderLayout.EAST);
 
-
-
-
-        /*prefsItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                prefsDialog.setVisible(true);
-            }
-        });*/
 
     }
 
