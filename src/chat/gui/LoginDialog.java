@@ -1,5 +1,7 @@
 package chat.gui;
 
+import chat.gui.listenersinterfaces.FormListener;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -16,6 +18,8 @@ public class LoginDialog extends JDialog {
     private JPasswordField passField;
     private JButton registerButton;
     private RegisterDialog registerDialog;
+
+    private FormListener formListener;
 
     public LoginDialog(JFrame parent){
         super(parent, "Login", false);
@@ -46,6 +50,16 @@ public class LoginDialog extends JDialog {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String login = userField.getText();
+                char[] pass = passField.getPassword();
+                String password = new String(pass);
+
+                FormEvent ev = new FormEvent(this, login, password);
+
+                if(formListener != null){
+                    formListener.formEventOccured(ev);
+                }
+
                 parent.setEnabled(true);
             }
         });
@@ -54,6 +68,10 @@ public class LoginDialog extends JDialog {
         setSize(340, 250);
         setLocationRelativeTo(parent);
 
+    }
+
+    public void setFormListener(FormListener formListener){
+        this.formListener = formListener;
     }
 
     private void layoutControls(){

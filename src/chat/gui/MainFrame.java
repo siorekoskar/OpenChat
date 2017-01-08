@@ -1,5 +1,7 @@
 package chat.gui;
 
+import chat.controller.Controller;
+import chat.gui.listenersinterfaces.FormListener;
 import chat.gui.listenersinterfaces.MessageListener;
 import chat.gui.listenersinterfaces.UserPanelListener;
 
@@ -19,7 +21,9 @@ public class MainFrame  extends JFrame {
     private ActiveUsersPanel activeUsersPanel;
     private MessagePanel messagePanel;
     private Preferences preferenceLogin;
-    private JDialog loginDialog;
+    private LoginDialog loginDialog;
+
+    private Controller controller;
 
 
     public MainFrame() {
@@ -37,6 +41,8 @@ public class MainFrame  extends JFrame {
         activeUsersPanel = new ActiveUsersPanel();
         messagePanel = new MessagePanel();
         loginDialog = new LoginDialog(this);
+
+        controller = new Controller();
 
         setJMenuBar(createMenuBar());
 
@@ -71,6 +77,15 @@ public class MainFrame  extends JFrame {
                 System.out.println("fileSent");
             }
         });
+
+        loginDialog.setFormListener(new FormListener(){
+
+            @Override
+            public void formEventOccured(FormEvent e) {
+                controller.addUser(e);
+            }
+        });
+
 
         /////////////////////////LAYOUT////////////////////
 
