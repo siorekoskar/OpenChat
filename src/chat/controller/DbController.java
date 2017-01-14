@@ -37,12 +37,6 @@ public class DbController {
 
         User user = new User(e.getLogin(), e.getPass());
         return db.checkIfUserExists(user);
-      /* for(User user : getUsers()){
-           if(user.getLogin() == e.getLogin()){
-               return true;
-           }
-       }
-       return false;*/
     }
 
     public void save() throws SQLException{

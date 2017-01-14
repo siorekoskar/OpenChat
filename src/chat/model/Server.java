@@ -1,7 +1,6 @@
 package chat.model;
 
 import java.io.DataInputStream;
-import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -14,13 +13,15 @@ import java.util.ArrayList;
 public class Server {
 
     private static int uniqueID;
-    private ArrayList<ClientThread> al;
+    private ArrayList<ClientThread> clientThreads;
+    private ArrayList<ChatRoom> chatRooms;
     private int port;
     private boolean keepGoing;
 
     public Server(int port) {
         this.port = port;
-        al = new ArrayList<ClientThread>();
+        clientThreads = new ArrayList<>();
+        chatRooms = new ArrayList<>();
     }
 
     public void start() {
@@ -38,14 +39,14 @@ public class Server {
                 }
 
                 ClientThread t = new ClientThread(socket);
-                al.add(t);
+                clientThreads.add(t);
                 t.start();
             }
             try {
                 serverSocket.close();
-                for (int i = 0; i < al.size(); ++i) {
+                for (int i = 0; i < clientThreads.size(); ++i) {
                     try {
-                        ClientThread tc = al.get(i);
+                        ClientThread tc = clientThreads.get(i);
                         tc.sInput.close();
                         tc.sOutput.close();
                         tc.socket.close();
@@ -64,20 +65,20 @@ public class Server {
     }
 
     private synchronized void broadcast(String msg){
-        for(int i = al.size(); --i>=0;){
-            ClientThread ct = al.get(i);
+        for(int i = clientThreads.size(); --i>=0;){
+            ClientThread ct = clientThreads.get(i);
 
             if(!ct.writeMsg(msg)) {
-                al.remove(i);
+                clientThreads.remove(i);
             }
         }
     }
 
     synchronized  void remove(int id){
-        for(int i =0; i<al.size();++i){
-            ClientThread ct = al.get(i);
+        for(int i = 0; i< clientThreads.size(); ++i){
+            ClientThread ct = clientThreads.get(i);
             if(ct.id == id){
-                al.remove(i);
+                clientThreads.remove(i);
                 return;
             }
         }
@@ -154,25 +155,8 @@ public class Server {
 
 
     public static void main(String[] args) {
-        // start server on port 1500 unless a PortNumber is specified
-        int portNumber = 3306;
-     /*   switch(args.length) {
-            case 1:
-                try {
-                    portNumber = Integer.parseInt(args[0]);
-                }
-                catch(Exception e) {
-                    System.out.println("Invalid port number.");
-                    System.out.println("Usage is: > java Server [portNumber]");
-                    return;
-                }
-            case 0:
-                break;
-            default:
-                System.out.println("Usage is: > java Server [portNumber]");
-                return;
+        int portNumber = 3308;
 
-        }*/
         // create a server object and start it
         Server server = new Server(portNumber);
         server.start();

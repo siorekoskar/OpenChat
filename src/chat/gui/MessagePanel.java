@@ -120,8 +120,6 @@ public class MessagePanel extends JPanel implements ActionListener{
                 messageListener.messageSent(msg);
                 inputTextArea.setText("");
 
-                ///TEMP///////////////////
-                messagesArea.append(msg+"\n");
             }
             else if(clicked == sendFileButton){
                 messageListener.fileSent();

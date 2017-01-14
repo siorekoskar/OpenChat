@@ -21,10 +21,11 @@ public class Client  {
     private String server, username;
     private int port;
 
-    public Client(String server, int port, ClientController frame){
+    public Client(String server, int port, ClientController frame, String username){
         this.server = server;
         this.port = port;
         this.cg = frame;
+        this.username = username;
     }
 
     public boolean start(){
@@ -56,8 +57,25 @@ public class Client  {
 
     public void sendMessage(String msg){
         try{
-            sOutput.writeUTF(msg);
+            sOutput.writeUTF(username + ": " +msg);
         } catch (Exception e){}
+
+    }
+
+    public void disconnect() {
+        try {
+            if(sInput != null) sInput.close();
+        }
+        catch(Exception e) {} // not much else I can do
+        try {
+            if(sOutput != null) sOutput.close();
+        }
+        catch(Exception e) {} // not much else I can do
+        try{
+            if(socket != null) socket.close();
+        }
+        catch(Exception e) {} // not much else I can do
+
 
     }
 

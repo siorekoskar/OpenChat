@@ -26,12 +26,12 @@ public class MainFrame  extends JFrame {
     private Preferences preferenceLogin;
     private LoginDialog loginDialog;
 
+    private String username;
+
     private DbController dbController;
     private ClientController clientController;
 
-    private Client client;
-
-    private static final int port = 3306;
+    private static final int port = 3308;
     private static final String host = "0.0.0.0";
 
 
@@ -52,17 +52,20 @@ public class MainFrame  extends JFrame {
         loginDialog = new LoginDialog(this);
 
         dbController = new DbController();
-        clientController = new ClientController(host, port, this);
 
         setJMenuBar(createMenuBar());
+        this.setVisible(false);
 
         //////////////////////LISTENERS/////////////////////
         userPanel.setUserPanelListener(new UserPanelListener() {
             @Override
             public void logoutEventOccured() {
+                MainFrame.this.setVisible(false);
+                clientController.disconnect();
                 loginDialog.setVisible(true);
-                //setEnabled(false);
+
                 System.out.println("LOGOUT CLICKED");
+
             }
 
             @Override
@@ -93,6 +96,30 @@ public class MainFrame  extends JFrame {
             @Override
             public void loginEventOccured(FormEvent e) {
                 System.out.println(e.getLogin());
+                try{
+                    dbController.connect();
+                    dbController.load();
+                    if(dbController.checkIfUserExists(e)) {
+
+                        loginDialog.setVisible(false);
+                        username = e.getLogin();
+                        MainFrame.this.setTitle(username);
+                        MainFrame.this.setVisible(true);
+                        JOptionPane.showMessageDialog(MainFrame.this, "Logged",
+                                "Succes", JOptionPane.ERROR_MESSAGE);
+
+                        clientController = new ClientController(host, port, MainFrame.this, username);
+
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(MainFrame.this, "Error",
+                                "Bad data", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } catch(Exception e5){
+
+                }
+
             }
 
             @Override

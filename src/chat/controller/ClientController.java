@@ -13,8 +13,8 @@ public class ClientController{
 
 
 
-    public ClientController(String serverName, int serverPort, MainFrame frame){
-        chatClient = new Client(serverName, serverPort, this);
+    public ClientController(String serverName, int serverPort, MainFrame frame, String username){
+        chatClient = new Client(serverName, serverPort, this, username);
         this.frame = frame;
         chatClient.start();
     }
@@ -25,6 +25,9 @@ public class ClientController{
 
     public void sendMsg(String msg){
         frame.sendMsg(msg);
+    }
+    public void disconnect(){
+        chatClient.disconnect();
     }
 
 }
