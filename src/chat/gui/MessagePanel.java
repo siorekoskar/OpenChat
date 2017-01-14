@@ -129,7 +129,9 @@ public class MessagePanel extends JPanel implements ActionListener{
         }
     }
 
-
+    void append(String str){
+        messagesArea.append(str + "\n");
+    }
 
     private static final String TEXT_SUBMIT = "text-submit";
     private static final String INSERT_BREAK = "insert-break";

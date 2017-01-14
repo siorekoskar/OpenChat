@@ -1,9 +1,11 @@
 package chat.gui;
 
-import chat.controller.Controller;
+import chat.controller.ClientController;
+import chat.controller.DbController;
 import chat.gui.listenersinterfaces.FormListener;
 import chat.gui.listenersinterfaces.MessageListener;
 import chat.gui.listenersinterfaces.UserPanelListener;
+import chat.model.Client;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +26,13 @@ public class MainFrame  extends JFrame {
     private Preferences preferenceLogin;
     private LoginDialog loginDialog;
 
-    private Controller controller;
+    private DbController dbController;
+    private ClientController clientController;
+
+    private Client client;
+
+    private static final int port = 3306;
+    private static final String host = "0.0.0.0";
 
 
     public MainFrame() {
@@ -43,7 +51,8 @@ public class MainFrame  extends JFrame {
         messagePanel = new MessagePanel();
         loginDialog = new LoginDialog(this);
 
-        controller = new Controller();
+        dbController = new DbController();
+        clientController = new ClientController(host, port, this);
 
         setJMenuBar(createMenuBar());
 
@@ -70,7 +79,7 @@ public class MainFrame  extends JFrame {
         messagePanel.setMessageListener(new MessageListener() {
             @Override
             public void messageSent(String msg) {
-                System.out.println(msg);
+                clientController.sendMessage(msg);
             }
 
             @Override
@@ -92,27 +101,27 @@ public class MainFrame  extends JFrame {
                 System.out.println(e.getPass());
 
                 try {
-                    controller.connect();
+                    dbController.connect();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
 
                 try {
-                   // controller.checkIfUserExists(e);
-                    controller.load();
+                   // dbController.checkIfUserExists(e);
+                    dbController.load();
 
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
 
                 try{
-                if(controller.checkIfUserExists(e)) {
+                if(dbController.checkIfUserExists(e)) {
                     JOptionPane.showMessageDialog(MainFrame.this, "User already exists",
                             "Error", JOptionPane.ERROR_MESSAGE);
 
                 } else {
-                    controller.addUser(e);
-                    controller.save();
+                    dbController.addUser(e);
+                    dbController.save();
                     JOptionPane.showMessageDialog(MainFrame.this, "Registered",
                             "Your username: "+ e.getLogin(), JOptionPane.OK_OPTION);
                 }
@@ -134,8 +143,13 @@ public class MainFrame  extends JFrame {
         add(chatsPanel, BorderLayout.WEST);
         add(messagePanel, BorderLayout.CENTER);
         add(activeUsersPanel, BorderLayout.EAST);
+        loginDialog.setVisible(true);
 
 
+    }
+
+    public void sendMsg(String msg){
+        messagePanel.append(msg);
     }
 
     private JMenuBar createMenuBar(){
