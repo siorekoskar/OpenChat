@@ -9,4 +9,5 @@ public interface UserPanelListener {
     public void logoutEventOccured();
     public void chatboxEventOccured();
     public void inboxEventOccured();
+    void refreshEventOccured();
 }

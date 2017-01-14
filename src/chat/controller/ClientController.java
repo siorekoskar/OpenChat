@@ -6,6 +6,8 @@ import chat.model.ChatRoom;
 import chat.model.Client;
 import chat.model.Message;
 
+import java.util.List;
+
 /**
  * Created by Oskar on 10/01/2017.
  */
@@ -42,6 +44,14 @@ public class ClientController{
         Message msg = new Message(Message.CREATECHAT, admin, "", chatRoom);
         chatClient.sendMessage(msg);
         System.out.println(chatRoom.toString());
+    }
+
+    public void sendChats(List chats){
+        frame.sendChats(chats);
+    }
+
+    public void sendChat(ChatRoom chat){
+        frame.sendChat(chat);
     }
 
 }

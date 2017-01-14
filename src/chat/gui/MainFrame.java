@@ -3,6 +3,7 @@ package chat.gui;
 import chat.controller.ClientController;
 import chat.controller.DbController;
 import chat.gui.listenersinterfaces.*;
+import chat.model.ChatRoom;
 import chat.model.Message;
 
 import javax.swing.*;
@@ -82,6 +83,11 @@ public class MainFrame  extends JFrame {
 
             @Override
             public void inboxEventOccured() {
+
+            }
+
+            @Override
+            public void refreshEventOccured() {
 
             }
         });
@@ -239,5 +245,13 @@ public class MainFrame  extends JFrame {
         });
 
         return menuBar;
+    }
+
+    public void sendChats(java.util.List chats){
+        chatsPanel.fillChat(chats);
+    }
+
+    public void sendChat(ChatRoom chat){
+        chatsPanel.addChat(chat);
     }
 }

@@ -5,6 +5,8 @@ import chat.gui.MainFrame;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Oskar on 14/01/2017.
@@ -82,10 +84,16 @@ public class Client  {
         public void run(){
             while(true){
                 try{
-                    String msg = (String) sInput.readObject();
-                    //Message msg = (Message) sInput.readObject();
-                    System.out.println(msg+ "SENDMESSAGECLIENTTHREAD");
-                    cg.sendMsg(msg);
+                    Object obj = sInput.readObject();
+
+                    if (obj instanceof ChatRoom) {
+                        System.out.println("lkoho");
+                        cg.sendChat((ChatRoom)obj);
+                    } else{
+                        //String msg = (String) sInput.readObject();
+                        String msg = (String) obj;
+                        cg.sendMsg(msg);
+                    }
                 } catch(IOException e){
                     System.out.println("przypal");
                 } catch(ClassNotFoundException e){

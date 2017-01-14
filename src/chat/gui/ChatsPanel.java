@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Oskar on 07/01/2017.
@@ -83,12 +85,31 @@ public class ChatsPanel extends JSplitPane {
         add(chatsPrivateListScrollable);
 
 
+
     }
 
-    public void fillChat(ArrayList<ChatRoom> chats){
-        for (ChatRoom chatRoom:
-             chats) {
-            chatPublicModel.addElement(chatRoom.getChatName());
+    public void fillChat(final Object objecList){
+        List<String> stringList = new ArrayList<>();
+        if(objecList instanceof java.util.List<?>){
+            for(Object object: (java.util.List<?>) objecList){
+                chatPublicModel.addElement(((ChatRoom)object).getChatName());
+            }
         }
+
+
+    }
+
+    public void addChat(ChatRoom chat){
+        for (int i = 0; i < chatPublicModel.size(); i++) {
+            String str = (String)chatPublicModel.getElementAt(i);
+            if(str.equals(chat.getChatName())) {
+                System.out.println("Lipa");
+                return;
+            }
+        }
+        System.out.println("slabo");
+        chatPublicModel.addElement(chat.getChatName());
+
+
     }
 }

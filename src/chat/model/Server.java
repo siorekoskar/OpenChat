@@ -103,11 +103,16 @@ public class Server {
             }
         }
 
-        public void createChatRoom(Message msg){
+        public void createChatRoom(Message msg) throws IOException{
             ChatRoom chatRoom = msg.getChatRoom();
             ChatRoom chatToAdd = new ChatRoom(chatRoom.isPrivate(), chatRoom.getAdmin(),
                     chatRoom.getChatName());
             chatRooms.add(chatToAdd);
+            //sOutput.writeObject(chatRooms);
+            for (ChatRoom chat :
+                    chatRooms) {
+                sOutput.writeObject(new ChatRoom(chat));
+            }
         }
 
         public void run(){

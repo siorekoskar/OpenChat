@@ -43,6 +43,11 @@ public class ChatRoom implements Serializable{
         this.chatName = chatName;
     }
 
+    public ChatRoom(ChatRoom chat){
+        this(chat.isPrivate(), chat.getAdmin(), chat.getChatName());
+
+    }
+
     public void appendMsg(String msg){
         messages+=msg;
     }

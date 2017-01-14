@@ -55,6 +55,8 @@ public class UserPanel extends JPanel implements ActionListener{
                 listener.chatboxEventOccured();
             } else if (clicked == inboxButton) {
                 listener.inboxEventOccured();
+            } else if (clicked == refreshButton){
+
             }
         }
     }
