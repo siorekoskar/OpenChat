@@ -39,6 +39,8 @@ public class ClientController{
         String admin = ev.getAdmin();
         boolean isPrivate = ev.isPrivate();
         ChatRoom chatRoom = new ChatRoom(isPrivate, admin, chatName);
+        Message msg = new Message(Message.CREATECHAT, admin, "", chatRoom);
+        chatClient.sendMessage(msg);
         System.out.println(chatRoom.toString());
     }
 

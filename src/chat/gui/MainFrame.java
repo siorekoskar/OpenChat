@@ -2,11 +2,7 @@ package chat.gui;
 
 import chat.controller.ClientController;
 import chat.controller.DbController;
-import chat.gui.listenersinterfaces.CreateChatListener;
-import chat.gui.listenersinterfaces.FormListener;
-import chat.gui.listenersinterfaces.MessageListener;
-import chat.gui.listenersinterfaces.UserPanelListener;
-import chat.model.Client;
+import chat.gui.listenersinterfaces.*;
 import chat.model.Message;
 
 import javax.swing.*;
@@ -93,7 +89,7 @@ public class MainFrame  extends JFrame {
         messagePanel.setMessageListener(new MessageListener() {
             @Override
             public void messageSent(String msg) {
-                clientController.sendMessage(new Message(1, username, msg));
+                clientController.sendMessage(new Message(Message.MESSAGE, username, msg));
 
             }
 

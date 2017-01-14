@@ -1,12 +1,13 @@
 package chat.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Oskar on 14/01/2017.
  */
-public class ChatRoom {
+public class ChatRoom implements Serializable{
     static final int PRIVATE = 1, PUBLIC = 0;
 
     public String getChatName() {

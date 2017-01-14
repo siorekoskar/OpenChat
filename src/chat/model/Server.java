@@ -103,13 +103,30 @@ public class Server {
             }
         }
 
+        public void createChatRoom(Message msg){
+            ChatRoom chatRoom = msg.getChatRoom();
+            ChatRoom chatToAdd = new ChatRoom(chatRoom.isPrivate(), chatRoom.getAdmin(),
+                    chatRoom.getChatName());
+            chatRooms.add(chatToAdd);
+        }
+
         public void run(){
             boolean keepGoing = true;
             while(keepGoing){
                 try{
                     cm = (Message) sInput.readObject();
                     System.out.println(cm.getMessage() + "SERVERRUN");
-                    broadcast(cm.getUser() + ": " + cm.getMessage());
+
+                    switch(cm.getType()){
+                        case Message.MESSAGE:
+                            broadcast(cm.getUser() + ": " + cm.getMessage());
+                            break;
+                        case Message.CREATECHAT:
+                            System.out.println("DALO RADE" + cm.getChatRoom().getChatName());
+                            createChatRoom(cm);
+                            break;
+                    }
+
                 } catch(IOException e){
                     e.printStackTrace();
                     break;

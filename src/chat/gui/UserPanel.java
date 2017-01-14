@@ -15,6 +15,7 @@ public class UserPanel extends JPanel implements ActionListener{
     private JButton logoutButton;
     private JButton chatManagerButton;
     private JButton inboxButton;
+    private JButton refreshButton;
 
     private UserPanelListener listener;
 
@@ -23,17 +24,20 @@ public class UserPanel extends JPanel implements ActionListener{
         chatManagerButton = new JButton("Chat Manager");
         inboxButton = new JButton("Inbox");
         logoutButton = new JButton("Logout");
+        refreshButton = new JButton("Refresh");
 
         setLayout(new FlowLayout(FlowLayout.LEFT));
 
         add(inboxButton);
         add(chatManagerButton);
         add(logoutButton);
+        add(refreshButton);
 
         ////////////////LISTENERS/////////////////
         logoutButton.addActionListener(this);
         chatManagerButton.addActionListener(this);
         inboxButton.addActionListener(this);
+        refreshButton.addActionListener(this);
     }
 
     public void setUserPanelListener(UserPanelListener listener) {

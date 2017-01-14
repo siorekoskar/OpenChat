@@ -8,16 +8,27 @@ import java.io.Serializable;
 public class Message implements Serializable{
     protected static final long serialVersionUID = 1112122200L;
 
-    static final int MESSAGE = 1, CREATECHAT = 2;
+    public static final int MESSAGE = 1, CREATECHAT = 2;
 
     private int type;
     private String message;
     private String user;
 
+    public ChatRoom getChatRoom() {
+        return chatRoom;
+    }
+
+    private ChatRoom chatRoom;
+
     public Message(int type, String user, String message){
         this.type = type;
         this.message = message;
         this.user = user;
+    }
+
+    public Message(int type, String user, String message, ChatRoom chatRoom){
+        this(type, user, message);
+        this.chatRoom = chatRoom;
     }
 
     public int getType() {
