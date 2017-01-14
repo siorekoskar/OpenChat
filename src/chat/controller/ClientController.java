@@ -1,6 +1,8 @@
 package chat.controller;
 
+import chat.gui.CreateChatEvent;
 import chat.gui.MainFrame;
+import chat.model.ChatRoom;
 import chat.model.Client;
 import chat.model.Message;
 
@@ -30,6 +32,14 @@ public class ClientController{
     }
     public void disconnect(){
         chatClient.disconnect();
+    }
+
+    public void newChatCreated(CreateChatEvent ev){
+        String chatName = ev.getChatName();
+        String admin = ev.getAdmin();
+        boolean isPrivate = ev.isPrivate();
+        ChatRoom chatRoom = new ChatRoom(isPrivate, admin, chatName);
+        System.out.println(chatRoom.toString());
     }
 
 }

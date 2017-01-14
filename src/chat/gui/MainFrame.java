@@ -2,6 +2,7 @@ package chat.gui;
 
 import chat.controller.ClientController;
 import chat.controller.DbController;
+import chat.gui.listenersinterfaces.CreateChatListener;
 import chat.gui.listenersinterfaces.FormListener;
 import chat.gui.listenersinterfaces.MessageListener;
 import chat.gui.listenersinterfaces.UserPanelListener;
@@ -26,6 +27,7 @@ public class MainFrame  extends JFrame {
     private MessagePanel messagePanel;
     private Preferences preferenceLogin;
     private LoginDialog loginDialog;
+    private CreateChatFrame frame;
 
     private String username;
 
@@ -71,7 +73,15 @@ public class MainFrame  extends JFrame {
 
             @Override
             public void chatboxEventOccured() {
-                System.out.println("CHAT");
+                frame = new CreateChatFrame();
+                frame.setListener(new CreateChatListener() {
+                    @Override
+                    public void chatCreated(CreateChatEvent e) {
+                        e.setAdmin(username);
+                        clientController.newChatCreated(e);
+
+                    }
+                });
             }
 
             @Override
