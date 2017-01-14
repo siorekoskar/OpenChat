@@ -1,8 +1,6 @@
 package chat.model;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -74,7 +72,7 @@ public class Server {
         }
     }
 
-    synchronized  void remove(int id){
+    synchronized void remove(int id){
         for(int i = 0; i< clientThreads.size(); ++i){
             ClientThread ct = clientThreads.get(i);
             if(ct.id == id){
@@ -86,16 +84,18 @@ public class Server {
 
     class ClientThread extends Thread{
         Socket socket;
-        DataInputStream sInput;
-        DataOutputStream sOutput;
+        ObjectInputStream sInput;
+        ObjectOutputStream sOutput;
         int id;
+        private Message cm;
+
 
         ClientThread(Socket socket){
             id = ++uniqueID;
             this.socket = socket;
             try{
-                sOutput = new DataOutputStream((socket.getOutputStream()));
-                sInput= new DataInputStream(socket.getInputStream());
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+                sInput= new ObjectInputStream(socket.getInputStream());
                 System.out.println("SOMEONE CONNECTED");
             } catch(IOException e){
                 System.out.println("Exception");
@@ -107,10 +107,15 @@ public class Server {
             boolean keepGoing = true;
             while(keepGoing){
                 try{
-                    String msg = sInput.readUTF();
-                    broadcast(msg);
+                    cm = (Message) sInput.readObject();
+                    System.out.println(cm.getMessage() + "SERVERRUN");
+                    broadcast(cm.getUser() + ": " + cm.getMessage());
                 } catch(IOException e){
-                    System.out.println();
+                    e.printStackTrace();
+                    break;
+                } catch (ClassNotFoundException e){
+                    e.printStackTrace();
+                    break;
                 }
             }
 
@@ -127,11 +132,12 @@ public class Server {
             try {
                 if(sInput != null) sInput.close();
             }
-            catch(Exception e) {};
+            catch(Exception e) {}
             try {
                 if(socket != null) socket.close();
             }
             catch (Exception e) {}
+            keepGoing = false;
         }
 
         private boolean writeMsg(String msg) {
@@ -142,7 +148,8 @@ public class Server {
             }
             // write the message to the stream
             try {
-                sOutput.writeUTF(msg);
+                sOutput.writeObject(msg);
+                System.out.println(msg + "WRITEMSGSERVER");
             }
             // if an error occurs, do not abort just inform the user
             catch(IOException e) {

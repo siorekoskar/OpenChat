@@ -7,13 +7,14 @@ import java.util.List;
  * Created by Oskar on 14/01/2017.
  */
 public class ChatRoom {
-    private ChatType chatType;
+    static final int PRIVATE = 1, PUBLIC = 0;
     private String chatName;
-    private User admin;
+    private String admin;
     private List usersIn;
     private String messages;
+    private int chatType;
 
-    public ChatRoom(ChatType chatType, User admin, String chatName){
+    public ChatRoom(int chatType, String admin, String chatName){
         this.chatType = chatType;
         this.admin = admin;
         this.usersIn = new ArrayList();

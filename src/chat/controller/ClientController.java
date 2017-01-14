@@ -2,6 +2,7 @@ package chat.controller;
 
 import chat.gui.MainFrame;
 import chat.model.Client;
+import chat.model.Message;
 
 /**
  * Created by Oskar on 10/01/2017.
@@ -19,7 +20,8 @@ public class ClientController{
         chatClient.start();
     }
 
-    public void sendMessage(String msg){
+    public void sendMessage(Message msg){
+        System.out.println(msg.getMessage() + "CONTROLER");
         chatClient.sendMessage(msg);
     }
 

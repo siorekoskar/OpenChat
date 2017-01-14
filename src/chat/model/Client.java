@@ -3,17 +3,15 @@ package chat.model;
 import chat.controller.ClientController;
 import chat.gui.MainFrame;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
 /**
  * Created by Oskar on 14/01/2017.
  */
 public class Client  {
-    private DataInputStream sInput;
-    private DataOutputStream sOutput;
+    private ObjectInputStream sInput;
+    private ObjectOutputStream sOutput;
     private Socket socket;
 
     private ClientController cg;
@@ -40,8 +38,8 @@ public class Client  {
         System.out.println(msg);
 
         try{
-            sInput = new DataInputStream(socket.getInputStream());
-            sOutput = new DataOutputStream(socket.getOutputStream());
+            sInput = new ObjectInputStream(socket.getInputStream());
+            sOutput = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException eIO){
             System.out.println("Fail");
         }
@@ -55,9 +53,10 @@ public class Client  {
         cg.sendMsg(msg+"\n");
     }
 
-    public void sendMessage(String msg){
+    public void sendMessage(Message msg){
         try{
-            sOutput.writeUTF(username + ": " +msg);
+            System.out.println(msg.getMessage() + "SENDMESSAGECLIENT");
+            sOutput.writeObject(msg);
         } catch (Exception e){}
 
     }
@@ -83,10 +82,14 @@ public class Client  {
         public void run(){
             while(true){
                 try{
-                    String msg = sInput.readUTF();
+                    String msg = (String) sInput.readObject();
+                    //Message msg = (Message) sInput.readObject();
+                    System.out.println(msg+ "SENDMESSAGECLIENTTHREAD");
                     cg.sendMsg(msg);
                 } catch(IOException e){
                     System.out.println("przypal");
+                } catch(ClassNotFoundException e){
+                    e.printStackTrace();
                 }
             }
         }
