@@ -107,8 +107,10 @@ public class Client  {
                     }
                 } catch(IOException e){
                     System.out.println("przypal");
+                    break;
                 } catch(ClassNotFoundException e){
                     e.printStackTrace();
+                    break;
                 }
             }
         }

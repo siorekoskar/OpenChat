@@ -69,6 +69,7 @@ public class Server {
 
             if(!ct.writeMsg(msg)) {
                 clientThreads.remove(i);
+                System.out.println("REMOVED CLIENT " + ct.username);
             }
         }
     }
@@ -91,7 +92,7 @@ public class Server {
             ChatRoom chatToAdd = new ChatRoom(chatRoom.isPrivate(), chatRoom.getAdmin(),
                     chatRoom.getChatName());
             chatRooms.add(chatToAdd);
-            //sOutput.writeObject(chatRooms);
+
             for (ChatRoom chat :
                     chatRooms) {
                 if(!ct.writeMsg(new ChatRoom(chat))){
@@ -114,6 +115,28 @@ public class Server {
         }
     }
 
+    private synchronized ChatRoom showChatRoom(Message msg){
+        for (ChatRoom chat :
+                chatRooms) {
+            if (chat.getChatName().equals(msg.getMessage())) {
+                System.out.println("Dotarlem do czatu " + chat.getChatName());
+                return chat;
+            }
+        }
+        return null;
+    }
+
+    private synchronized void sendMessage(String msg, ChatRoom cm){
+        cm.appendMsg(msg + "\n");
+        for (ClientThread ct :
+                clientThreads) {
+            if(ct.currentChat == cm){
+                ct.writeMsg(cm.getChatName()+": " + msg);
+            }
+        }
+    }
+
+
 
     class ClientThread extends Thread{
         Socket socket;
@@ -121,6 +144,7 @@ public class Server {
         ObjectOutputStream sOutput;
         int id;
         private Message cm;
+        private ChatRoom currentChat;
 
         public String getUsername() {
             return username;
@@ -136,8 +160,7 @@ public class Server {
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sInput= new ObjectInputStream(socket.getInputStream());
                 username = (String) sInput.readObject();
-                User user = new User(username);
-                //sendUser(user);
+                currentChat = null;
                 System.out.println(username + " connected");
             } catch(IOException e){
                 System.out.println("Exception");
@@ -153,15 +176,24 @@ public class Server {
             while(keepGoing){
                 try{
                     cm = (Message) sInput.readObject();
-                    System.out.println(cm.getMessage() + "SERVERRUN");
 
                     switch(cm.getType()){
                         case Message.MESSAGE:
-                            broadcast(cm.getUser() + ": " + cm.getMessage());
+                            //broadcast(cm.getUser() + ": " + cm.getMessage());
+                            sendMessage(cm.getUser() +": " +cm.getMessage(), currentChat);
                             break;
                         case Message.CREATECHAT:
-                            System.out.println("DALO RADE" + cm.getChatRoom().getChatName());
                             createChatRoom(cm);
+                            break;
+                        case Message.CONNECTTOCHAT:
+                            ChatRoom chat = showChatRoom(cm);
+                            if(!chat.userExists(cm.getUser())) {
+                                chat.addUsersIn(cm.getUser());
+                            }
+                            currentChat = chat;
+                            String oldMessages = chat.getMessages();
+                            writeMsg(chat.getUsersAsString() +"\n" + oldMessages);
+
                             break;
                     }
 
@@ -192,7 +224,7 @@ public class Server {
                 if(socket != null) socket.close();
             }
             catch (Exception e) {}
-            keepGoing = false;
+           // keepGoing = false;
         }
 
         private boolean writeMsg(Object msg) {

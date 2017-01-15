@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
@@ -58,6 +60,15 @@ public class MainFrame  extends JFrame {
         this.setVisible(false);
 
         //////////////////////LISTENERS/////////////////////
+
+        chatsPanel.setChatsPanelListener(new ChatsPanelListener() {
+            @Override
+            public void wentToChatOccured(String msg) {
+                Message message = new Message(Message.CONNECTTOCHAT, username, msg);
+                clientController.sendMessage(message);
+            }
+        });
+
         userPanel.setUserPanelListener(new UserPanelListener() {
             @Override
             public void logoutEventOccured() {
@@ -171,6 +182,15 @@ public class MainFrame  extends JFrame {
                     JOptionPane.showMessageDialog(MainFrame.this, "Unable to save to database",
                             "Database Connection Problem", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                clientController.disconnect();
+                dispose();
+                System.gc();
             }
         });
 

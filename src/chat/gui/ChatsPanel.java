@@ -1,6 +1,8 @@
 package chat.gui;
 
+import chat.gui.listenersinterfaces.ChatsPanelListener;
 import chat.model.ChatRoom;
+import chat.model.Message;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,11 +23,17 @@ public class ChatsPanel extends JSplitPane {
     DefaultListModel chatPublicModel;
     DefaultListModel chatPrivateModel;
 
-    private int getRow(Point point, JList list){
+    public void setChatsPanelListener(ChatsPanelListener chatsPanelListener) {
+        this.chatsPanelListener = chatsPanelListener;
+    }
+
+    private ChatsPanelListener chatsPanelListener;
+
+    private int getRow(Point point, JList list) {
         return list.locationToIndex(point);
     }
 
-    public ChatsPanel(){
+    public ChatsPanel() {
         super(JSplitPane.VERTICAL_SPLIT);
 
         chatPublicModel = new DefaultListModel();
@@ -44,23 +52,48 @@ public class ChatsPanel extends JSplitPane {
 
         publicChatsList.addMouseListener(new MouseAdapter() {
             @Override
+            public void mouseClicked(MouseEvent ev){
+                JList list = (JList)ev.getSource();
+                if(ev.getClickCount() == 2){
+                    int index = list.locationToIndex(ev.getPoint());
+                    publicChatsList.setSelectedIndex(index);
+                    String selected = (String) publicChatsList.getSelectedValue();
+                    System.out.println(selected + "-- SELECTED CHAT");
+                    chatsPanelListener.wentToChatOccured(selected);
+
+                }
+            }
+
+            @Override
             public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e)){
+
+                /*if (SwingUtilities.isRightMouseButton(e)) {
                     publicChatsList.setSelectedIndex(getRow(e.getPoint(), publicChatsList));
                     popupMenu.show(publicChatsList, e.getX(), e.getY());
-                }
+
+                } else if (SwingUtilities.isLeftMouseButton(e)) {
+
+                    if (publicChatsList.isSelectedIndex(getRow(e.getPoint(), publicChatsList))) {
+                        String selected = (String) publicChatsList.getSelectedValue();
+                        System.out.println(selected + "-- SELECTED CHAT");
+                    } else {
+                        publicChatsList.setSelectedIndex(getRow(e.getPoint(), publicChatsList));
+                    }
+                }*/
             }
         });
 
         privateChatsList.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e)){
+                if (SwingUtilities.isRightMouseButton(e)) {
                     privateChatsList.setSelectedIndex(getRow(e.getPoint(), privateChatsList));
                     popupMenu.show(privateChatsList, e.getX(), e.getY());
                 }
             }
         });
+
+        // popupMenu.listener
 
 
         JScrollPane chatsPublicListScrollable = new JScrollPane(publicChatsList);
@@ -76,22 +109,21 @@ public class ChatsPanel extends JSplitPane {
         add(chatsPrivateListScrollable);
 
 
-
     }
 
-    public void addChat(ChatRoom chat){
-        if(!chat.isPrivate()){
-            addChatToList(chat,chatPublicModel);
+    public void addChat(ChatRoom chat) {
+        if (!chat.isPrivate()) {
+            addChatToList(chat, chatPublicModel);
         } else {
-            addChatToList(chat,chatPrivateModel);
+            addChatToList(chat, chatPrivateModel);
         }
     }
 
-    public void addChatToList(ChatRoom chat, DefaultListModel dlm){
+    public void addChatToList(ChatRoom chat, DefaultListModel dlm) {
         String chatName = chat.getChatName();
         for (int i = 0; i < dlm.size(); i++) {
-            String str = (String)dlm.getElementAt(i);
-            if(str.equals(chatName)) {
+            String str = (String) dlm.getElementAt(i);
+            if (str.equals(chatName)) {
                 return;
             }
         }

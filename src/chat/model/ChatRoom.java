@@ -22,6 +22,10 @@ public class ChatRoom implements Serializable{
         return usersIn;
     }
 
+    public String getUsersAsString(){
+        return usersIn.toString();
+    }
+
     public String getMessages() {
         return messages;
     }
@@ -30,9 +34,18 @@ public class ChatRoom implements Serializable{
         return isPrivate;
     }
 
+    public boolean userExists(String user){
+        return usersIn.contains(user);
+    }
+
     private String chatName;
     private String admin;
-    private List usersIn;
+
+    public void addUsersIn(String user) {
+        usersIn.add(user);
+    }
+
+    private ArrayList<String> usersIn;
     private String messages;
     private boolean isPrivate;
 
