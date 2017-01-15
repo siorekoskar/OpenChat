@@ -5,6 +5,7 @@ import chat.gui.MainFrame;
 import chat.model.ChatRoom;
 import chat.model.Client;
 import chat.model.Message;
+import chat.model.User;
 
 import java.util.List;
 
@@ -46,12 +47,13 @@ public class ClientController{
         System.out.println(chatRoom.toString());
     }
 
-    public void sendChats(List chats){
-        frame.sendChats(chats);
+    public void sendChat(ChatRoom chat){
+        System.out.println(chat.getChatName() + "KONTORLER");
+        frame.sendChat(chat);
     }
 
-    public void sendChat(ChatRoom chat){
-        frame.sendChat(chat);
+    public void sendUser(User user){
+        frame.sendUser(user);
     }
 
 }

@@ -5,6 +5,7 @@ import chat.controller.DbController;
 import chat.gui.listenersinterfaces.*;
 import chat.model.ChatRoom;
 import chat.model.Message;
+import chat.model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -247,11 +248,12 @@ public class MainFrame  extends JFrame {
         return menuBar;
     }
 
-    public void sendChats(java.util.List chats){
-        chatsPanel.fillChat(chats);
-    }
 
     public void sendChat(ChatRoom chat){
         chatsPanel.addChat(chat);
+    }
+
+    public void sendUser(User user){
+        activeUsersPanel.addUser(user);
     }
 }

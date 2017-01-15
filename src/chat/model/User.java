@@ -32,6 +32,10 @@ public class User implements Serializable{
         count++;
     }
 
+    public User(String username){
+        this.login = username;
+    }
+
     ///////////////////GETTERS AND SETTERS//////////////////////////
 
     public static int getCount() {

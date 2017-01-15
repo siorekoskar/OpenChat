@@ -13,6 +13,7 @@ public class Message implements Serializable{
     private int type;
     private String message;
     private String user;
+    private String sentToChat;
 
     public ChatRoom getChatRoom() {
         return chatRoom;
@@ -29,6 +30,11 @@ public class Message implements Serializable{
     public Message(int type, String user, String message, ChatRoom chatRoom){
         this(type, user, message);
         this.chatRoom = chatRoom;
+    }
+
+    public Message(int type, String user, String message, String sentToChat){
+        this(type,user,message);
+        this.sentToChat = sentToChat;
     }
 
     public int getType() {

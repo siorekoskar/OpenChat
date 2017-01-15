@@ -48,6 +48,14 @@ public class Client  {
 
         new ListenFromServer().start();
 
+        try{
+            sOutput.writeObject(username);
+        } catch(IOException eIO){
+            System.out.println("Exception loigin: "+ eIO);
+            disconnect();
+            return false;
+        }
+
         return true;
     }
 
@@ -86,7 +94,10 @@ public class Client  {
                 try{
                     Object obj = sInput.readObject();
 
-                    if (obj instanceof ChatRoom) {
+                    if(obj instanceof User){
+                        cg.sendUser((User)obj);
+                    }
+                     else if (obj instanceof ChatRoom) {
                         System.out.println("lkoho");
                         cg.sendChat((ChatRoom)obj);
                     } else{

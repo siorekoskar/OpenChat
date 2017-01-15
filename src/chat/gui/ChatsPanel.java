@@ -62,15 +62,6 @@ public class ChatsPanel extends JSplitPane {
             }
         });
 
-        ////////////////TEMP//////////////////
-
-        //////////////////////TEMP
-        /*for (int i = 0; i < 40; i++) {
-            chatPrivateModel.addElement("Private chat:" + i);
-        }
-        for (int i = 0; i < 15; i++) {
-            chatPublicModel.addElement("Public chat:  " + i);
-        }*/
 
         JScrollPane chatsPublicListScrollable = new JScrollPane(publicChatsList);
         JScrollPane chatsPrivateListScrollable = new JScrollPane(privateChatsList);
@@ -88,27 +79,23 @@ public class ChatsPanel extends JSplitPane {
 
     }
 
-    public void fillChat(final Object objecList){
-        List<String> stringList = new ArrayList<>();
-        if(objecList instanceof java.util.List<?>){
-            for(Object object: (java.util.List<?>) objecList){
-                chatPublicModel.addElement(((ChatRoom)object).getChatName());
-            }
+    public void addChat(ChatRoom chat){
+        if(!chat.isPrivate()){
+            addChatToList(chat,chatPublicModel);
+        } else {
+            addChatToList(chat,chatPrivateModel);
         }
-
-
     }
 
-    public void addChat(ChatRoom chat){
-        for (int i = 0; i < chatPublicModel.size(); i++) {
-            String str = (String)chatPublicModel.getElementAt(i);
-            if(str.equals(chat.getChatName())) {
-                System.out.println("Lipa");
+    public void addChatToList(ChatRoom chat, DefaultListModel dlm){
+        String chatName = chat.getChatName();
+        for (int i = 0; i < dlm.size(); i++) {
+            String str = (String)dlm.getElementAt(i);
+            if(str.equals(chatName)) {
                 return;
             }
         }
-        System.out.println("slabo");
-        chatPublicModel.addElement(chat.getChatName());
+        dlm.addElement(chatName);
 
 
     }

@@ -38,6 +38,7 @@ public class Server {
 
                 ClientThread t = new ClientThread(socket);
                 clientThreads.add(t);
+                actualizeUsers();
                 t.start();
             }
             try {
@@ -82,12 +83,50 @@ public class Server {
         }
     }
 
+    private synchronized void createChatRoom(Message msg) throws IOException{
+        for (int i = 0; i < clientThreads.size(); i++) {
+            ClientThread ct = clientThreads.get(i);
+
+            ChatRoom chatRoom = msg.getChatRoom();
+            ChatRoom chatToAdd = new ChatRoom(chatRoom.isPrivate(), chatRoom.getAdmin(),
+                    chatRoom.getChatName());
+            chatRooms.add(chatToAdd);
+            //sOutput.writeObject(chatRooms);
+            for (ChatRoom chat :
+                    chatRooms) {
+                if(!ct.writeMsg(new ChatRoom(chat))){
+                    clientThreads.remove(i);
+                }
+            }
+        }
+    }
+
+    private synchronized void actualizeUsers(){
+        for (int i = 0; i < clientThreads.size(); i++) {
+            ClientThread ct = clientThreads.get(i);
+
+            for (int j = 0; j < clientThreads.size(); j++) {
+                if(!ct.writeMsg(new User(clientThreads.get(j).getUsername()))){
+                    clientThreads.remove(i);
+                }
+            }
+
+        }
+    }
+
+
     class ClientThread extends Thread{
         Socket socket;
         ObjectInputStream sInput;
         ObjectOutputStream sOutput;
         int id;
         private Message cm;
+
+        public String getUsername() {
+            return username;
+        }
+
+        private String username;
 
 
         ClientThread(Socket socket){
@@ -96,24 +135,18 @@ public class Server {
             try{
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sInput= new ObjectInputStream(socket.getInputStream());
-                System.out.println("SOMEONE CONNECTED");
+                username = (String) sInput.readObject();
+                User user = new User(username);
+                //sendUser(user);
+                System.out.println(username + " connected");
             } catch(IOException e){
                 System.out.println("Exception");
                 return;
+            } catch(ClassNotFoundException e){
+                e.printStackTrace();
             }
         }
 
-        public void createChatRoom(Message msg) throws IOException{
-            ChatRoom chatRoom = msg.getChatRoom();
-            ChatRoom chatToAdd = new ChatRoom(chatRoom.isPrivate(), chatRoom.getAdmin(),
-                    chatRoom.getChatName());
-            chatRooms.add(chatToAdd);
-            //sOutput.writeObject(chatRooms);
-            for (ChatRoom chat :
-                    chatRooms) {
-                sOutput.writeObject(new ChatRoom(chat));
-            }
-        }
 
         public void run(){
             boolean keepGoing = true;
@@ -162,22 +195,24 @@ public class Server {
             keepGoing = false;
         }
 
-        private boolean writeMsg(String msg) {
+        private boolean writeMsg(Object msg) {
             // if Client is still connected send the message to it
             if(!socket.isConnected()) {
                 close();
                 return false;
             }
             // write the message to the stream
-            try {
-                sOutput.writeObject(msg);
-                System.out.println(msg + "WRITEMSGSERVER");
-            }
-            // if an error occurs, do not abort just inform the user
-            catch(IOException e) {
-                System.out.println("Error sending message to ");
 
-            }
+                try {
+                    sOutput.writeObject(msg);
+                    System.out.println(msg + "WRITEMSGSERVER");
+                }
+                // if an error occurs, do not abort just inform the user
+                catch (IOException e) {
+                    System.out.println("Error sending message to ");
+
+                }
+
             return true;
         }
     }
