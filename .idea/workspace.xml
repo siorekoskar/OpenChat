@@ -3,15 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0d1bbba1-6a5b-431b-bd5c-38d7032de415" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/controller/ClientController.java" afterPath="$PROJECT_DIR$/src/chat/controller/ClientController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java" afterPath="$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/ChatsPanel.java" afterPath="$PROJECT_DIR$/src/chat/gui/ChatsPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/MessagePanel.java" afterPath="$PROJECT_DIR$/src/chat/gui/MessagePanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Client.java" afterPath="$PROJECT_DIR$/src/chat/model/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Message.java" afterPath="$PROJECT_DIR$/src/chat/model/Message.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Server.java" afterPath="$PROJECT_DIR$/src/chat/model/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/User.java" afterPath="$PROJECT_DIR$/src/chat/model/User.java" />
     </list>
     <ignored path="OpenChat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -222,8 +213,8 @@
           <file leaf-file-name="ActiveUsersPanel.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="434">
-                  <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+                <state relative-caret-position="281">
+                  <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -1095,7 +1086,7 @@
       <workItem from="1484086375854" duration="7079000" />
       <workItem from="1484402347320" duration="390000" />
       <workItem from="1484402762109" duration="30732000" />
-      <workItem from="1484494596704" duration="6441000" />
+      <workItem from="1484494596704" duration="6520000" />
     </task>
     <task id="LOCAL-00001" summary="added layoutComponents() method to MessagePanel">
       <created>1483793216336</created>
@@ -1279,11 +1270,18 @@
       <option name="project" value="LOCAL" />
       <updated>1484437975549</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="adding users to list implemented">
+      <created>1484501062093</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1484501062093</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124937000" />
+    <option name="totallyTimeSpent" value="125016000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
@@ -1348,7 +1346,8 @@
     <MESSAGE value="object sending implemented" />
     <MESSAGE value="chatroom class implemented" />
     <MESSAGE value="chatrooms are getting real" />
-    <option name="LAST_COMMIT_MESSAGE" value="chatrooms are getting real" />
+    <MESSAGE value="adding users to list implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding users to list implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1707,14 +1706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat/model/Server.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -1722,6 +1713,14 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
