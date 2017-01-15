@@ -1,14 +1,18 @@
 package chat.gui;
 
-import chat.controller.Controller;
-import chat.gui.listenersinterfaces.FormListener;
-import chat.gui.listenersinterfaces.MessageListener;
-import chat.gui.listenersinterfaces.UserPanelListener;
+import chat.controller.ClientController;
+import chat.controller.DbController;
+import chat.gui.listenersinterfaces.*;
+import chat.model.ChatRoom;
+import chat.model.Message;
+import chat.model.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.prefs.Preferences;
 
@@ -23,8 +27,15 @@ public class MainFrame  extends JFrame {
     private MessagePanel messagePanel;
     private Preferences preferenceLogin;
     private LoginDialog loginDialog;
+    private CreateChatFrame frame;
 
-    private Controller controller;
+    private String username;
+
+    private DbController dbController;
+    private ClientController clientController;
+
+    private static final int port = 3308;
+    private static final String host = "0.0.0.0";
 
 
     public MainFrame() {
@@ -43,26 +54,52 @@ public class MainFrame  extends JFrame {
         messagePanel = new MessagePanel();
         loginDialog = new LoginDialog(this);
 
-        controller = new Controller();
+        dbController = new DbController();
 
         setJMenuBar(createMenuBar());
+        this.setVisible(false);
 
         //////////////////////LISTENERS/////////////////////
+
+        chatsPanel.setChatsPanelListener(new ChatsPanelListener() {
+            @Override
+            public void wentToChatOccured(String msg) {
+                Message message = new Message(Message.CONNECTTOCHAT, username, msg);
+                clientController.sendMessage(message);
+            }
+        });
+
         userPanel.setUserPanelListener(new UserPanelListener() {
             @Override
             public void logoutEventOccured() {
+                MainFrame.this.setVisible(false);
+                clientController.disconnect();
                 loginDialog.setVisible(true);
-                //setEnabled(false);
+
                 System.out.println("LOGOUT CLICKED");
+
             }
 
             @Override
             public void chatboxEventOccured() {
-                System.out.println("CHAT");
+                frame = new CreateChatFrame();
+                frame.setListener(new CreateChatListener() {
+                    @Override
+                    public void chatCreated(CreateChatEvent e) {
+                        e.setAdmin(username);
+                        clientController.newChatCreated(e);
+
+                    }
+                });
             }
 
             @Override
             public void inboxEventOccured() {
+
+            }
+
+            @Override
+            public void refreshEventOccured() {
 
             }
         });
@@ -70,7 +107,8 @@ public class MainFrame  extends JFrame {
         messagePanel.setMessageListener(new MessageListener() {
             @Override
             public void messageSent(String msg) {
-                System.out.println(msg);
+                clientController.sendMessage(new Message(Message.MESSAGE, username, msg));
+
             }
 
             @Override
@@ -84,6 +122,30 @@ public class MainFrame  extends JFrame {
             @Override
             public void loginEventOccured(FormEvent e) {
                 System.out.println(e.getLogin());
+                try{
+                    dbController.connect();
+                    dbController.load();
+                    if(dbController.checkIfUserExists(e)) {
+
+                        loginDialog.setVisible(false);
+                        username = e.getLogin();
+                        MainFrame.this.setTitle(username);
+                        MainFrame.this.setVisible(true);
+                        JOptionPane.showMessageDialog(MainFrame.this, "Logged",
+                                "Succes", JOptionPane.ERROR_MESSAGE);
+
+                        clientController = new ClientController(host, port, MainFrame.this, username);
+
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(MainFrame.this, "Error",
+                                "Bad data", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } catch(Exception e5){
+
+                }
+
             }
 
             @Override
@@ -92,27 +154,27 @@ public class MainFrame  extends JFrame {
                 System.out.println(e.getPass());
 
                 try {
-                    controller.connect();
+                    dbController.connect();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
 
                 try {
-                   // controller.checkIfUserExists(e);
-                    controller.load();
+                   // dbController.checkIfUserExists(e);
+                    dbController.load();
 
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
 
                 try{
-                if(controller.checkIfUserExists(e)) {
+                if(dbController.checkIfUserExists(e)) {
                     JOptionPane.showMessageDialog(MainFrame.this, "User already exists",
                             "Error", JOptionPane.ERROR_MESSAGE);
 
                 } else {
-                    controller.addUser(e);
-                    controller.save();
+                    dbController.addUser(e);
+                    dbController.save();
                     JOptionPane.showMessageDialog(MainFrame.this, "Registered",
                             "Your username: "+ e.getLogin(), JOptionPane.OK_OPTION);
                 }
@@ -120,6 +182,15 @@ public class MainFrame  extends JFrame {
                     JOptionPane.showMessageDialog(MainFrame.this, "Unable to save to database",
                             "Database Connection Problem", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                clientController.disconnect();
+                dispose();
+                System.gc();
             }
         });
 
@@ -134,8 +205,13 @@ public class MainFrame  extends JFrame {
         add(chatsPanel, BorderLayout.WEST);
         add(messagePanel, BorderLayout.CENTER);
         add(activeUsersPanel, BorderLayout.EAST);
+        loginDialog.setVisible(true);
 
 
+    }
+
+    public void sendMsg(String msg){
+        messagePanel.append(msg);
     }
 
     private JMenuBar createMenuBar(){
@@ -190,5 +266,14 @@ public class MainFrame  extends JFrame {
         });
 
         return menuBar;
+    }
+
+
+    public void sendChat(ChatRoom chat){
+        chatsPanel.addChat(chat);
+    }
+
+    public void sendUser(User user){
+        activeUsersPanel.addUser(user);
     }
 }

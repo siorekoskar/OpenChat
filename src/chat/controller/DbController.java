@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Oskar on 08/01/2017.
  */
-public class Controller {
+public class DbController {
 
     Database db = new Database();
 
@@ -37,12 +37,6 @@ public class Controller {
 
         User user = new User(e.getLogin(), e.getPass());
         return db.checkIfUserExists(user);
-      /* for(User user : getUsers()){
-           if(user.getLogin() == e.getLogin()){
-               return true;
-           }
-       }
-       return false;*/
     }
 
     public void save() throws SQLException{

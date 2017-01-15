@@ -1,9 +1,16 @@
 package chat.gui;
 
+import chat.gui.listenersinterfaces.ChatsPanelListener;
+import chat.model.ChatRoom;
+import chat.model.Message;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Oskar on 07/01/2017.
@@ -13,16 +20,24 @@ public class ChatsPanel extends JSplitPane {
     private JList privateChatsList;
     private JPopupMenu popupMenu;
     private JSplitPane splitPane;
+    DefaultListModel chatPublicModel;
+    DefaultListModel chatPrivateModel;
 
-    private int getRow(Point point, JList list){
+    public void setChatsPanelListener(ChatsPanelListener chatsPanelListener) {
+        this.chatsPanelListener = chatsPanelListener;
+    }
+
+    private ChatsPanelListener chatsPanelListener;
+
+    private int getRow(Point point, JList list) {
         return list.locationToIndex(point);
     }
 
-    public ChatsPanel(){
+    public ChatsPanel() {
         super(JSplitPane.VERTICAL_SPLIT);
 
-        DefaultListModel chatPublicModel = new DefaultListModel();
-        DefaultListModel chatPrivateModel = new DefaultListModel();
+        chatPublicModel = new DefaultListModel();
+        chatPrivateModel = new DefaultListModel();
         publicChatsList = new JList(chatPublicModel);
         privateChatsList = new JList(chatPrivateModel);
         publicChatsList.setBorder(BorderFactory.createTitledBorder("Open chats:"));
@@ -37,33 +52,49 @@ public class ChatsPanel extends JSplitPane {
 
         publicChatsList.addMouseListener(new MouseAdapter() {
             @Override
+            public void mouseClicked(MouseEvent ev){
+                JList list = (JList)ev.getSource();
+                if(ev.getClickCount() == 2){
+                    int index = list.locationToIndex(ev.getPoint());
+                    publicChatsList.setSelectedIndex(index);
+                    String selected = (String) publicChatsList.getSelectedValue();
+                    System.out.println(selected + "-- SELECTED CHAT");
+                    chatsPanelListener.wentToChatOccured(selected);
+
+                }
+            }
+
+            @Override
             public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e)){
+
+                /*if (SwingUtilities.isRightMouseButton(e)) {
                     publicChatsList.setSelectedIndex(getRow(e.getPoint(), publicChatsList));
                     popupMenu.show(publicChatsList, e.getX(), e.getY());
-                }
+
+                } else if (SwingUtilities.isLeftMouseButton(e)) {
+
+                    if (publicChatsList.isSelectedIndex(getRow(e.getPoint(), publicChatsList))) {
+                        String selected = (String) publicChatsList.getSelectedValue();
+                        System.out.println(selected + "-- SELECTED CHAT");
+                    } else {
+                        publicChatsList.setSelectedIndex(getRow(e.getPoint(), publicChatsList));
+                    }
+                }*/
             }
         });
 
         privateChatsList.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e)){
+                if (SwingUtilities.isRightMouseButton(e)) {
                     privateChatsList.setSelectedIndex(getRow(e.getPoint(), privateChatsList));
                     popupMenu.show(privateChatsList, e.getX(), e.getY());
                 }
             }
         });
 
-        ////////////////TEMP//////////////////
+        // popupMenu.listener
 
-        //////////////////////TEMP
-        for (int i = 0; i < 40; i++) {
-            chatPrivateModel.addElement("Private chat:" + i);
-        }
-        for (int i = 0; i < 15; i++) {
-            chatPublicModel.addElement("Public chat:  " + i);
-        }
 
         JScrollPane chatsPublicListScrollable = new JScrollPane(publicChatsList);
         JScrollPane chatsPrivateListScrollable = new JScrollPane(privateChatsList);
@@ -78,23 +109,26 @@ public class ChatsPanel extends JSplitPane {
         add(chatsPrivateListScrollable);
 
 
-        //setLayout(new BorderLayout());
-        /*setLayout(new GridBagLayout());
-        GridBagConstraints gc = new GridBagConstraints();
+    }
 
-        ////////////////FIRST ROW///////////////
+    public void addChat(ChatRoom chat) {
+        if (!chat.isPrivate()) {
+            addChatToList(chat, chatPublicModel);
+        } else {
+            addChatToList(chat, chatPrivateModel);
+        }
+    }
 
-        gc.weightx = 1;
-        gc.weighty = 1;
-        gc.gridx = 0;
-        gc.gridy = 0;
+    public void addChatToList(ChatRoom chat, DefaultListModel dlm) {
+        String chatName = chat.getChatName();
+        for (int i = 0; i < dlm.size(); i++) {
+            String str = (String) dlm.getElementAt(i);
+            if (str.equals(chatName)) {
+                return;
+            }
+        }
+        dlm.addElement(chatName);
 
-        gc.fill = GridBagConstraints.BOTH;
-        add(chatsPublicListScrollable, gc);
-
-        gc.insets = new Insets(4,0,0,0);
-        gc.gridy = 1;
-        add(chatsPrivateListScrollable, gc);*/
 
     }
 }

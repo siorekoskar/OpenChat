@@ -120,8 +120,6 @@ public class MessagePanel extends JPanel implements ActionListener{
                 messageListener.messageSent(msg);
                 inputTextArea.setText("");
 
-                ///TEMP///////////////////
-                messagesArea.append(msg+"\n");
             }
             else if(clicked == sendFileButton){
                 messageListener.fileSent();
@@ -129,7 +127,9 @@ public class MessagePanel extends JPanel implements ActionListener{
         }
     }
 
-
+    void append(String str){
+        messagesArea.append(str + "\n");
+    }
 
     private static final String TEXT_SUBMIT = "text-submit";
     private static final String INSERT_BREAK = "insert-break";
@@ -148,6 +148,8 @@ public class MessagePanel extends JPanel implements ActionListener{
             }
         });
     }
+
+
 }
 
 

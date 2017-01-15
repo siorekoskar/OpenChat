@@ -1,5 +1,7 @@
 package chat.gui;
 
+import chat.model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -11,6 +13,7 @@ import java.awt.event.MouseEvent;
 public class ActiveUsersPanel extends JPanel {
     private JList activeUsersPanel;
     private JPopupMenu popupUserMenu;
+    private DefaultListModel activeUsersModel;
 
     private int getRow(Point point){
         return activeUsersPanel.locationToIndex(point);
@@ -18,7 +21,7 @@ public class ActiveUsersPanel extends JPanel {
 
     public ActiveUsersPanel(){
 
-        DefaultListModel activeUsersModel = new DefaultListModel();
+        activeUsersModel = new DefaultListModel();
         activeUsersPanel = new JList(activeUsersModel);
         activeUsersPanel.setBorder(BorderFactory.createTitledBorder("Active users:"));
 
@@ -40,9 +43,6 @@ public class ActiveUsersPanel extends JPanel {
         });
         ////////////////TEMP//////////////////
 
-        for (int i = 0; i < 40; i++) {
-            activeUsersModel.addElement("User nr  " + i);
-        }
 
         JScrollPane chatsListScrollable = new JScrollPane(activeUsersPanel);
         chatsListScrollable.setPreferredSize(new Dimension(120,0));
@@ -50,5 +50,16 @@ public class ActiveUsersPanel extends JPanel {
         setLayout(new BorderLayout());
         add(chatsListScrollable);
 
+    }
+
+    public void addUser(User user){
+        String userName = user.getLogin();
+        for (int i = 0; i < activeUsersModel.size(); i++) {
+            String userOnList = (String)activeUsersModel.getElementAt(i);
+            if(userOnList.equals(userName)){
+                return;
+            }
+        }
+        activeUsersModel.addElement(userName);
     }
 }

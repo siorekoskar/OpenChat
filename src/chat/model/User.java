@@ -1,9 +1,11 @@
 package chat.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Oskar on 08/01/2017.
  */
-public class User {
+public class User implements Serializable{
 
     //////////////////FIELDS////////////////////////////////////
     private static int count = 1;
@@ -28,6 +30,10 @@ public class User {
         this.id = id;
 
         count++;
+    }
+
+    public User(String username){
+        this.login = username;
     }
 
     ///////////////////GETTERS AND SETTERS//////////////////////////
