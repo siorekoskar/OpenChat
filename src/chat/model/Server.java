@@ -39,6 +39,7 @@ public class Server {
                 ClientThread t = new ClientThread(socket);
                 clientThreads.add(t);
                 actualizeUsers();
+                actualizeChats();
                 t.start();
             }
             try {
@@ -113,6 +114,17 @@ public class Server {
             }
 
         }
+    }
+
+    private synchronized void actualizeChats(){
+        for (ClientThread ct :
+                clientThreads) {
+            for (ChatRoom chat :
+                    chatRooms) {
+                ct.writeMsg(chat);
+            }
+        }
+
     }
 
     private synchronized ChatRoom showChatRoom(Message msg){
