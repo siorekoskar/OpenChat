@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Message implements Serializable{
     protected static final long serialVersionUID = 1112122200L;
 
-    public static final int MESSAGE = 1, CREATECHAT = 2, CONNECTTOCHAT=3;
+    public static final int MESSAGE = 1, CREATECHAT = 2, CONNECTTOCHAT=3, CHATCONNECTION=4;
 
     private int type;
     private String message;

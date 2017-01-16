@@ -60,7 +60,7 @@ public class Client  {
     }
 
     public void display(String msg){
-        cg.sendMsg(msg+"\n");
+       // cg.sendMsg(msg+"\n");
     }
 
     public void sendMessage(Message msg){
@@ -99,11 +99,16 @@ public class Client  {
                     }
                      else if (obj instanceof ChatRoom) {
                         System.out.println("lkoho");
-                        cg.sendChat((ChatRoom)obj);
+                        cg.sendChat((ChatRoom) obj);
+                    }else if(obj instanceof Message){
+                        System.out.println("przeps");
+                        cg.sendMsg((Message)obj);
                     } else{
                         //String msg = (String) sInput.readObject();
                         String msg = (String) obj;
-                        cg.sendMsg(msg);
+                        System.out.println("co tu sie");
+                        Message message = new Message(4, "", msg);
+                        cg.sendMsg(message);
                     }
                 } catch(IOException e){
                     System.out.println("przypal");

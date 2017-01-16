@@ -30,7 +30,7 @@ public class ClientController{
         chatClient.sendMessage(msg);
     }
 
-    public void sendMsg(String msg){
+    public void sendMsg(Message msg){
         frame.sendMsg(msg);
     }
     public void disconnect(){

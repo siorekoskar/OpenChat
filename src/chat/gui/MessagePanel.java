@@ -1,6 +1,7 @@
 package chat.gui;
 
 import chat.gui.listenersinterfaces.MessageListener;
+import chat.model.Message;
 
 import javax.swing.*;
 import java.awt.*;
@@ -127,8 +128,22 @@ public class MessagePanel extends JPanel implements ActionListener{
         }
     }
 
-    void append(String str){
-        messagesArea.append(str + "\n");
+    void append(Message str){
+        if(str.getType() == Message.CHATCONNECTION){
+
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    clean();
+                    messagesArea.append(str.getMessage());
+                }
+            });
+            System.out.println("madasraka");
+        } else{
+            messagesArea.append(str.getMessage() +"\n");
+        }
+
+
     }
 
     private static final String TEXT_SUBMIT = "text-submit";
@@ -147,6 +162,10 @@ public class MessagePanel extends JPanel implements ActionListener{
                 sendMessageButton.doClick();
             }
         });
+    }
+
+    void clean(){
+        messagesArea.setText("");
     }
 
 

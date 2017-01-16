@@ -114,6 +114,8 @@ public class Server {
             }
 
         }
+
+
     }
 
     private synchronized void actualizeChats(){
@@ -121,7 +123,9 @@ public class Server {
                 clientThreads) {
             for (ChatRoom chat :
                     chatRooms) {
-                ct.writeMsg(chat);
+                if(!ct.writeMsg(chat)){
+                    clientThreads.remove(ct);
+                }
             }
         }
 
@@ -138,12 +142,12 @@ public class Server {
         return null;
     }
 
-    private synchronized void sendMessage(String msg, ChatRoom cm){
-        cm.appendMsg(msg + "\n");
+    private synchronized void sendMessage(Message msg, ChatRoom cm){
+        cm.appendMsg(msg.getMessage() + "\n");
         for (ClientThread ct :
                 clientThreads) {
             if(ct.currentChat == cm){
-                ct.writeMsg(cm.getChatName()+": " + msg);
+                ct.writeMsg(msg);
             }
         }
     }
@@ -192,7 +196,8 @@ public class Server {
                     switch(cm.getType()){
                         case Message.MESSAGE:
                             //broadcast(cm.getUser() + ": " + cm.getMessage());
-                            sendMessage(cm.getUser() +": " +cm.getMessage(), currentChat);
+                            Message message = new Message(Message.MESSAGE, "", cm.getUser() +": " +cm.getMessage());
+                            sendMessage(message, currentChat);
                             break;
                         case Message.CREATECHAT:
                             createChatRoom(cm);
@@ -204,7 +209,8 @@ public class Server {
                             }
                             currentChat = chat;
                             String oldMessages = chat.getMessages();
-                            writeMsg(chat.getUsersAsString() +"\n" + oldMessages);
+                            Message msg = new Message(Message.CHATCONNECTION, "", chat.getUsersAsString() + "\n" + oldMessages);
+                            writeMsg(chat.getUsersAsString() + "\n" + oldMessages);
 
                             break;
                     }
@@ -249,7 +255,7 @@ public class Server {
 
                 try {
                     sOutput.writeObject(msg);
-                    System.out.println(msg + "WRITEMSGSERVER");
+                    //System.out.println(msg + "WRITEMSGSERVER");
                 }
                 // if an error occurs, do not abort just inform the user
                 catch (IOException e) {

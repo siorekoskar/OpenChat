@@ -54,6 +54,7 @@ public class ChatRoom implements Serializable{
         this.admin = admin;
         this.usersIn = new ArrayList();
         this.chatName = chatName;
+        this.messages = "";
     }
 
     public ChatRoom(ChatRoom chat){
