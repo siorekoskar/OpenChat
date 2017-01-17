@@ -1,8 +1,13 @@
 package chat.model;
 
+import chat.controller.ClientController;
+import chat.controller.DbController;
+import chat.gui.FormEvent;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -15,11 +20,18 @@ public class Server {
     private ArrayList<ChatRoom> chatRooms;
     private int port;
     private boolean keepGoing;
+    private DbController dbController;
 
     public Server(int port) {
         this.port = port;
         clientThreads = new ArrayList<>();
         chatRooms = new ArrayList<>();
+        dbController = new DbController();
+        try {
+            dbController.connect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void start() {
@@ -38,6 +50,7 @@ public class Server {
 
                 ClientThread t = new ClientThread(socket);
                 clientThreads.add(t);
+
                 actualizeUsers();
                 actualizeChats();
                 t.start();
@@ -170,13 +183,44 @@ public class Server {
 
 
         ClientThread(Socket socket){
-            id = ++uniqueID;
+
             this.socket = socket;
             try{
                 sOutput = new ObjectOutputStream(socket.getOutputStream());
                 sInput= new ObjectInputStream(socket.getInputStream());
-                username = (String) sInput.readObject();
+                while(true){
+                    Message user = (Message)sInput.readObject();
+                    String user2 = user.getUser();
+                    String pass = user.getMessage();
+
+                    try {
+                        dbController.load();
+                        if(user.getType() == Message.REGISTER){
+                            if(dbController.checkIfUserExistsServ(user2)){
+                                sOutput.writeObject(new Message(Message.EXISTS, user2,""));
+                                continue;
+                            }
+                            dbController.addUser(new User(user2, pass));
+                            dbController.save();
+                            sOutput.writeObject(new Message(Message.REGISTER, user2, ""));
+                        } else
+                        if (dbController.checkIfUserExistsServ(user2)) {
+                            sOutput.writeObject(new Message(Message.ALLOWED, user2, ""));
+                            username = user2;
+
+                            break;
+                        } else {
+                            sOutput.writeObject(new Message(Message.DISALLOWED));
+                        }
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
                 currentChat = null;
+
                 System.out.println(username + " connected");
             } catch(IOException e){
                 System.out.println("Exception");
@@ -184,6 +228,7 @@ public class Server {
             } catch(ClassNotFoundException e){
                 e.printStackTrace();
             }
+            id = ++uniqueID;
         }
 
 

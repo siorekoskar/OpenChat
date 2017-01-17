@@ -19,7 +19,7 @@ import java.util.prefs.Preferences;
 /**
  * Created by Oskar on 07/01/2017.
  */
-public class MainFrame  extends JFrame {
+public class MainFrame extends JFrame {
 
     private ChatsPanel chatsPanel;
     private UserPanel userPanel;
@@ -42,7 +42,7 @@ public class MainFrame  extends JFrame {
         super("Chat");
 
         setSize(800, 600);
-        setMinimumSize(new Dimension(400,400));
+        setMinimumSize(new Dimension(400, 400));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);
@@ -55,6 +55,7 @@ public class MainFrame  extends JFrame {
         loginDialog = new LoginDialog(this);
 
         dbController = new DbController();
+        clientController = new ClientController(host, port, MainFrame.this);
 
         setJMenuBar(createMenuBar());
         this.setVisible(false);
@@ -121,71 +122,18 @@ public class MainFrame  extends JFrame {
             }
         });
 
-        loginDialog.setFormListener(new FormListener(){
+        loginDialog.setFormListener(new FormListener() {
 
             @Override
             public void loginEventOccured(FormEvent e) {
-                System.out.println(e.getLogin());
-                try{
-                    dbController.connect();
-                    dbController.load();
-                    if(dbController.checkIfUserExists(e)) {
 
-                        loginDialog.setVisible(false);
-                        username = e.getLogin();
-                        MainFrame.this.setTitle(username);
-                        MainFrame.this.setVisible(true);
-                        JOptionPane.showMessageDialog(MainFrame.this, "Logged",
-                                "Succes", JOptionPane.ERROR_MESSAGE);
-
-                        clientController = new ClientController(host, port, MainFrame.this, username);
-
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(MainFrame.this, "Error",
-                                "Bad data", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                } catch(Exception e5){
-
-                }
-
+                clientController.sendMessage(new Message(Message.LOGINMSG, e.getLogin(), ""));
             }
 
             @Override
             public void registeredEventOccured(FormEvent e) {
-                System.out.println(e.getLogin());
-                System.out.println(e.getPass());
 
-                try {
-                    dbController.connect();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-
-                try {
-                   // dbController.checkIfUserExists(e);
-                    dbController.load();
-
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-
-                try{
-                if(dbController.checkIfUserExists(e)) {
-                    JOptionPane.showMessageDialog(MainFrame.this, "User already exists",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-
-                } else {
-                    dbController.addUser(e);
-                    dbController.save();
-                    JOptionPane.showMessageDialog(MainFrame.this, "Registered",
-                            "Your username: "+ e.getLogin(), JOptionPane.OK_OPTION);
-                }
-                } catch(SQLException e3){
-                    JOptionPane.showMessageDialog(MainFrame.this, "Unable to save to database",
-                            "Database Connection Problem", JOptionPane.ERROR_MESSAGE);
-                }
+                clientController.sendMessage(new Message(Message.REGISTER, e.getLogin(),e.getPass(), ""));
             }
         });
 
@@ -203,8 +151,8 @@ public class MainFrame  extends JFrame {
 
         setLayout(new BorderLayout());
 
-        chatsPanel.setBorder(BorderFactory.createEmptyBorder(2,4,4,4));
-        activeUsersPanel.setBorder(BorderFactory.createEmptyBorder(2,4,4,4));
+        chatsPanel.setBorder(BorderFactory.createEmptyBorder(2, 4, 4, 4));
+        activeUsersPanel.setBorder(BorderFactory.createEmptyBorder(2, 4, 4, 4));
         add(userPanel, BorderLayout.BEFORE_FIRST_LINE);
         add(chatsPanel, BorderLayout.WEST);
         add(messagePanel, BorderLayout.CENTER);
@@ -214,11 +162,36 @@ public class MainFrame  extends JFrame {
 
     }
 
-    public void sendMsg(Message msg){
+    public void sendMsg(Message msg) {
         messagePanel.append(msg);
     }
 
-    private JMenuBar createMenuBar(){
+    public void sendRegistered(Message msg){
+        JOptionPane.showMessageDialog(MainFrame.this, "Registered",
+                "Your username: " + msg.getUser(), JOptionPane.OK_OPTION);
+    }
+
+    public void sendDissallowed(Message msg) {
+        JOptionPane.showMessageDialog(MainFrame.this, "Error",
+                "Bad data", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void sendExists(Message msg){
+        JOptionPane.showMessageDialog(MainFrame.this, "User already exists",
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void sendAllowed(Message msg) {
+        loginDialog.setVisible(false);
+        JOptionPane.showMessageDialog(MainFrame.this, "Logged",
+                "Succes", JOptionPane.ERROR_MESSAGE);
+        username = msg.getUser();
+
+        MainFrame.this.setTitle(username);
+        MainFrame.this.setVisible(true);
+    }
+
+    private JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
 
         JMenu fileMenu = new JMenu("User Panel");
@@ -248,7 +221,7 @@ public class MainFrame  extends JFrame {
         showChatsItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem)ev.getSource();
+                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem) ev.getSource();
                 chatsPanel.setVisible(menuItem.isSelected());
             }
         });
@@ -256,7 +229,7 @@ public class MainFrame  extends JFrame {
         showUsersItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem)ev.getSource();
+                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem) ev.getSource();
                 activeUsersPanel.setVisible(menuItem.isSelected());
             }
         });
@@ -264,7 +237,7 @@ public class MainFrame  extends JFrame {
         showUserPanelItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem)ev.getSource();
+                JCheckBoxMenuItem menuItem = (JCheckBoxMenuItem) ev.getSource();
                 userPanel.setVisible(menuItem.isSelected());
             }
         });
@@ -273,11 +246,11 @@ public class MainFrame  extends JFrame {
     }
 
 
-    public void sendChat(ChatRoom chat){
+    public void sendChat(ChatRoom chat) {
         chatsPanel.addChat(chat);
     }
 
-    public void sendUser(User user){
+    public void sendUser(User user) {
         activeUsersPanel.addUser(user);
     }
 }

@@ -28,6 +28,13 @@ public class Client  {
         this.username = username;
     }
 
+    public Client(String server, int port, ClientController frame){
+        this.server = server;
+        this.port = port;
+        this.cg = frame;
+
+    }
+
     public boolean start(){
         try{
             socket = new Socket(server, port);
@@ -46,7 +53,10 @@ public class Client  {
             System.out.println("Fail");
         }
 
+
+
         new ListenFromServer().start();
+        /*
 
         try{
             sOutput.writeObject(username);
@@ -54,7 +64,7 @@ public class Client  {
             System.out.println("Exception loigin: "+ eIO);
             disconnect();
             return false;
-        }
+        }*/
 
         return true;
     }
@@ -93,6 +103,22 @@ public class Client  {
             while(true){
                 try{
                     Object obj = sInput.readObject();
+                    if(obj instanceof Message){
+                        if(((Message) obj).getType() == Message.ALLOWED){
+                            cg.sendAllowed((Message)obj);
+                            continue;
+                        }
+                        if(((Message) obj).getType() == Message.DISALLOWED){
+                            cg.sendDisallowed((Message)obj);
+                        }
+                        if(((Message)obj).getType() == Message.REGISTER){
+                            cg.sendRegistered((Message)obj);
+                        }
+                        if(((Message)obj).getType() == Message.EXISTS){
+                            cg.sendExists((Message)obj);
+                        }
+
+                    }
 
                     if(obj instanceof User){
                         cg.sendUser((User)obj);
@@ -101,6 +127,7 @@ public class Client  {
                         System.out.println("lkoho");
                         cg.sendChat((ChatRoom) obj);
                     }else if(obj instanceof Message){
+
                         System.out.println("przeps");
                         cg.sendMsg((Message)obj);
                     } else{

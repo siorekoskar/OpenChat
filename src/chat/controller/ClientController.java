@@ -17,10 +17,30 @@ public class ClientController{
     private Client chatClient;
     private MainFrame frame;
 
+    public void sendDisallowed(Message msg){
+        frame.sendDissallowed(msg);
+    }
 
 
+    public void sendAllowed(Message msg){
+        frame.sendAllowed( msg);
+    }
+
+    public void sendRegistered(Message msg){
+        frame.sendRegistered(msg);
+    }
+
+    public void sendExists(Message msg){
+        frame.sendExists(msg);
+    }
     public ClientController(String serverName, int serverPort, MainFrame frame, String username){
         chatClient = new Client(serverName, serverPort, this, username);
+        this.frame = frame;
+        chatClient.start();
+    }
+
+    public ClientController(String serverName, int serverPort, MainFrame frame){
+        chatClient = new Client(serverName, serverPort, this);
         this.frame = frame;
         chatClient.start();
     }

@@ -18,13 +18,13 @@ public class DbController {
         return db.getUsers();
     }
 
-    public void addUser(FormEvent ev){
-        String login = ev.getLogin();
+    public void addUser(User user){
+        /*String login = ev.getLogin();
         String pass = ev.getPass();
 
         User user = new User(login, pass);
 
-        System.out.println(login+ pass);
+        System.out.println(login+ pass);*/
 
         db.addUser(user);
     }
@@ -36,6 +36,11 @@ public class DbController {
     public boolean checkIfUserExists(FormEvent e) throws SQLException{
 
         User user = new User(e.getLogin(), e.getPass());
+        return db.checkIfUserExists(user);
+    }
+
+    public boolean checkIfUserExistsServ(String username)throws SQLException{
+        User user = new User(username);
         return db.checkIfUserExists(user);
     }
 
