@@ -49,6 +49,16 @@ public class ChatRoom implements Serializable{
     private String messages;
     private boolean isPrivate;
 
+    public ArrayList<String> getAreAllowed() {
+        return areAllowed;
+    }
+
+    public void addAllowed(String user){
+        areAllowed.add(user);
+    }
+
+    private ArrayList<String> areAllowed;
+
     public ChatRoom(boolean chatType, String admin, String chatName){
         this.isPrivate = chatType;
         this.admin = admin;

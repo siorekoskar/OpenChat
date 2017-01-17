@@ -90,6 +90,20 @@ public class ChatsPanel extends JSplitPane {
                     privateChatsList.setSelectedIndex(getRow(e.getPoint(), privateChatsList));
                     popupMenu.show(privateChatsList, e.getX(), e.getY());
                 }
+
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent ev){
+                JList list = (JList)ev.getSource();
+                if(ev.getClickCount() == 2){
+                    int index = list.locationToIndex(ev.getPoint());
+                    privateChatsList.setSelectedIndex(index);
+                    String selected = (String) privateChatsList.getSelectedValue();
+                    System.out.println(selected + "-- SELECTED CHAT");
+                    chatsPanelListener.wentToChatOccured(selected);
+
+                }
             }
         });
 
