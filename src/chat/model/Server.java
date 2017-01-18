@@ -190,24 +190,23 @@ public class Server {
                 sInput= new ObjectInputStream(socket.getInputStream());
                 while(true){
                     Message user = (Message)sInput.readObject();
-                    String user2 = user.getUser();
+                    String userString = user.getUser();
                     String pass = user.getMessage();
 
                     try {
                         dbController.load();
                         if(user.getType() == Message.REGISTER){
-                            if(dbController.checkIfUserExistsServ(user2)){
-                                sOutput.writeObject(new Message(Message.EXISTS, user2,""));
+                            if(dbController.checkIfUserExistsServ(userString)){
+                                sOutput.writeObject(new Message(Message.EXISTS, userString,""));
                                 continue;
                             }
-                            dbController.addUser(new User(user2, pass));
+                            dbController.addUser(new User(userString, pass));
                             dbController.save();
-                            sOutput.writeObject(new Message(Message.REGISTER, user2, ""));
-                        } else
-                        if (dbController.checkIfUserExistsServ(user2)) {
-                            sOutput.writeObject(new Message(Message.ALLOWED, user2, ""));
-                            username = user2;
+                            sOutput.writeObject(new Message(Message.REGISTER, userString, ""));
 
+                        } else if (dbController.checkIfUserExistsServ(userString)) {
+                            sOutput.writeObject(new Message(Message.ALLOWED, userString, ""));
+                            username = userString;
                             break;
                         } else {
                             sOutput.writeObject(new Message(Message.DISALLOWED));
@@ -217,13 +216,12 @@ public class Server {
                         e.printStackTrace();
                     }
 
-
                 }
                 currentChat = null;
 
                 System.out.println(username + " connected");
             } catch(IOException e){
-                System.out.println("Exception");
+                e.printStackTrace();
                 return;
             } catch(ClassNotFoundException e){
                 e.printStackTrace();
@@ -240,8 +238,8 @@ public class Server {
 
                     switch(cm.getType()){
                         case Message.MESSAGE:
-                            //broadcast(cm.getUser() + ": " + cm.getMessage());
-                            Message message = new Message(Message.MESSAGE, "", cm.getUser() +": " +cm.getMessage());
+                            String sentMsg = cm.getUser() + ": " + cm.getMessage();
+                            Message message = new Message(Message.MESSAGE, "", sentMsg);
                             sendMessage(message, currentChat);
                             break;
                         case Message.CREATECHAT:
@@ -249,14 +247,14 @@ public class Server {
                             break;
                         case Message.CONNECTTOCHAT:
                             ChatRoom chat = showChatRoom(cm);
-                            if(!chat.userExists(cm.getUser())) {
-                                chat.addUsersIn(cm.getUser());
+                            String user = cm.getUser();
+                            if(!chat.userExists(user)) {
+                                chat.addUsersIn(user);
                             }
                             currentChat = chat;
-                            String oldMessages = chat.getMessages();
-                            Message msg = new Message(Message.CHATCONNECTION, "", chat.getUsersAsString() + "\n" + oldMessages);
-                            writeMsg(chat.getUsersAsString() + "\n" + oldMessages);
-
+                            String chatStructure = chat.getUsersAsString() + "\n" + chat.getMessages();
+                            Message msg = new Message(Message.CHATCONNECTION, "", chatStructure);
+                            writeMsg(msg);
                             break;
                     }
 

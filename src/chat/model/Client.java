@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Oskar on 14/01/2017.
  */
-public class Client  {
+public class Client {
     private ObjectInputStream sInput;
     private ObjectOutputStream sOutput;
     private Socket socket;
@@ -21,24 +21,24 @@ public class Client  {
     private String server, username;
     private int port;
 
-    public Client(String server, int port, ClientController frame, String username){
+    public Client(String server, int port, ClientController frame, String username) {
         this.server = server;
         this.port = port;
         this.cg = frame;
         this.username = username;
     }
 
-    public Client(String server, int port, ClientController frame){
+    public Client(String server, int port, ClientController frame) {
         this.server = server;
         this.port = port;
         this.cg = frame;
 
     }
 
-    public boolean start(){
-        try{
+    public boolean start() {
+        try {
             socket = new Socket(server, port);
-        } catch (Exception ec){
+        } catch (Exception ec) {
             System.out.println("error connecting");
             return false;
         }
@@ -46,101 +46,85 @@ public class Client  {
         String msg = "Con accepted" + socket.getInetAddress() + ":" + socket.getPort();
         System.out.println(msg);
 
-        try{
+        try {
             sInput = new ObjectInputStream(socket.getInputStream());
             sOutput = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException eIO){
+        } catch (IOException eIO) {
             System.out.println("Fail");
         }
 
-
-
         new ListenFromServer().start();
-        /*
-
-        try{
-            sOutput.writeObject(username);
-        } catch(IOException eIO){
-            System.out.println("Exception loigin: "+ eIO);
-            disconnect();
-            return false;
-        }*/
 
         return true;
     }
 
-    public void display(String msg){
-       // cg.sendMsg(msg+"\n");
+    public void display(String msg) {
+        System.out.println(msg);
     }
 
-    public void sendMessage(Message msg){
-        try{
+    public void sendMessage(Message msg) {
+        try {
             System.out.println(msg.getMessage() + "SENDMESSAGECLIENT");
             sOutput.writeObject(msg);
-        } catch (Exception e){}
+        } catch (Exception e) {
+        }
 
     }
 
     public void disconnect() {
         try {
-            if(sInput != null) sInput.close();
-        }
-        catch(Exception e) {} // not much else I can do
+            if (sInput != null) sInput.close();
+        } catch (Exception e) {
+        } // not much else I can do
         try {
-            if(sOutput != null) sOutput.close();
-        }
-        catch(Exception e) {} // not much else I can do
-        try{
-            if(socket != null) socket.close();
-        }
-        catch(Exception e) {} // not much else I can do
+            if (sOutput != null) sOutput.close();
+        } catch (Exception e) {
+        } // not much else I can do
+        try {
+            if (socket != null) socket.close();
+        } catch (Exception e) {
+        } // not much else I can do
 
 
     }
 
-    class ListenFromServer extends Thread{
-        public void run(){
-            while(true){
-                try{
+    class ListenFromServer extends Thread {
+        public void run() {
+            while (true) {
+                try {
                     Object obj = sInput.readObject();
-                    if(obj instanceof Message){
-                        if(((Message) obj).getType() == Message.ALLOWED){
-                            cg.sendAllowed((Message)obj);
-                            continue;
-                        }
-                        if(((Message) obj).getType() == Message.DISALLOWED){
-                            cg.sendDisallowed((Message)obj);
-                        }
-                        if(((Message)obj).getType() == Message.REGISTER){
-                            cg.sendRegistered((Message)obj);
-                        }
-                        if(((Message)obj).getType() == Message.EXISTS){
-                            cg.sendExists((Message)obj);
+
+                    if (obj instanceof Message) {
+                        Message msg = (Message) obj;
+                        int type = msg.getType();
+
+                        switch (type) {
+                            case Message.ALLOWED:
+                                cg.sendAllowed(msg);
+                                break;
+                            case Message.DISALLOWED:
+                                cg.sendDisallowed(msg);
+                                break;
+                            case Message.REGISTER:
+                                cg.sendRegistered(msg);
+                                break;
+                            case Message.EXISTS:
+                                cg.sendExists(msg);
+                                break;
+                            default:
+                                cg.sendMsg(msg);
                         }
 
-                    }
-
-                    if(obj instanceof User){
-                        cg.sendUser((User)obj);
-                    }
-                     else if (obj instanceof ChatRoom) {
-                        System.out.println("lkoho");
+                    } else if (obj instanceof User) {
+                        cg.sendUser((User) obj);
+                    } else if (obj instanceof ChatRoom) {
                         cg.sendChat((ChatRoom) obj);
-                    }else if(obj instanceof Message){
-
-                        System.out.println("przeps");
-                        cg.sendMsg((Message)obj);
-                    } else{
-                        //String msg = (String) sInput.readObject();
-                        String msg = (String) obj;
-                        System.out.println("co tu sie");
-                        Message message = new Message(4, "", msg);
-                        cg.sendMsg(message);
                     }
-                } catch(IOException e){
-                    System.out.println("przypal");
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                     break;
-                } catch(ClassNotFoundException e){
+                } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                     break;
                 }
