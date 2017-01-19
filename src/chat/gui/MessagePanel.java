@@ -138,7 +138,6 @@ public class MessagePanel extends JPanel implements ActionListener{
                     messagesArea.append(str.getMessage());
                 }
             });
-            System.out.println("madasraka");
         } else{
             messagesArea.append(str.getMessage() +"\n");
         }

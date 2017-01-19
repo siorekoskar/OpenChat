@@ -42,7 +42,7 @@ public class Server {
                 System.out.println("Server waiting for clients on port " + port);
 
                 Socket socket = serverSocket.accept();
-                System.out.println("one man");
+                System.out.println("Someone connected");
 
                 if (!keepGoing) {
                     break;
@@ -57,6 +57,7 @@ public class Server {
             }
             try {
                 serverSocket.close();
+                dbController.disconnect();
                 for (int i = 0; i < clientThreads.size(); ++i) {
                     try {
                         ClientThread tc = clientThreads.get(i);
@@ -70,6 +71,7 @@ public class Server {
             } catch (Exception e) {
                 System.out.println("Exception closing the server and clients: " + e);
             }
+
         } catch (IOException e) {
             System.out.println("Something went bad");
         }
@@ -148,7 +150,6 @@ public class Server {
         for (ChatRoom chat :
                 chatRooms) {
             if (chat.getChatName().equals(msg.getMessage())) {
-                System.out.println("Dotarlem do czatu " + chat.getChatName());
                 return chat;
             }
         }
@@ -298,7 +299,6 @@ public class Server {
 
                 try {
                     sOutput.writeObject(msg);
-                    //System.out.println(msg + "WRITEMSGSERVER");
                 }
                 // if an error occurs, do not abort just inform the user
                 catch (IOException e) {

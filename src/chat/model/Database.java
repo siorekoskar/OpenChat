@@ -152,7 +152,7 @@ public class Database{
 
             users.add(user);
 
-            System.out.println(user);
+            //System.out.println(user);
         }
 
         results.close();

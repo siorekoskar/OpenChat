@@ -19,24 +19,12 @@ public class DbController {
     }
 
     public void addUser(User user){
-        /*String login = ev.getLogin();
-        String pass = ev.getPass();
-
-        User user = new User(login, pass);
-
-        System.out.println(login+ pass);*/
 
         db.addUser(user);
     }
 
     public void removeUser(int index){
         db.removeUser(index);
-    }
-
-    public boolean checkIfUserExists(FormEvent e) throws SQLException{
-
-        User user = new User(e.getLogin(), e.getPass());
-        return db.checkIfUserExists(user);
     }
 
     public boolean checkIfUserExistsServ(String username)throws SQLException{

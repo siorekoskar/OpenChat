@@ -33,11 +33,6 @@ public class ClientController{
     public void sendExists(Message msg){
         frame.sendExists(msg);
     }
-    public ClientController(String serverName, int serverPort, MainFrame frame, String username){
-        chatClient = new Client(serverName, serverPort, this, username);
-        this.frame = frame;
-        chatClient.start();
-    }
 
     public ClientController(String serverName, int serverPort, MainFrame frame){
         chatClient = new Client(serverName, serverPort, this);
@@ -46,7 +41,6 @@ public class ClientController{
     }
 
     public void sendMessage(Message msg){
-        System.out.println(msg.getMessage() + "CONTROLER");
         chatClient.sendMessage(msg);
     }
 
@@ -64,11 +58,10 @@ public class ClientController{
         ChatRoom chatRoom = new ChatRoom(isPrivate, admin, chatName);
         Message msg = new Message(Message.CREATECHAT, admin, "", chatRoom);
         chatClient.sendMessage(msg);
-        System.out.println(chatRoom.toString());
+        //ystem.out.println(chatRoom.toString());
     }
 
     public void sendChat(ChatRoom chat){
-        System.out.println(chat.getChatName() + "KONTORLER");
         frame.sendChat(chat);
     }
 
