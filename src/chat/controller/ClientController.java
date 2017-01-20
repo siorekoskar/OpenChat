@@ -23,6 +23,10 @@ public class ClientController{
         frame.sendDissallowed(msg);
     }
 
+    public void sendNotAllowed(Message msg){
+        frame.sendNotAllowed();
+    }
+
 
     public void sendAllowed(Message msg){
         frame.sendAllowed( msg);

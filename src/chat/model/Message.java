@@ -10,7 +10,7 @@ public class Message implements Serializable{
     protected static final long serialVersionUID = 1112122200L;
 
     public static final int MESSAGE = 1, CREATECHAT = 2, CONNECTTOCHAT=3, CHATCONNECTION=4, LOGINMSG=5,
-            ALLOWED=6, REGISTER=7, DISALLOWED=8, EXISTS=9, CHATLEFT=10;
+            ALLOWED=6, REGISTER=7, DISALLOWED=8, EXISTS=9, CHATLEFT=10, NOTALLOWED=11;
 
     private int type;
     private String message;

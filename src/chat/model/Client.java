@@ -120,6 +120,9 @@ public class Client {
                                 break;
                             case Message.CHATLEFT:
                                 cg.sendLeft(msg);
+                                break;
+                            case Message.NOTALLOWED:
+                                cg.sendNotAllowed(msg);
                             default:
                                 cg.sendMsg(msg);
                         }

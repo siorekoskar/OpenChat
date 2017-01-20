@@ -185,11 +185,16 @@ public class MainFrame extends JFrame {
     public void sendAllowed(Message msg) {
         loginDialog.setVisible(false);
         JOptionPane.showMessageDialog(MainFrame.this, "Logged",
-                "Succes", JOptionPane.ERROR_MESSAGE);
+                "Succes", JOptionPane.OK_OPTION|JOptionPane.INFORMATION_MESSAGE);
         username = msg.getUser();
 
         MainFrame.this.setTitle(username);
         MainFrame.this.setVisible(true);
+    }
+
+    public void sendNotAllowed(){
+        JOptionPane.showMessageDialog(MainFrame.this, "You are not allowed",
+                "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     public void sendChatUsers(String[] users){

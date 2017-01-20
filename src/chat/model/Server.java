@@ -39,9 +39,6 @@ public class Server {
         Socket socket;
         ClientThread ct;
 
-        public ClientThread getCt() {
-            return ct;
-        }
         HandleDB(Socket socket){
             this.socket = socket;
         }
@@ -53,7 +50,6 @@ public class Server {
             actualizeUsers();
             actualizeChats();
             ct.start();
-
         }
     }
 
@@ -158,11 +154,11 @@ public class Server {
         for (ClientThread ct :
                 clientThreads) {
 
-            if(ct.currentChatS!= null)System.out.println(ct.currentChatS);
-            System.out.println(ct. getUsername() +":" +ct.currentChatS);
+            //if(ct.currentChatS!= null)System.out.println(ct.currentChatS);
+            //System.out.println(ct. getUsername() +":" +ct.currentChatS);
             msg.setChat(chat);
             if ( ct.currentChatS!= null && ct.currentChat.getChatName().equals(chat.getChatName())){
-                System.out.println(ct.getUsername() + chat.getUsersIn() +"actualize");
+               // System.out.println(ct.getUsername() + chat.getUsersIn() +"actualize");
                 ArrayList<String> users = new ArrayList<>(chat.getUsersIn());
                 msg.users = users;
                 if(!ct.writeMsg(msg)){
@@ -174,7 +170,7 @@ public class Server {
                 Message oldMess = new Message(Message.CHATLEFT);
                 oldMess.setUsersIn(users);
                 oldMess.setChat(oldChat);
-                System.out.println("OLD USER" + oldMess.getUsersIn() + oldChat.getChatName());
+              //  System.out.println("OLD USER" + oldMess.getUsersIn() + oldChat.getChatName());
                 if(!ct.writeMsg(oldMess)){
                     clientThreads.remove(ct);
                 }
@@ -226,8 +222,6 @@ public class Server {
     }
 
 
-
-
     class ClientThread extends Thread{
         Socket socket;
         ObjectInputStream sInput;
@@ -236,13 +230,16 @@ public class Server {
         private Message cm;
         private ChatRoom currentChat;
         public String currentChatS;
+        private String username;
 
         public String getUsername() {
             return username;
         }
 
-        private String username;
 
+        private void dbControl(Message user) throws SQLException{
+
+        }
 
         ClientThread(Socket socket){
 
@@ -256,6 +253,7 @@ public class Server {
                     String pass = user.getMessage();
 
                     try {
+                       // dbControl(user);
                         dbController.load();
                         if(user.getType() == Message.REGISTER){
                             if(dbController.checkIfUserExistsServ(userString)){
@@ -292,6 +290,35 @@ public class Server {
             id = ++uniqueID;
         }
 
+        private boolean connectToChat(Message cm){
+            ChatRoom chat = showChatRoom(cm);
+            String user = cm.getUser();
+
+            if(!chat.isPrivate()){ //&& chat.getAreAllowed().contains(user)) {
+
+                removeFromOldChat(cm);
+
+
+                if (!chat.userExists(user)) {
+                    chat.addUsersIn(user);
+                }
+                ChatRoom oldChat = null;
+                if (currentChat != null) oldChat = currentChat;
+                currentChat = chat;
+                currentChatS = chat.getChatName();
+
+                String chatStructure = chat.getUsersAsString() + "\n" + chat.getMessages();
+                System.out.println(chat.getUsersAsString());
+                Message msg = new Message(Message.CHATCONNECTION, "", chatStructure);
+                msg.setChatName(currentChat.getChatName());
+                msg.setUsersIn(chat.getUsersIn());
+                actualizeChatUsers(chat, msg, oldChat);
+
+                return true;
+            }
+            return false;
+        }
+
 
         public void run(){
             boolean keepGoing = true;
@@ -309,25 +336,9 @@ public class Server {
                             createChatRoom(cm);
                             break;
                         case Message.CONNECTTOCHAT:
-                            String user = cm.getUser();
-                            removeFromOldChat(cm);
-                            ChatRoom chat = showChatRoom(cm);
-
-                            if(!chat.userExists(user)) {
-                                chat.addUsersIn(user);
+                            if(!connectToChat(cm)){
+                                this.writeMsg(new Message(Message.NOTALLOWED));
                             }
-                            ChatRoom oldChat = null;
-                            if(currentChat !=null) oldChat = currentChat;
-                            currentChat = chat;
-                            currentChatS = chat.getChatName();
-
-                            String chatStructure = chat.getUsersAsString() + "\n" + chat.getMessages();
-                            System.out.println(chat.getUsersAsString());
-                            Message msg = new Message(Message.CHATCONNECTION, "", chatStructure);
-                            msg.setChatName(currentChat.getChatName());
-                            msg.setUsersIn(chat.getUsersIn());
-                            actualizeChatUsers(chat, msg, oldChat);
-                           // writeMsg(msg);
                             break;
                     }
 
