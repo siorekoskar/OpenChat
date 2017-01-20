@@ -136,6 +136,7 @@ public class MessagePanel extends JPanel implements ActionListener{
                 public void run() {
                     clean();
                     messagesArea.append(str.getMessage());
+                    messagesArea.setBorder(BorderFactory.createTitledBorder("Current chat: " + str.getChatName()));
                 }
             });
         } else{

@@ -1,6 +1,7 @@
 package chat.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Oskar on 14/01/2017.
@@ -9,12 +10,53 @@ public class Message implements Serializable{
     protected static final long serialVersionUID = 1112122200L;
 
     public static final int MESSAGE = 1, CREATECHAT = 2, CONNECTTOCHAT=3, CHATCONNECTION=4, LOGINMSG=5,
-            ALLOWED=6, REGISTER=7, DISALLOWED=8, EXISTS=9;
+            ALLOWED=6, REGISTER=7, DISALLOWED=8, EXISTS=9, CHATLEFT=10;
 
     private int type;
     private String message;
     private String user;
-    private String sentToChat;
+    public String sentToChat;
+    public ArrayList<String> users;
+
+    public ChatRoom getChat() {
+        return chat;
+    }
+
+    public void setChat(ChatRoom chat) {
+        this.chat = chat;
+    }
+
+    private ChatRoom chat;
+
+    public ArrayList<String> getUsersIn() {
+        return usersIn;
+    }
+
+    public void setUsersIn(ArrayList<String> usersIn) {
+        this.usersIn = usersIn;
+    }
+
+    private ArrayList<String> usersIn;
+
+    public String getUsersInChat() {
+        return usersInChat;
+    }
+
+    public void setUsersInChat(String usersInChat) {
+        this.usersInChat = usersInChat;
+    }
+
+    private String usersInChat;
+
+    public String getChatName() {
+        return chatName;
+    }
+
+    public void setChatName(String chatName) {
+        this.chatName = chatName;
+    }
+
+    private String chatName;
 
     public ChatRoom getChatRoom() {
         return chatRoom;

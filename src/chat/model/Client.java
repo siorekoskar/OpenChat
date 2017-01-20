@@ -21,6 +21,8 @@ public class Client {
     private String server, username;
     private int port;
 
+
+
     public Client(String server, int port, ClientController frame, String username) {
         this.server = server;
         this.port = port;
@@ -94,6 +96,7 @@ public class Client {
                 try {
                     Object obj = sInput.readObject();
 
+
                     if (obj instanceof Message) {
                         Message msg = (Message) obj;
                         int type = msg.getType();
@@ -111,6 +114,12 @@ public class Client {
                             case Message.EXISTS:
                                 cg.sendExists(msg);
                                 break;
+                            case Message.CHATCONNECTION:
+                                cg.sendMsg(msg);
+                                cg.sendChatUsers(msg);
+                                break;
+                            case Message.CHATLEFT:
+                                cg.sendLeft(msg);
                             default:
                                 cg.sendMsg(msg);
                         }

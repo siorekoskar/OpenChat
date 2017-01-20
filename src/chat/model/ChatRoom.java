@@ -7,8 +7,9 @@ import java.util.List;
 /**
  * Created by Oskar on 14/01/2017.
  */
-public class ChatRoom implements Serializable{
+public class ChatRoom implements Serializable {
     static final int PRIVATE = 1, PUBLIC = 0;
+
 
     public String getChatName() {
         return chatName;
@@ -18,11 +19,11 @@ public class ChatRoom implements Serializable{
         return admin;
     }
 
-    public List getUsersIn() {
+    public ArrayList<String> getUsersIn() {
         return usersIn;
     }
 
-    public String getUsersAsString(){
+    public String getUsersAsString() {
         return usersIn.toString();
     }
 
@@ -34,8 +35,12 @@ public class ChatRoom implements Serializable{
         return isPrivate;
     }
 
-    public boolean userExists(String user){
+    public boolean userExists(String user) {
         return usersIn.contains(user);
+    }
+
+    public void deleteUser(String user){
+        usersIn.remove(user);
     }
 
     private String chatName;
@@ -43,6 +48,10 @@ public class ChatRoom implements Serializable{
 
     public void addUsersIn(String user) {
         usersIn.add(user);
+    }
+
+    public void setUsersIn(ArrayList<String> usersIn) {
+        this.usersIn = usersIn;
     }
 
     private ArrayList<String> usersIn;
@@ -53,13 +62,13 @@ public class ChatRoom implements Serializable{
         return areAllowed;
     }
 
-    public void addAllowed(String user){
+    public void addAllowed(String user) {
         areAllowed.add(user);
     }
 
     private ArrayList<String> areAllowed;
 
-    public ChatRoom(boolean chatType, String admin, String chatName){
+    public ChatRoom(boolean chatType, String admin, String chatName) {
         this.isPrivate = chatType;
         this.admin = admin;
         this.usersIn = new ArrayList();
@@ -67,16 +76,16 @@ public class ChatRoom implements Serializable{
         this.messages = "";
     }
 
-    public ChatRoom(ChatRoom chat){
+    public ChatRoom(ChatRoom chat) {
         this(chat.isPrivate(), chat.getAdmin(), chat.getChatName());
 
     }
 
-    public void appendMsg(String msg){
-        messages+=msg;
+    public void appendMsg(String msg) {
+        messages += msg;
     }
 
-    public String toString(){
-        return "Admin: " + getAdmin() +"\nChatname: " + getChatName() +"\nIsPrivate: " + isPrivate()+"\n";
+    public String toString() {
+        return "Admin: " + getAdmin() + "\nChatname: " + getChatName() + "\nIsPrivate: " + isPrivate() + "\n";
     }
 }

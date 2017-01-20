@@ -1,19 +1,24 @@
 package chat.gui;
 
+import chat.model.ChatRoom;
+import chat.model.Message;
 import chat.model.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 /**
  * Created by Oskar on 07/01/2017.
  */
-public class ActiveUsersPanel extends JPanel {
+public class ActiveUsersPanel extends JSplitPane{
     private JList activeUsersPanel;
+    private JList currentChatUsersPanel;
     private JPopupMenu popupUserMenu;
     private DefaultListModel activeUsersModel;
+    private DefaultListModel currentChatUsersModel;
 
     private int getRow(Point point){
         return activeUsersPanel.locationToIndex(point);
@@ -21,10 +26,16 @@ public class ActiveUsersPanel extends JPanel {
 
     public ActiveUsersPanel(){
 
+        super(JSplitPane.VERTICAL_SPLIT);
         activeUsersModel = new DefaultListModel();
         activeUsersPanel = new JList(activeUsersModel);
+        currentChatUsersModel = new DefaultListModel();
+        currentChatUsersPanel = new JList(currentChatUsersModel);
         activeUsersPanel.setBorder(BorderFactory.createTitledBorder("Active users:"));
+        currentChatUsersPanel.setBorder(BorderFactory.createTitledBorder("In chat users:"));
 
+        setResizeWeight(0.5);
+        setOneTouchExpandable(true);
 
         ////////////////TEMP//////////////////
         popupUserMenu = new JPopupMenu();
@@ -45,10 +56,14 @@ public class ActiveUsersPanel extends JPanel {
 
 
         JScrollPane chatsListScrollable = new JScrollPane(activeUsersPanel);
-        chatsListScrollable.setPreferredSize(new Dimension(120,0));
+        chatsListScrollable.setPreferredSize(new Dimension(150,100));
 
-        setLayout(new BorderLayout());
+        JScrollPane currentChatScrollable = new JScrollPane(currentChatUsersPanel);
+        currentChatScrollable.setPreferredSize(new Dimension(150,100));
+
+       // setLayout(new BorderLayout());
         add(chatsListScrollable);
+        add(currentChatScrollable);
 
     }
 
@@ -62,4 +77,55 @@ public class ActiveUsersPanel extends JPanel {
         }
         activeUsersModel.addElement(userName);
     }
+
+
+    public void setUsersInChat(ArrayList<String> users){
+        currentChatUsersModel.removeAllElements();
+        try {
+        for (String user :
+                users) {
+
+                currentChatUsersModel.addElement(user);
+
+        }}catch(NullPointerException e){
+            System.out.println( "exception");
+        }
+        /*for (String user :
+                users) {
+            boolean exists = false;
+            boolean existsNoMore = false;
+            for (int i = 0; i < currentChatUsersModel.size(); i++) {
+                String userOnList = (String)currentChatUsersModel.getElementAt(i);
+                if(userOnList.equals(user)){
+                    exists = true;
+                    break;
+                }
+            }
+            if(!exists) {
+                currentChatUsersModel.addElement(user);
+            }
+        }
+
+        ArrayList<Object> removal = new ArrayList<>();
+        for (int i = 0; i< currentChatUsersModel.size(); i++) {
+            String user = users.get(i);
+            boolean exists = false;
+            for (int j = 0; i < users.size(); j++) {
+                String userOnModel = users.get(j);
+                if(userOnModel.equals(user)){
+                    exists = true;
+                    break;
+                }
+            }
+            if(!exists){
+                removal.add(currentChatUsersModel.getElementAt(i));
+            }
+        }
+        for (Object userev :
+                removal) {
+            currentChatUsersModel.removeElement(userev);
+        }*/
+    }
+
+
 }

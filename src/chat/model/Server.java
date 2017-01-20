@@ -129,8 +129,34 @@ public class Server {
             }
 
         }
+    }
+    
+    private synchronized void actualizeChatUsers(ChatRoom chat, Message msg,ChatRoom oldChat){
+        for (ClientThread ct :
+                clientThreads) {
 
-
+            if(ct.currentChatS!= null)System.out.println(ct.currentChatS);
+            System.out.println(ct. getUsername() +":" +ct.currentChatS);
+            msg.setChat(chat);
+            if ( ct.currentChatS!= null && ct.currentChat.getChatName().equals(chat.getChatName())){
+                System.out.println(ct.getUsername() + chat.getUsersIn() +"actualize");
+                ArrayList<String> users = new ArrayList<>(chat.getUsersIn());
+                msg.users = users;
+                if(!ct.writeMsg(msg)){
+                    clientThreads.remove(ct);
+                }
+            } else if(ct.currentChatS!= null && ct.currentChat!= null
+                    && oldChat!= null && ct.currentChat.getChatName().equals(oldChat.getChatName())){
+                ArrayList<String> users = new ArrayList<>(oldChat.getUsersIn());
+                Message oldMess = new Message(Message.CHATLEFT);
+                oldMess.setUsersIn(users);
+                oldMess.setChat(oldChat);
+                System.out.println("OLD USER" + oldMess.getUsersIn() + oldChat.getChatName());
+                if(!ct.writeMsg(oldMess)){
+                    clientThreads.remove(ct);
+                }
+            }
+        }
     }
 
     private synchronized void actualizeChats(){
@@ -166,6 +192,17 @@ public class Server {
         }
     }
 
+    private synchronized void removeFromOldChat(Message cm) {
+        String username = cm.getUser();
+        for (ChatRoom chat :
+                chatRooms) {
+            if(chat.userExists(username)){
+                chat.deleteUser(username);
+            }
+        }
+    }
+
+
 
 
     class ClientThread extends Thread{
@@ -175,6 +212,7 @@ public class Server {
         int id;
         private Message cm;
         private ChatRoom currentChat;
+        public String currentChatS;
 
         public String getUsername() {
             return username;
@@ -247,15 +285,25 @@ public class Server {
                             createChatRoom(cm);
                             break;
                         case Message.CONNECTTOCHAT:
-                            ChatRoom chat = showChatRoom(cm);
                             String user = cm.getUser();
+                            removeFromOldChat(cm);
+                            ChatRoom chat = showChatRoom(cm);
+
                             if(!chat.userExists(user)) {
                                 chat.addUsersIn(user);
                             }
+                            ChatRoom oldChat = null;
+                            if(currentChat !=null) oldChat = currentChat;
                             currentChat = chat;
+                            currentChatS = chat.getChatName();
+
                             String chatStructure = chat.getUsersAsString() + "\n" + chat.getMessages();
+                            System.out.println(chat.getUsersAsString());
                             Message msg = new Message(Message.CHATCONNECTION, "", chatStructure);
-                            writeMsg(msg);
+                            msg.setChatName(currentChat.getChatName());
+                            msg.setUsersIn(chat.getUsersIn());
+                            actualizeChatUsers(chat, msg, oldChat);
+                           // writeMsg(msg);
                             break;
                     }
 
@@ -309,6 +357,7 @@ public class Server {
             return true;
         }
     }
+
 
 
     public static void main(String[] args) {

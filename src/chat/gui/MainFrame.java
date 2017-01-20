@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.prefs.Preferences;
 
 /**
@@ -189,6 +190,18 @@ public class MainFrame extends JFrame {
 
         MainFrame.this.setTitle(username);
         MainFrame.this.setVisible(true);
+    }
+
+    public void sendChatUsers(String[] users){
+       // activeUsersPanel.setUsersInChat(users);
+    }
+
+    public void sendUsersOfChat(ArrayList<String> users){
+        activeUsersPanel.setUsersInChat(users);
+    }
+
+    public void sendLeft(Message msg){
+        activeUsersPanel.setUsersInChat(msg.getUsersIn());
     }
 
     private JMenuBar createMenuBar() {
