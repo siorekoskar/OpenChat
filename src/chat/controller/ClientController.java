@@ -19,6 +19,10 @@ public class ClientController{
     private Client chatClient;
     private MainFrame frame;
 
+    public void sendUserLeft(Message msg){
+        frame.sendUserLeft(msg);
+    }
+
     public void sendDisallowed(Message msg){
         frame.sendDissallowed(msg);
     }

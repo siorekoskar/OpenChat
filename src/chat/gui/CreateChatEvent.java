@@ -36,5 +36,4 @@ public class CreateChatEvent extends EventObject {
     }
 
 
-
 }

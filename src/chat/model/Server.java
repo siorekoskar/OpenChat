@@ -126,6 +126,7 @@ public class Server {
             ChatRoom chatRoom = msg.getChatRoom();
             ChatRoom chatToAdd = new ChatRoom(chatRoom.isPrivate(), chatRoom.getAdmin(),
                     chatRoom.getChatName());
+            chatToAdd.addAllowed(chatRoom.getAdmin());
             chatRooms.add(chatToAdd);
 
             for (ChatRoom chat :
@@ -208,6 +209,14 @@ public class Server {
             if(ct.currentChat == cm){
                 ct.writeMsg(msg);
             }
+        }
+    }
+
+    public synchronized void sendMessage(Message msg){
+        //msg.setUsersIn(new ArrayList<>());
+        for (ClientThread ct :
+                clientThreads) {
+            ct.writeMsg(msg);
         }
     }
 
@@ -294,7 +303,7 @@ public class Server {
             ChatRoom chat = showChatRoom(cm);
             String user = cm.getUser();
 
-            if(!chat.isPrivate()){ //&& chat.getAreAllowed().contains(user)) {
+            if(!chat.isPrivate() || (chat.isPrivate() && chat.getAreAllowed().contains(user))){
 
                 removeFromOldChat(cm);
 
@@ -355,6 +364,7 @@ public class Server {
 
             remove(id);
             close();
+            sendMessage(new Message(Message.DISCONNECT));
         }
 
         private void close() {

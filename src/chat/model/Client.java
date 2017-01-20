@@ -86,6 +86,7 @@ public class Client {
             if (socket != null) socket.close();
         } catch (Exception e) {
         } // not much else I can do
+        //sendMessage(new Message(Message.DISCONNECT));
 
 
     }
@@ -123,6 +124,10 @@ public class Client {
                                 break;
                             case Message.NOTALLOWED:
                                 cg.sendNotAllowed(msg);
+                                break;
+                            case Message.DISCONNECT:
+                                cg.sendUserLeft(msg);
+                                break;
                             default:
                                 cg.sendMsg(msg);
                         }

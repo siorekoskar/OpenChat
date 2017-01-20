@@ -185,7 +185,7 @@ public class MainFrame extends JFrame {
     public void sendAllowed(Message msg) {
         loginDialog.setVisible(false);
         JOptionPane.showMessageDialog(MainFrame.this, "Logged",
-                "Succes", JOptionPane.OK_OPTION|JOptionPane.INFORMATION_MESSAGE);
+                "Succes", JOptionPane.INFORMATION_MESSAGE);
         username = msg.getUser();
 
         MainFrame.this.setTitle(username);
@@ -193,7 +193,7 @@ public class MainFrame extends JFrame {
     }
 
     public void sendNotAllowed(){
-        JOptionPane.showMessageDialog(MainFrame.this, "You are not allowed",
+        JOptionPane.showMessageDialog(MainFrame.this, "You are not allowed to join",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
@@ -207,6 +207,11 @@ public class MainFrame extends JFrame {
 
     public void sendLeft(Message msg){
         activeUsersPanel.setUsersInChat(msg.getUsersIn());
+    }
+
+    public void sendUserLeft(Message msg){
+        JOptionPane.showMessageDialog(MainFrame.this, "Someone left",
+                "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     private JMenuBar createMenuBar() {
