@@ -17,56 +17,12 @@ public class Message implements Serializable{
     private String user;
     public String sentToChat;
     public ArrayList<String> users;
-
-    public ChatRoom getChat() {
-        return chat;
-    }
-
-    public void setChat(ChatRoom chat) {
-        this.chat = chat;
-    }
-
+    private ArrayList<String> usersIn;
+    private String usersInChat;
+    private String chatName;
+    private ChatRoom chatRoom;
     private ChatRoom chat;
 
-    public ArrayList<String> getUsersIn() {
-        return usersIn;
-    }
-
-    public void setUsersIn(ArrayList<String> usersIn) {
-        this.usersIn = usersIn;
-    }
-
-    private ArrayList<String> usersIn;
-
-    public String getUsersInChat() {
-        return usersInChat;
-    }
-
-    public void setUsersInChat(String usersInChat) {
-        this.usersInChat = usersInChat;
-    }
-
-    private String usersInChat;
-
-    public String getChatName() {
-        return chatName;
-    }
-
-    public void setChatName(String chatName) {
-        this.chatName = chatName;
-    }
-
-    private String chatName;
-
-    public ChatRoom getChatRoom() {
-        return chatRoom;
-    }
-
-    public Message(int type){
-        this.type=type;
-    }
-
-    private ChatRoom chatRoom;
 
     public Message(int type, String user, String message){
         this.type = type;
@@ -82,6 +38,49 @@ public class Message implements Serializable{
     public Message(int type, String user, String message, String sentToChat){
         this(type,user,message);
         this.sentToChat = sentToChat;
+    }
+
+
+    /////////////GETTERS AND SETTERS/////////////////
+    public ChatRoom getChat() {
+        return chat;
+    }
+
+    public void setChat(ChatRoom chat) {
+        this.chat = chat;
+    }
+
+
+    public ArrayList<String> getUsersIn() {
+        return usersIn;
+    }
+
+    public void setUsersIn(ArrayList<String> usersIn) {
+        this.usersIn = usersIn;
+    }
+
+    public String getUsersInChat() {
+        return usersInChat;
+    }
+
+    public void setUsersInChat(String usersInChat) {
+        this.usersInChat = usersInChat;
+    }
+
+    public String getChatName() {
+        return chatName;
+    }
+
+    public void setChatName(String chatName) {
+        this.chatName = chatName;
+    }
+
+    public ChatRoom getChatRoom() {
+        return chatRoom;
+    }
+
+    public Message(int type){
+        this.type=type;
     }
 
     public int getType() {

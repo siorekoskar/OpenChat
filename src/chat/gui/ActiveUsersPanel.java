@@ -90,41 +90,6 @@ public class ActiveUsersPanel extends JSplitPane{
         }}catch(NullPointerException e){
             System.out.println( "exception");
         }
-        /*for (String user :
-                users) {
-            boolean exists = false;
-            boolean existsNoMore = false;
-            for (int i = 0; i < currentChatUsersModel.size(); i++) {
-                String userOnList = (String)currentChatUsersModel.getElementAt(i);
-                if(userOnList.equals(user)){
-                    exists = true;
-                    break;
-                }
-            }
-            if(!exists) {
-                currentChatUsersModel.addElement(user);
-            }
-        }
-
-        ArrayList<Object> removal = new ArrayList<>();
-        for (int i = 0; i< currentChatUsersModel.size(); i++) {
-            String user = users.get(i);
-            boolean exists = false;
-            for (int j = 0; i < users.size(); j++) {
-                String userOnModel = users.get(j);
-                if(userOnModel.equals(user)){
-                    exists = true;
-                    break;
-                }
-            }
-            if(!exists){
-                removal.add(currentChatUsersModel.getElementAt(i));
-            }
-        }
-        for (Object userev :
-                removal) {
-            currentChatUsersModel.removeElement(userev);
-        }*/
     }
 
 

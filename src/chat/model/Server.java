@@ -34,6 +34,29 @@ public class Server {
         }
     }
 
+    class HandleDB extends Thread{
+
+        Socket socket;
+        ClientThread ct;
+
+        public ClientThread getCt() {
+            return ct;
+        }
+        HandleDB(Socket socket){
+            this.socket = socket;
+        }
+
+        @Override
+        public void run() {
+            ct = new ClientThread(socket);
+            clientThreads.add(ct);
+            actualizeUsers();
+            actualizeChats();
+            ct.start();
+
+        }
+    }
+
     public void start() {
         keepGoing = true;
         try {
@@ -48,12 +71,12 @@ public class Server {
                     break;
                 }
 
-                ClientThread t = new ClientThread(socket);
-                clientThreads.add(t);
-
-                actualizeUsers();
-                actualizeChats();
-                t.start();
+                HandleDB handler = new HandleDB(socket);
+                handler.start();
+                //ClientThread t = new ClientThread(socket);
+                //ClientThread t = handler.getCt();
+               // clientThreads.add(t);
+               /// t.start();
             }
             try {
                 serverSocket.close();
@@ -258,6 +281,7 @@ public class Server {
                 }
                 currentChat = null;
 
+
                 System.out.println(username + " connected");
             } catch(IOException e){
                 e.printStackTrace();
@@ -309,9 +333,11 @@ public class Server {
 
                 } catch(IOException e){
                     e.printStackTrace();
+                    close();
                     break;
                 } catch (ClassNotFoundException e){
                     e.printStackTrace();
+                    close();
                     break;
                 }
             }

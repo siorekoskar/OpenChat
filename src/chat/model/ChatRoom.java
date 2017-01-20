@@ -10,7 +10,32 @@ import java.util.List;
 public class ChatRoom implements Serializable {
     static final int PRIVATE = 1, PUBLIC = 0;
 
+    private String chatName;
+    private String admin;
+    private ArrayList<String> usersIn;
+    private String messages;
+    private boolean isPrivate;
+    private ArrayList<String> areAllowed;
 
+    public ChatRoom(boolean chatType, String admin, String chatName) {
+        this.isPrivate = chatType;
+        this.admin = admin;
+        this.usersIn = new ArrayList();
+        this.chatName = chatName;
+        this.messages = "";
+    }
+
+    public ChatRoom(ChatRoom chat) {
+        this(chat.isPrivate(), chat.getAdmin(), chat.getChatName());
+
+    }
+
+    public void appendMsg(String msg) {
+        messages += msg;
+    }
+
+
+    /////////////GETTERS AND SETTERS/////////////////
     public String getChatName() {
         return chatName;
     }
@@ -43,8 +68,6 @@ public class ChatRoom implements Serializable {
         usersIn.remove(user);
     }
 
-    private String chatName;
-    private String admin;
 
     public void addUsersIn(String user) {
         usersIn.add(user);
@@ -54,9 +77,6 @@ public class ChatRoom implements Serializable {
         this.usersIn = usersIn;
     }
 
-    private ArrayList<String> usersIn;
-    private String messages;
-    private boolean isPrivate;
 
     public ArrayList<String> getAreAllowed() {
         return areAllowed;
@@ -66,24 +86,6 @@ public class ChatRoom implements Serializable {
         areAllowed.add(user);
     }
 
-    private ArrayList<String> areAllowed;
-
-    public ChatRoom(boolean chatType, String admin, String chatName) {
-        this.isPrivate = chatType;
-        this.admin = admin;
-        this.usersIn = new ArrayList();
-        this.chatName = chatName;
-        this.messages = "";
-    }
-
-    public ChatRoom(ChatRoom chat) {
-        this(chat.isPrivate(), chat.getAdmin(), chat.getChatName());
-
-    }
-
-    public void appendMsg(String msg) {
-        messages += msg;
-    }
 
     public String toString() {
         return "Admin: " + getAdmin() + "\nChatname: " + getChatName() + "\nIsPrivate: " + isPrivate() + "\n";
