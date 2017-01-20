@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0d1bbba1-6a5b-431b-bd5c-38d7032de415" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/controller/ClientController.java" afterPath="$PROJECT_DIR$/src/chat/controller/ClientController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java" afterPath="$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/MessagePanel.java" afterPath="$PROJECT_DIR$/src/chat/gui/MessagePanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/ChatRoom.java" afterPath="$PROJECT_DIR$/src/chat/model/ChatRoom.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Client.java" afterPath="$PROJECT_DIR$/src/chat/model/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Message.java" afterPath="$PROJECT_DIR$/src/chat/model/Message.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Server.java" afterPath="$PROJECT_DIR$/src/chat/model/Server.java" />
     </list>
     <ignored path="OpenChat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -214,8 +206,8 @@
           <file leaf-file-name="DbController.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/chat/controller/DbController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="298">
-                  <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+                <state relative-caret-position="383">
+                  <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -1063,7 +1055,7 @@
       <workItem from="1484742439724" duration="433000" />
       <workItem from="1484748678312" duration="148000" />
       <workItem from="1484859122996" duration="15953000" />
-      <workItem from="1484913580174" duration="6717000" />
+      <workItem from="1484913580174" duration="6768000" />
     </task>
     <task id="LOCAL-00001" summary="added layoutComponents() method to MessagePanel">
       <created>1483793216336</created>
@@ -1310,11 +1302,18 @@
       <option name="project" value="LOCAL" />
       <updated>1484859393977</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="users in chat active working">
+      <created>1484920357886</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1484920357886</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177348000" />
+    <option name="totallyTimeSpent" value="177399000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1385,7 +1384,8 @@
     <MESSAGE value="dunno" />
     <MESSAGE value="database rewritten to server" />
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="users in chat active working" />
+    <option name="LAST_COMMIT_MESSAGE" value="users in chat active working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1863,8 +1863,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat/controller/DbController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        <state relative-caret-position="383">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
