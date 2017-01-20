@@ -67,7 +67,6 @@ public class MainFrame extends JFrame {
             @Override
             public void wentToChatOccured(String msg) {
                 Message message = new Message(Message.CONNECTTOCHAT, username, msg);
-                //messagePanel.clean();
 
                 clientController.sendMessage(message);
 

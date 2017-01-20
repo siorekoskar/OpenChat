@@ -34,6 +34,8 @@ public class Server {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        ChatRoom allChat = new ChatRoom(ChatRoom.PUBLIC, "none", "All Chat");
+        chatRooms.add(allChat);
     }
 
     class HandleDB extends Thread{
@@ -269,6 +271,7 @@ public class Server {
         private ChatRoom currentChat;
         public String currentChatS;
         private String username;
+        private boolean firstLogged = true;
 
         public String getUsername() {
             return username;
@@ -315,7 +318,9 @@ public class Server {
                     }
 
                 }
-                currentChat = null;
+                //currentChat = chatRooms.get(0);
+                //currentChatS = "All Chat";
+                connectToChat(new Message(Message.CHATCONNECTION, username, chatRooms.get(0).getChatName()));
 
 
                 System.out.println(username + " connected");
@@ -331,10 +336,13 @@ public class Server {
         private boolean connectToChat(Message cm){
             ChatRoom chat = showChatRoom(cm);
             String user = cm.getUser();
+            System.out.println(cm.getMessage() + cm.getUser() + cm.getMessage());
 
             if(!chat.isPrivate() || (chat.isPrivate() && chat.getAreAllowed().contains(user))){
+                System.out.println("inside"+cm.getMessage() + cm.getUser() + cm.getMessage());
 
                 removeFromOldChat(cm);
+
 
 
                 if (!chat.userExists(user)) {
@@ -345,7 +353,7 @@ public class Server {
                 currentChat = chat;
                 currentChatS = chat.getChatName();
 
-                String chatStructure = chat.getUsersAsString() + "\n" + chat.getMessages();
+                String chatStructure = chat.getMessages();
                 System.out.println(chat.getUsersAsString());
                 Message msg = new Message(Message.CHATCONNECTION, "", chatStructure);
                 msg.setChatName(currentChat.getChatName());

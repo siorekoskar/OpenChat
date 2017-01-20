@@ -7,6 +7,8 @@ import chat.model.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ public class ActiveUsersPanel extends JSplitPane{
     private DefaultListModel currentChatUsersModel;
 
     private ActiveUsersPanelListener activeUsersPanelListener;
+
+    private String selection;
 
     private int getRow(Point point){
         return activeUsersPanel.locationToIndex(point);
@@ -42,9 +46,19 @@ public class ActiveUsersPanel extends JSplitPane{
 
         ////////////////TEMP//////////////////
         popupUserMenu = new JPopupMenu();
-        popupUserMenu.add(new JMenuItem("Invite"));
-        popupUserMenu.add(new JMenuItem("Kick"));
-        popupUserMenu.add(new JMenuItem("Whisper"));
+        JMenuItem invite =new JMenuItem("Invite");
+        JMenuItem kick = new JMenuItem("Kick");
+        JMenuItem whisper = new JMenuItem("Whisper");
+
+        PopupActionListener listen = new PopupActionListener();
+
+        invite.addActionListener(listen);
+        kick.addActionListener(listen);
+        whisper.addActionListener(listen);
+
+        popupUserMenu.add(invite);
+        popupUserMenu.add(kick);
+        popupUserMenu.add(whisper);
 
         activeUsersPanel.addMouseListener(new MouseAdapter() {
             @Override
@@ -64,10 +78,16 @@ public class ActiveUsersPanel extends JSplitPane{
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)){
                     activeUsersPanel.setSelectedIndex(getRow(e.getPoint()));
+                    selection = (String) activeUsersPanel.getSelectedValue();
                     popupUserMenu.show(activeUsersPanel, e.getX(), e.getY());
                 }
             }
         });
+
+
+
+
+
         ////////////////TEMP//////////////////
 
 
@@ -81,6 +101,15 @@ public class ActiveUsersPanel extends JSplitPane{
         add(chatsListScrollable);
         add(currentChatScrollable);
 
+    }
+
+    class PopupActionListener implements ActionListener {
+        public void actionPerformed(ActionEvent actionEvent) {
+            System.out.println("Selected: " + actionEvent.getActionCommand());
+            if((actionEvent.getActionCommand()).equals("Invite")){
+                activeUsersPanelListener.userInvitedOccured(selection);
+            }
+        }
     }
 
     public void setListener(ActiveUsersPanelListener listener){
@@ -119,6 +148,7 @@ public class ActiveUsersPanel extends JSplitPane{
             activeUsersModel.addElement(user);
         }
     }
+
 
 
 }

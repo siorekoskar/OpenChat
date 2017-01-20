@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Oskar on 14/01/2017.
  */
 public class ChatRoom implements Serializable {
-    static final int PRIVATE = 1, PUBLIC = 0;
+    static final boolean PRIVATE = true, PUBLIC = false;
 
     private String chatName;
     private String admin;

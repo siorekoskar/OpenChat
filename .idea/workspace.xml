@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d1bbba1-6a5b-431b-bd5c-38d7032de415" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/ActiveUsersPanelListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/controller/ClientController.java" afterPath="$PROJECT_DIR$/src/chat/controller/ClientController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java" afterPath="$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Client.java" afterPath="$PROJECT_DIR$/src/chat/model/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Message.java" afterPath="$PROJECT_DIR$/src/chat/model/Message.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/MessagePanel.java" afterPath="$PROJECT_DIR$/src/chat/gui/MessagePanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/ChatRoom.java" afterPath="$PROJECT_DIR$/src/chat/model/ChatRoom.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Server.java" afterPath="$PROJECT_DIR$/src/chat/model/Server.java" />
     </list>
     <ignored path="OpenChat.iws" />
@@ -38,11 +36,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.4823386">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Server.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chat/model/Server.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="539">
-                  <caret line="256" column="61" selection-start-line="256" selection-start-column="61" selection-end-line="256" selection-end-column="61" />
+                <state relative-caret-position="5236">
+                  <caret line="308" column="0" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -60,11 +58,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ChatsPanel.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ChatsPanel.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/chat/gui/ChatsPanel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="349">
-                  <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+                <state relative-caret-position="485">
+                  <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
                   <folding />
                 </state>
               </provider>
@@ -95,8 +93,8 @@
           <file leaf-file-name="LoginDialog.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chat/gui/LoginDialog.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="289">
-                  <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+                <state relative-caret-position="94">
+                  <caret line="42" column="63" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
                   <folding />
                 </state>
               </provider>
@@ -105,8 +103,8 @@
           <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chat/gui/MainFrame.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="952">
-                  <caret line="115" column="65" selection-start-line="115" selection-start-column="65" selection-end-line="115" selection-end-column="65" />
+                <state relative-caret-position="170">
+                  <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -125,8 +123,8 @@
           <file leaf-file-name="MessagePanel.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chat/gui/MessagePanel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1661">
-                  <caret line="131" column="52" selection-start-line="131" selection-start-column="52" selection-end-line="131" selection-end-column="52" />
+                <state relative-caret-position="510">
+                  <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
@@ -146,11 +144,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ClientController.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ClientController.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chat/controller/ClientController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="343">
-                  <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
+                <state relative-caret-position="230">
+                  <caret line="64" column="43" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -168,11 +166,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ActiveUsersPanel.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ActiveUsersPanel.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1122">
-                  <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
+                <state relative-caret-position="536">
+                  <caret line="109" column="14" selection-start-line="109" selection-start-column="14" selection-end-line="109" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -198,11 +196,21 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chat/gui/MainFrame.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1224">
+                  <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chat/model/Client.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-484">
-                  <caret line="81" column="40" selection-start-line="81" selection-start-column="40" selection-end-line="81" selection-end-column="40" />
+                <state relative-caret-position="1683">
+                  <caret line="99" column="27" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -213,8 +221,8 @@
           <file leaf-file-name="ChatRoom.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chat/model/ChatRoom.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="284">
-                  <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+                <state relative-caret-position="318">
+                  <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
                   <folding />
                 </state>
               </provider>
@@ -316,16 +324,16 @@
         <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/ActiveUsersListener.java" />
         <option value="$PROJECT_DIR$/src/chat/controller/DbController.java" />
         <option value="$PROJECT_DIR$/src/chat/model/Database.java" />
-        <option value="$PROJECT_DIR$/src/chat/model/ChatRoom.java" />
-        <option value="$PROJECT_DIR$/src/chat/gui/MessagePanel.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/CreateChatEvent.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/ActiveUsersPanelListener.java" />
-        <option value="$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java" />
-        <option value="$PROJECT_DIR$/src/chat/gui/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/chat/model/Message.java" />
         <option value="$PROJECT_DIR$/src/chat/model/Client.java" />
         <option value="$PROJECT_DIR$/src/chat/controller/ClientController.java" />
+        <option value="$PROJECT_DIR$/src/chat/model/ChatRoom.java" />
+        <option value="$PROJECT_DIR$/src/chat/gui/MessagePanel.java" />
+        <option value="$PROJECT_DIR$/src/chat/gui/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/chat/model/Server.java" />
+        <option value="$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java" />
       </list>
     </option>
   </component>
@@ -454,32 +462,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OpenChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OpenChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="listenersinterfaces" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1097,7 +1079,7 @@
       <workItem from="1484742439724" duration="433000" />
       <workItem from="1484748678312" duration="148000" />
       <workItem from="1484859122996" duration="15953000" />
-      <workItem from="1484913580174" duration="16680000" />
+      <workItem from="1484913580174" duration="23509000" />
     </task>
     <task id="LOCAL-00001" summary="added layoutComponents() method to MessagePanel">
       <created>1483793216336</created>
@@ -1386,14 +1368,21 @@
       <option name="project" value="LOCAL" />
       <updated>1484933187553</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="private chats working, invite through doubleclick, only to admins chat">
+      <created>1484934835453</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1484934835453</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="187311000" />
+    <option name="totallyTimeSpent" value="194140000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1437,7 +1426,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="layout adjustmenets" />
     <MESSAGE value="listeners added, logindialog added" />
     <MESSAGE value="registerDialog added to logindialog" />
     <MESSAGE value="added formlistener and formevent&#10;" />
@@ -1462,11 +1450,12 @@
     <MESSAGE value="checking if you are allowed" />
     <MESSAGE value="users left announced, if you are admin you can connect to allowed" />
     <MESSAGE value="userslist fully working" />
-    <option name="LAST_COMMIT_MESSAGE" value="userslist fully working" />
+    <MESSAGE value="private chats working, invite through doubleclick, only to admins chat" />
+    <option name="LAST_COMMIT_MESSAGE" value="private chats working, invite through doubleclick, only to admins chat" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1803,30 +1792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/LoginDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/MessagePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1661">
-          <caret line="131" column="52" selection-start-line="131" selection-start-column="52" selection-end-line="131" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/model/ChatRoom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat/gui/RegisterDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1859,26 +1824,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/ChatsPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat/gui/listenersinterfaces/ActiveUsersPanelListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="97" column="35" selection-start-line="97" selection-start-column="35" selection-end-line="97" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -1893,10 +1842,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/model/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/LoginDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-484">
-          <caret line="81" column="40" selection-start-line="81" selection-start-column="40" selection-end-line="81" selection-end-column="40" />
+        <state relative-caret-position="94">
+          <caret line="42" column="63" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/MessagePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/model/ChatRoom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/controller/ClientController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="64" column="43" selection-start-line="64" selection-start-column="43" selection-end-line="64" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1905,29 +1878,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat/gui/MainFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="115" column="65" selection-start-line="115" selection-start-column="65" selection-end-line="115" selection-end-column="65" />
+        <state relative-caret-position="-1224">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/controller/ClientController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat/model/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="256" column="61" selection-start-line="256" selection-start-column="61" selection-end-line="256" selection-end-column="61" />
+        <state relative-caret-position="5236">
+          <caret line="308" column="0" selection-start-line="308" selection-start-column="0" selection-end-line="308" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/model/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1683">
+          <caret line="99" column="27" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/ChatsPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="536">
+          <caret line="109" column="14" selection-start-line="109" selection-start-column="14" selection-end-line="109" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -28,7 +28,7 @@ public class MessagePanel extends JPanel implements ActionListener{
         sendMessageButton = new JButton("Send");
 
         messagesArea.setEditable(false);
-        messagesArea.setBorder(BorderFactory.createTitledBorder("CHATNAME"));
+        messagesArea.setBorder(BorderFactory.createTitledBorder("Current chat: All Chat"));
         inputTextArea.setBorder(BorderFactory.createTitledBorder("Message"));
         Dimension buttonDim = new Dimension(100, 40);
         sendFileButton.setPreferredSize(buttonDim);
