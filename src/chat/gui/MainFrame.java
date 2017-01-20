@@ -110,6 +110,13 @@ public class MainFrame extends JFrame {
             }
         });
 
+        activeUsersPanel.setListener(new ActiveUsersPanelListener() {
+            @Override
+            public void userInvitedOccured(String selected) {
+                clientController.userInvited(selected, username);
+            }
+        });
+
         messagePanel.setMessageListener(new MessageListener() {
             @Override
             public void messageSent(String msg) {

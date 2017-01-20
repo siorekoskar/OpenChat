@@ -44,6 +44,11 @@ public class ClientController{
         frame.sendExists(msg);
     }
 
+    public void userInvited(String selected, String username){
+        System.out.println("You invited " + selected);
+        chatClient.userInvited(selected, username);
+    }
+
     public ClientController(String serverName, int serverPort, MainFrame frame){
         chatClient = new Client(serverName, serverPort, this);
         this.frame = frame;

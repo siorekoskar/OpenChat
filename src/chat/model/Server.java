@@ -247,6 +247,18 @@ public class Server {
         }
     }
 
+    public synchronized void inviteUser(Message msg){
+
+        String toAdd = msg.getMessage();
+        System.out.println("invited  "+toAdd);
+        for (ChatRoom chat :
+                chatRooms) {
+            if (chat.getAdmin().equals(msg.getUser()) && !chat.getAreAllowed().contains(toAdd)) {
+                System.out.println("added "+toAdd + " to chat " + chat.getChatName());
+                chat.addAllowed(toAdd);
+            }
+        }
+    }
 
     class ClientThread extends Thread{
         Socket socket;
@@ -365,6 +377,9 @@ public class Server {
                             if(!connectToChat(cm)){
                                 this.writeMsg(new Message(Message.NOTALLOWED));
                             }
+                            break;
+                        case Message.USERINVITED:
+                            inviteUser(cm);
                             break;
                     }
 

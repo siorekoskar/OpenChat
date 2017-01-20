@@ -91,6 +91,11 @@ public class Client {
 
     }
 
+    public void userInvited(String userInvited, String admin){
+        Message msg = new Message(Message.USERINVITED, admin, userInvited);
+        sendMessage(msg);
+    }
+
     class ListenFromServer extends Thread {
         public void run() {
             while (true) {

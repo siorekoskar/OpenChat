@@ -1,5 +1,6 @@
 package chat.gui;
 
+import chat.gui.listenersinterfaces.ActiveUsersPanelListener;
 import chat.model.ChatRoom;
 import chat.model.Message;
 import chat.model.User;
@@ -19,6 +20,8 @@ public class ActiveUsersPanel extends JSplitPane{
     private JPopupMenu popupUserMenu;
     private DefaultListModel activeUsersModel;
     private DefaultListModel currentChatUsersModel;
+
+    private ActiveUsersPanelListener activeUsersPanelListener;
 
     private int getRow(Point point){
         return activeUsersPanel.locationToIndex(point);
@@ -45,6 +48,19 @@ public class ActiveUsersPanel extends JSplitPane{
 
         activeUsersPanel.addMouseListener(new MouseAdapter() {
             @Override
+            public void mouseClicked(MouseEvent ev) {
+                JList list = (JList)ev.getSource();
+                if(ev.getClickCount() == 2){
+                    int index = list.locationToIndex(ev.getPoint());
+                    activeUsersPanel.setSelectedIndex(index);
+                    String selected = (String) activeUsersPanel.getSelectedValue();
+                    System.out.println(selected + "-- SELECTED USER");
+                    activeUsersPanelListener.userInvitedOccured(selected);
+
+                }
+            }
+
+            @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)){
                     activeUsersPanel.setSelectedIndex(getRow(e.getPoint()));
@@ -65,6 +81,10 @@ public class ActiveUsersPanel extends JSplitPane{
         add(chatsListScrollable);
         add(currentChatScrollable);
 
+    }
+
+    public void setListener(ActiveUsersPanelListener listener){
+        this.activeUsersPanelListener = listener;
     }
 
     public void addUser(User user){
