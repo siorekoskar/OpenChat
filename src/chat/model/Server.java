@@ -17,6 +17,7 @@ public class Server {
 
     private static int uniqueID;
     private ArrayList<ClientThread> clientThreads;
+    private ArrayList<String> users;
     private ArrayList<ChatRoom> chatRooms;
     private int port;
     private boolean keepGoing;
@@ -24,6 +25,7 @@ public class Server {
 
     public Server(int port) {
         this.port = port;
+        users = new ArrayList<>();
         clientThreads = new ArrayList<>();
         chatRooms = new ArrayList<>();
         dbController = new DbController();
@@ -47,6 +49,7 @@ public class Server {
         public void run() {
             ct = new ClientThread(socket);
             clientThreads.add(ct);
+            users.add(ct.getUsername());
             actualizeUsers();
             actualizeChats();
             ct.start();
@@ -104,6 +107,7 @@ public class Server {
 
             if(!ct.writeMsg(msg)) {
                 clientThreads.remove(i);
+                users.remove(i);
                 System.out.println("REMOVED CLIENT " + ct.username);
             }
         }
@@ -114,6 +118,7 @@ public class Server {
             ClientThread ct = clientThreads.get(i);
             if(ct.id == id){
                 clientThreads.remove(i);
+                users.remove(i);
                 return;
             }
         }
@@ -133,6 +138,7 @@ public class Server {
                     chatRooms) {
                 if(!ct.writeMsg(new ChatRoom(chat))){
                     clientThreads.remove(i);
+                    users.remove(i);
                 }
             }
         }
@@ -145,6 +151,7 @@ public class Server {
             for (int j = 0; j < clientThreads.size(); j++) {
                 if(!ct.writeMsg(new User(clientThreads.get(j).getUsername()))){
                     clientThreads.remove(i);
+                    users.remove(i);
                 }
             }
 
@@ -164,6 +171,7 @@ public class Server {
                 msg.users = users;
                 if(!ct.writeMsg(msg)){
                     clientThreads.remove(ct);
+                    users.remove(ct.getUsername());
                 }
             } else if(ct.currentChatS!= null && ct.currentChat!= null
                     && oldChat!= null && ct.currentChat.getChatName().equals(oldChat.getChatName())){
@@ -174,6 +182,7 @@ public class Server {
               //  System.out.println("OLD USER" + oldMess.getUsersIn() + oldChat.getChatName());
                 if(!ct.writeMsg(oldMess)){
                     clientThreads.remove(ct);
+                    users.remove(ct.getUsername());
                 }
             }
         }
@@ -186,6 +195,7 @@ public class Server {
                     chatRooms) {
                 if(!ct.writeMsg(chat)){
                     clientThreads.remove(ct);
+                    users.remove(ct.getUsername());
                 }
             }
         }
@@ -207,16 +217,23 @@ public class Server {
         for (ClientThread ct :
                 clientThreads) {
             if(ct.currentChat == cm){
-                ct.writeMsg(msg);
+                if(!ct.writeMsg(msg)){
+                    clientThreads.remove(ct);
+                    users.remove(ct.getUsername());
+                }
             }
         }
     }
 
-    public synchronized void sendMessage(Message msg){
-        //msg.setUsersIn(new ArrayList<>());
+    public synchronized void sendToAll(Message msg){
+
+        msg.setUsersIn(users);
         for (ClientThread ct :
                 clientThreads) {
-            ct.writeMsg(msg);
+            if(!ct.writeMsg(msg)){
+                clientThreads.remove(ct);
+                users.remove(ct.getUsername());
+            }
         }
     }
 
@@ -364,7 +381,7 @@ public class Server {
 
             remove(id);
             close();
-            sendMessage(new Message(Message.DISCONNECT));
+            sendToAll(new Message(Message.DISCONNECT));
         }
 
         private void close() {

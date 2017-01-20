@@ -92,5 +92,13 @@ public class ActiveUsersPanel extends JSplitPane{
         }
     }
 
+    public void actualizeAllUsers(ArrayList<String> users){
+        activeUsersModel.removeAllElements();
+        for (String user :
+                users) {
+            activeUsersModel.addElement(user);
+        }
+    }
+
 
 }

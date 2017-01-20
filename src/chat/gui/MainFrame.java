@@ -163,18 +163,22 @@ public class MainFrame extends JFrame {
 
     }
 
+    public void actualizeAllUsers(ArrayList<String> arr){
+        activeUsersPanel.actualizeAllUsers(arr);
+    }
+
     public void sendMsg(Message msg) {
         messagePanel.append(msg);
     }
 
     public void sendRegistered(Message msg){
         JOptionPane.showMessageDialog(MainFrame.this, "Registered",
-                "Your username: " + msg.getUser(), JOptionPane.OK_OPTION);
+                "Your username: " + msg.getUser(), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void sendDissallowed(Message msg) {
-        JOptionPane.showMessageDialog(MainFrame.this, "Error",
-                "Bad data", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(MainFrame.this, "Wrong username/password",
+                "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     public void sendExists(Message msg){
@@ -197,10 +201,6 @@ public class MainFrame extends JFrame {
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void sendChatUsers(String[] users){
-       // activeUsersPanel.setUsersInChat(users);
-    }
-
     public void sendUsersOfChat(ArrayList<String> users){
         activeUsersPanel.setUsersInChat(users);
     }
@@ -210,8 +210,7 @@ public class MainFrame extends JFrame {
     }
 
     public void sendUserLeft(Message msg){
-        JOptionPane.showMessageDialog(MainFrame.this, "Someone left",
-                "Error", JOptionPane.ERROR_MESSAGE);
+        activeUsersPanel.actualizeAllUsers(msg.getUsersIn());
     }
 
     private JMenuBar createMenuBar() {
