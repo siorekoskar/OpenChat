@@ -26,9 +26,18 @@ public class ActiveUsersPanel extends JSplitPane{
     private ActiveUsersPanelListener activeUsersPanelListener;
 
     private String selection;
+    private String username;
 
     private int getRow(Point point){
         return activeUsersPanel.locationToIndex(point);
+    }
+
+    void setUsername(String username){
+        this.username = username;
+    }
+
+    void setSelection(String username){
+        this.selection = username;
     }
 
     public ActiveUsersPanel(){
@@ -77,9 +86,14 @@ public class ActiveUsersPanel extends JSplitPane{
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)){
+
                     activeUsersPanel.setSelectedIndex(getRow(e.getPoint()));
-                    selection = (String) activeUsersPanel.getSelectedValue();
-                    popupUserMenu.show(activeUsersPanel, e.getX(), e.getY());
+                    String selected = (String) activeUsersPanel.getSelectedValue();
+                    System.out.println(selected + "  " + username);
+                    if(!selected.equals(username)) {
+                        selection = selected;
+                        popupUserMenu.show(activeUsersPanel, e.getX(), e.getY());
+                    }
                 }
             }
         });
@@ -105,9 +119,12 @@ public class ActiveUsersPanel extends JSplitPane{
 
     class PopupActionListener implements ActionListener {
         public void actionPerformed(ActionEvent actionEvent) {
-            System.out.println("Selected: " + actionEvent.getActionCommand());
-            if((actionEvent.getActionCommand()).equals("Invite")){
+            //System.out.println("Selected: " + actionEvent.getActionCommand());
+            String event = actionEvent.getActionCommand();
+            if(event.equals("Invite")){
                 activeUsersPanelListener.userInvitedOccured(selection);
+            } else if( event.equals("Whisper")){
+                activeUsersPanelListener.whisperEventOccured(selection);
             }
         }
     }

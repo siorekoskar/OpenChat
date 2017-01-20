@@ -19,6 +19,10 @@ public class ClientController{
     private Client chatClient;
     private MainFrame frame;
 
+    public void sendPrivateMessage(String msg){
+        System.out.println(msg);
+    }
+
     public void sendUserLeft(Message msg){
         frame.sendUserLeft(msg);
     }
@@ -42,6 +46,10 @@ public class ClientController{
 
     public void sendExists(Message msg){
         frame.sendExists(msg);
+    }
+
+    public void sendInboxMessages(List messages){
+        frame.sendInboxMessages(messages);
     }
 
     public void userInvited(String selected, String username){

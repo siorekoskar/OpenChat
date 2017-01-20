@@ -14,8 +14,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.prefs.Preferences;
+import java.util.List;
 
 /**
  * Created by Oskar on 07/01/2017.
@@ -29,6 +30,8 @@ public class MainFrame extends JFrame {
     private Preferences preferenceLogin;
     private LoginDialog loginDialog;
     private CreateChatFrame frame;
+    private InboxFrame inboxFrame;
+    private PrivateMessageFrame privateMessageFrame;
 
     private String username;
 
@@ -54,6 +57,9 @@ public class MainFrame extends JFrame {
         activeUsersPanel = new ActiveUsersPanel();
         messagePanel = new MessagePanel();
         loginDialog = new LoginDialog(this);
+        inboxFrame = new InboxFrame();
+        privateMessageFrame = new PrivateMessageFrame();
+
 
         dbController = new DbController();
         clientController = new ClientController(host, port, MainFrame.this);
@@ -100,7 +106,7 @@ public class MainFrame extends JFrame {
 
             @Override
             public void inboxEventOccured() {
-
+                inboxFrame.setVisible(true);
             }
 
             @Override
@@ -113,6 +119,12 @@ public class MainFrame extends JFrame {
             @Override
             public void userInvitedOccured(String selected) {
                 clientController.userInvited(selected, username);
+            }
+
+            @Override
+            public void whisperEventOccured(String username) {
+                privateMessageFrame.setMessageTo(username);
+                privateMessageFrame.setVisible(true);
             }
         });
 
@@ -141,6 +153,13 @@ public class MainFrame extends JFrame {
             public void registeredEventOccured(FormEvent e) {
 
                 clientController.sendMessage(new Message(Message.REGISTER, e.getLogin(),e.getPass(), ""));
+            }
+        });
+
+        privateMessageFrame.setListener(new PrivateMessageListener() {
+            @Override
+            public void privateMessageOccured(String msg) {
+                clientController.sendPrivateMessage(msg);
             }
         });
 
@@ -200,6 +219,8 @@ public class MainFrame extends JFrame {
 
         MainFrame.this.setTitle(username);
         MainFrame.this.setVisible(true);
+        activeUsersPanel.setUsername(username);
+        activeUsersPanel.setSelection(username);
     }
 
     public void sendNotAllowed(){
@@ -209,6 +230,10 @@ public class MainFrame extends JFrame {
 
     public void sendUsersOfChat(ArrayList<String> users){
         activeUsersPanel.setUsersInChat(users);
+    }
+
+    public void sendInboxMessages(List messages){
+        inboxFrame.setMessagesList(messages);
     }
 
     public void sendLeft(Message msg){

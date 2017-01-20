@@ -5,4 +5,5 @@ package chat.gui.listenersinterfaces;
  */
 public interface ActiveUsersPanelListener {
     void userInvitedOccured(String selected);
+    void whisperEventOccured(String username);
 }

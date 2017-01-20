@@ -11,7 +11,7 @@ public class Message implements Serializable{
 
     public static final int MESSAGE = 1, CREATECHAT = 2, CONNECTTOCHAT=3, CHATCONNECTION=4, LOGINMSG=5,
             ALLOWED=6, REGISTER=7, DISALLOWED=8, EXISTS=9, CHATLEFT=10, NOTALLOWED=11,
-            USERINVITED = 12, DISCONNECT = 13;
+            USERINVITED = 12, DISCONNECT = 13, PRIVATEMESSAGE=14;
 
     private int type;
     private String message;
@@ -23,7 +23,7 @@ public class Message implements Serializable{
     private String chatName;
     private ChatRoom chatRoom;
     private ChatRoom chat;
-
+    private ArrayList<String> listOfUndeclared;
 
     public Message(int type, String user, String message){
         this.type = type;
@@ -95,6 +95,15 @@ public class Message implements Serializable{
     public String getUser(){
         return user;
     }
+
+    public ArrayList<String> getListOfUndeclared() {
+        return listOfUndeclared;
+    }
+
+    public void setListOfUndeclared(ArrayList<String> listOfUndeclared) {
+        this.listOfUndeclared = listOfUndeclared;
+    }
+
 
 
 }

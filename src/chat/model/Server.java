@@ -9,6 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Oskar on 14/01/2017.
@@ -19,9 +20,12 @@ public class Server {
     private ArrayList<ClientThread> clientThreads;
     private ArrayList<String> users;
     private ArrayList<ChatRoom> chatRooms;
+
     private int port;
     private boolean keepGoing;
     private DbController dbController;
+
+    private HashMap<String, String> privateMessages;
 
     public Server(int port) {
         this.port = port;
@@ -29,6 +33,7 @@ public class Server {
         clientThreads = new ArrayList<>();
         chatRooms = new ArrayList<>();
         dbController = new DbController();
+        privateMessages = new HashMap<>();
         try {
             dbController.connect();
         } catch (Exception e) {

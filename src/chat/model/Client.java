@@ -133,8 +133,11 @@ public class Client {
                             case Message.DISCONNECT:
                                 cg.sendUserLeft(msg);
                                 break;
+                            case Message.PRIVATEMESSAGE:
+                                cg.sendInboxMessages(msg.getListOfUndeclared());
                             default:
                                 cg.sendMsg(msg);
+                                break;
                         }
 
                     } else if (obj instanceof User) {
