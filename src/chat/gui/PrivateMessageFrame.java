@@ -22,33 +22,61 @@ public class PrivateMessageFrame extends JFrame implements ActionListener{
     PrivateMessageFrame(){
         super();
 
+        setTitle("Whisper");
         Dimension dim = new Dimension(350,300);
         setMinimumSize(dim);
         setPreferredSize(dim);
 
-        messageArea = new JTextArea();// + userTitle);
+        messageArea = new JTextArea();
         messageArea.setMinimumSize(new Dimension(300,250));
         sendButton = new JButton("Send");
         cancelButton = new JButton("Cancel");
         messagePane = new JScrollPane(messageArea);
-        //messagePane.setMinimumSize(new Dimension(300, 250));
         sendButton.setPreferredSize(cancelButton.getPreferredSize());
 
         setLocationRelativeTo(null);
 
-        JPanel jPanel = new JPanel();
-        jPanel.setMinimumSize(new Dimension(300,0));
-        jPanel.add(sendButton, BorderLayout.WEST);
-        jPanel.add(cancelButton, BorderLayout.EAST);
-
-        add(messagePane, BorderLayout.NORTH);
-        add(jPanel, BorderLayout.SOUTH);
+        layoutComponents();
 
         ////////////////////LISTENERS//////////////////
         sendButton.addActionListener(this);
         cancelButton.addActionListener(this);
 
     }
+
+    private void layoutComponents() {
+        setLayout(new GridBagLayout());
+
+        GridBagConstraints gc = new GridBagConstraints();
+
+        gc.gridx = 0;
+        gc.gridy = 0;
+
+        gc.weightx = 1;
+        gc.weighty = 2;
+
+        gc.fill = GridBagConstraints.BOTH;
+
+        gc.insets = new Insets(2,2,2,2);
+        add(messagePane, gc);
+
+        /////////////////////////////////////
+
+        gc.weightx =1 ;
+        gc.weighty = 0.1;
+
+        gc.gridx = 0;
+        gc.gridy = 1;
+
+        gc.fill = GridBagConstraints.CENTER;
+        gc.gridwidth = GridBagConstraints.HORIZONTAL;
+        gc.anchor = GridBagConstraints.LINE_START;
+        add(sendButton, gc);
+
+        gc.anchor = GridBagConstraints.LINE_END;
+        add(cancelButton, gc);
+    }
+
 
     void setMessageTo(String user){
         messageTo = user;

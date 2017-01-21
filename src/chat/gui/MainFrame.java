@@ -115,6 +115,14 @@ public class MainFrame extends JFrame {
             }
         });
 
+        inboxFrame.setInboxListener(new InboxListener() {
+            @Override
+            public void respondOccured(String msg) {
+                privateMessageFrame.setVisible(true);
+                System.out.println(msg);
+            }
+        });
+
         activeUsersPanel.setListener(new ActiveUsersPanelListener() {
             @Override
             public void userInvitedOccured(String selected) {

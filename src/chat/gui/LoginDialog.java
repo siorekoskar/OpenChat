@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by Oskar on 08/01/2017.
  */
-public class LoginDialog extends JDialog {
+public class LoginDialog extends JFrame {
     private JButton loginButton;
     private JButton quitButton;
     private JTextField userField;
@@ -22,7 +22,8 @@ public class LoginDialog extends JDialog {
     private FormListener formListener;
 
     public LoginDialog(JFrame parent){
-        super(parent, "Login", false);
+        //super(parent, "Login", false);
+        setTitle("Login");
 
         loginButton = new JButton("Login");
         quitButton = new JButton("Quit");
@@ -84,6 +85,7 @@ public class LoginDialog extends JDialog {
         layoutControls();
         setSize(340, 250);
         setLocationRelativeTo(parent);
+
 
     }
 

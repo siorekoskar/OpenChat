@@ -28,17 +28,6 @@ public class ActiveUsersPanel extends JSplitPane{
     private String selection;
     private String username;
 
-    private int getRow(Point point){
-        return activeUsersPanel.locationToIndex(point);
-    }
-
-    void setUsername(String username){
-        this.username = username;
-    }
-
-    void setSelection(String username){
-        this.selection = username;
-    }
 
     public ActiveUsersPanel(){
 
@@ -53,7 +42,6 @@ public class ActiveUsersPanel extends JSplitPane{
         setResizeWeight(0.5);
         setOneTouchExpandable(true);
 
-        ////////////////TEMP//////////////////
         popupUserMenu = new JPopupMenu();
         JMenuItem invite =new JMenuItem("Invite");
         JMenuItem kick = new JMenuItem("Kick");
@@ -100,8 +88,6 @@ public class ActiveUsersPanel extends JSplitPane{
 
 
 
-
-
         ////////////////TEMP//////////////////
 
 
@@ -117,9 +103,20 @@ public class ActiveUsersPanel extends JSplitPane{
 
     }
 
-    class PopupActionListener implements ActionListener {
+    private int getRow(Point point){
+        return activeUsersPanel.locationToIndex(point);
+    }
+
+    void setUsername(String username){
+        this.username = username;
+    }
+
+    void setSelection(String username){
+        this.selection = username;
+    }
+
+    private class PopupActionListener implements ActionListener {
         public void actionPerformed(ActionEvent actionEvent) {
-            //System.out.println("Selected: " + actionEvent.getActionCommand());
             String event = actionEvent.getActionCommand();
             if(event.equals("Invite")){
                 activeUsersPanelListener.userInvitedOccured(selection);
