@@ -233,11 +233,11 @@ public class MainFrame extends JFrame {
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void popLoggedDialog(Message msg) {
+    public void popLoggedDialog(String user) {
         loginDialog.setVisible(false);
         JOptionPane.showMessageDialog(MainFrame.this, "Logged",
                 "Succes", JOptionPane.INFORMATION_MESSAGE);
-        username = msg.getUser();
+        username = user;
 
         MainFrame.this.setTitle(username);
         MainFrame.this.setVisible(true);
@@ -274,12 +274,11 @@ public class MainFrame extends JFrame {
         inboxFrame.setMessagesList(messages);
     }
 
-    public void sendLeft(Message msg){
-        activeUsersPanel.setUsersInChat(msg.getUsersIn());
+    public void sendLeft(List users){
+        activeUsersPanel.setUsersInChat(users);
     }
 
     public void sendUserLeft(List users){
-        //activeUsersPanel.actualizeAllUsers(msg.getUsersIn());
         activeUsersPanel.actualizeAllUsers(users);
     }
 

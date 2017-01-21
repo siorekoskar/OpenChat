@@ -43,8 +43,8 @@ public class ClientController {
         frame.sendNotAllowed();
     }
 
-    public void sendAllowed(Message msg) {
-        frame.popLoggedDialog(msg);
+    public void sendAllowed(String user) {
+        frame.popLoggedDialog(user);
     }
 
     public void sendRegistered(Message msg) {
@@ -89,8 +89,8 @@ public class ClientController {
         frame.sendUsersOfChat(users);
     }
 
-    public void sendLeft(Message msg) {
-        frame.sendLeft(msg);
+    public void sendLeft(List users) {
+        frame.sendLeft(users);
     }
 
     public void newChatCreated(CreateChatEvent ev) {

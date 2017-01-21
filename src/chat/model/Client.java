@@ -123,7 +123,7 @@ public class Client {
 
                         switch (type) {
                             case Message.ALLOWED:
-                                cg.sendAllowed(msg);
+                                cg.sendAllowed(msg.getUser());
                                 break;
                             case Message.DISALLOWED:
                                 cg.sendDisallowed();
@@ -139,7 +139,7 @@ public class Client {
                                 cg.sendChatUsers(msg.users);
                                 break;
                             case Message.CHATLEFT:
-                                cg.sendLeft(msg);
+                                cg.sendLeft(msg.getUsersIn());
                                 break;
                             case Message.NOTALLOWED:
                                 cg.sendNotAllowed();
