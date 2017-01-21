@@ -266,6 +266,23 @@ public class Server {
         }
     }
 
+    synchronized  void userLeftActualise(String username, ChatRoom chat){
+        for (ClientThread ct :
+                clientThreads) {
+            if (chat != null) {
+                removeFromOldChat(username);
+                ArrayList<String> users = new ArrayList<>(chat.getUsersIn());
+                Message msg = new Message(Message.CHATLEFT);
+                msg.setUsersIn(users);
+                msg.setChat(chat);
+                if (!ct.writeMsg(msg)) {
+                    clientThreads.remove(ct);
+                    users.remove(ct.getUsername());
+                }
+            }
+        }
+    }
+
     class ClientThread extends Thread{
         Socket socket;
         ObjectInputStream sInput;
@@ -320,7 +337,7 @@ public class Server {
                 }
                 //currentChat = chatRooms.get(0);
                 //currentChatS = "All Chat";
-                connectToChat(username, chatRooms.get(0).getChatName());
+                connectToChat(username, chatRooms.get(0).getChatName(), false);
 
 
                 System.out.println(username + " connected");
@@ -333,11 +350,11 @@ public class Server {
             id = ++uniqueID;
         }
 
-        private boolean connectToChat(String user, String chatSearched){
+        private boolean connectToChat(String user, String chatSearched, boolean userLeft){
             ChatRoom chat = showChatRoom(chatSearched);
          //   System.out.println(cm.getMessage() + cm.getUser() + cm.getMessage());
 
-            if(!chat.isPrivate() || (chat.isPrivate() && chat.getAreAllowed().contains(user))){
+            if((!chat.isPrivate() || (chat.isPrivate() && chat.getAreAllowed().contains(user)))){
                // System.out.println("inside"+cm.getMessage() + cm.getUser() + cm.getMessage());
 
                 removeFromOldChat(user);
@@ -379,7 +396,7 @@ public class Server {
                             createChatRoom(cm);
                             break;
                         case Message.CONNECTTOCHAT:
-                            if(!connectToChat(cm.getUser(), cm.getMessage())){
+                            if(!connectToChat(cm.getUser(), cm.getMessage(), false)){
                                 this.writeMsg(new Message(Message.NOTALLOWED));
                             }
                             break;
@@ -390,8 +407,9 @@ public class Server {
 
                 } catch(IOException e){
                     e.printStackTrace();
-                    //removeFromOldChat(cm.getUser());
-                  // connectToChat()
+                    userLeftActualise(username,currentChat);
+                    //actualizeChatUsers(currentChat, new Message(Message.CHATCONNECTION), currentChat, true);
+                    //connectToChat(username, "All Chat", true);
                     close();
                     break;
                 } catch (ClassNotFoundException e){
