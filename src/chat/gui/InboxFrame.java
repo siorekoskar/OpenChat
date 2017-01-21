@@ -24,7 +24,7 @@ public class InboxFrame extends JFrame {
 
     InboxFrame(){
         super("Inbox");
-
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dim = new Dimension(350,300);
         Dimension dim2 = new Dimension(300,260);
         setMinimumSize(dim);

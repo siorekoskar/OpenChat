@@ -96,11 +96,16 @@ public class PrivateMessageFrame extends JFrame implements ActionListener{
             if(clicked == sendButton){
                 String message = messageArea.getText();
                 listener.privateMessageOccured(message, messageTo);
+                messageArea.setText("");
 
             } else if(clicked == cancelButton){
                 setVisible(false);
                 messageArea.setText("");
             }
         }
+    }
+
+    public void setMessageArea(JTextArea messageArea) {
+        this.messageArea = messageArea;
     }
 }

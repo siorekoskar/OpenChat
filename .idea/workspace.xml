@@ -8,13 +8,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d1bbba1-6a5b-431b-bd5c-38d7032de415" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chat/gui/UsersFrame.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UsersFrameListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chat/model/PrivateMessage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/TestDatabase.java" afterPath="$PROJECT_DIR$/src/chat/TestDatabase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/controller/DbController.java" afterPath="$PROJECT_DIR$/src/chat/controller/DbController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/ClientGUI.java" afterPath="$PROJECT_DIR$/src/chat/gui/ClientGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/RegisterDialog.java" afterPath="$PROJECT_DIR$/src/chat/gui/RegisterDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Database.java" afterPath="$PROJECT_DIR$/src/chat/model/Database.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/Server.java" afterPath="$PROJECT_DIR$/src/chat/model/Server.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/InboxFrame.java" afterPath="$PROJECT_DIR$/src/chat/gui/InboxFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/PrivateMessageFrame.java" afterPath="$PROJECT_DIR$/src/chat/gui/PrivateMessageFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/UserPanel.java" afterPath="$PROJECT_DIR$/src/chat/gui/UserPanel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UserPanelListener.java" afterPath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UserPanelListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chat/model/User.java" afterPath="$PROJECT_DIR$/src/chat/model/User.java" />
     </list>
     <ignored path="OpenChat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,80 +46,54 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ClientController.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chat/controller/ClientController.java">
+          <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chat/model/User.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="110">
-                  <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+                <state relative-caret-position="238">
+                  <caret line="15" column="54" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="54" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="method#notConnected#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#connected#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendPrivateMessage#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendUserLeft#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendDisallowed#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendNotAllowed#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendAllowed#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendRegistered#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendExists#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendInboxMessages#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#userInvited#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#ClientController#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendMessage#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendMsg#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#disconnect#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendChatUsers#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendLeft#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#newChatCreated#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendChat#0;class#ClientController#0" expanded="false" />
-                    <element signature="method#sendUser#0;class#ClientController#0" expanded="false" />
+                    <element signature="method#getCount#0;class#User#0" expanded="false" />
+                    <element signature="method#setCount#0;class#User#0" expanded="false" />
+                    <element signature="method#getId#0;class#User#0" expanded="false" />
+                    <element signature="method#setId#0;class#User#0" expanded="false" />
+                    <element signature="method#getLogin#0;class#User#0" expanded="false" />
+                    <element signature="method#setLogin#0;class#User#0" expanded="false" />
+                    <element signature="method#getPass#0;class#User#0" expanded="false" />
+                    <element signature="method#setPass#0;class#User#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ClientGUI.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chat/gui/ClientGUI.java">
+          <file leaf-file-name="PrivateMessage.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chat/model/PrivateMessage.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="224">
-                  <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+                <state relative-caret-position="306">
+                  <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
                   <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="method#actionPerformed#0;class#Launcher#0" expanded="false" />
-                    <element signature="class#WindowCloser#0;class#Launcher#0" expanded="false" />
-                    <element signature="method#setPrefsListener#0;class#Launcher#0" expanded="false" />
-                    <element signature="method#layoutComponents#0;class#Launcher#0" expanded="false" />
+                    <element signature="method#getUser#0;class#PrivateMessage#0" expanded="false" />
+                    <element signature="method#setUser#0;class#PrivateMessage#0" expanded="false" />
+                    <element signature="method#getMessage#0;class#PrivateMessage#0" expanded="false" />
+                    <element signature="method#setMessage#0;class#PrivateMessage#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="LoginDialog.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chat/gui/LoginDialog.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="415">
-                  <caret line="93" column="8" selection-start-line="93" selection-start-column="8" selection-end-line="94" selection-end-column="48" />
-                  <folding>
-                    <element signature="class#2145:2649" expanded="false" />
-                    <element signature="method#layoutControls#0;class#LoginDialog#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/chat/gui/MainFrame.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="386">
-                  <caret line="322" column="0" selection-start-line="322" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
+                <state relative-caret-position="674">
+                  <caret line="177" column="56" selection-start-line="177" selection-start-column="56" selection-end-line="177" selection-end-column="56" />
                   <folding>
-                    <element signature="class#2058:2325" expanded="false" />
-                    <element signature="class#2372:3336" expanded="false" />
-                    <element signature="class#3380:3591" expanded="false" />
-                    <element signature="class#3636:4052" expanded="false" />
-                    <element signature="class#4100:4429" expanded="false" />
-                    <element signature="class#4473:4896" expanded="false" />
-                    <element signature="class#4944:5173" expanded="false" />
+                    <element signature="class#2138:2405" expanded="false" />
+                    <element signature="class#2452:3458" expanded="false" />
+                    <element signature="class#3502:3713" expanded="false" />
+                    <element signature="class#3758:4174" expanded="false" />
+                    <element signature="class#4222:4551" expanded="false" />
+                    <element signature="class#4595:5018" expanded="false" />
+                    <element signature="class#5066:5295" expanded="false" />
                     <element signature="method#sendMsg#0;class#MainFrame#0" expanded="false" />
                     <element signature="method#sendRegistered#0;class#MainFrame#0" expanded="false" />
                     <element signature="method#sendDissallowed#0;class#MainFrame#0" expanded="false" />
@@ -139,11 +116,49 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="UsersFrame.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chat/gui/UsersFrame.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="418">
+                  <caret line="68" column="50" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#1336#1744#0" expanded="true" />
+                    <element signature="e#1743#1744#0" expanded="true" />
+                    <element signature="method#getRow#0;class#UsersFrame#0" expanded="false" />
+                    <element signature="method#setListener#0;class#UsersFrame#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="UsersFrameListener.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UsersFrameListener.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MessagePanel.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chat/gui/MessagePanel.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="486">
+                  <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+                  <folding>
+                    <element signature="method#layoutComponents#0;class#MessagePanel#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chat/model/Client.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="432">
-                  <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
+                <state relative-caret-position="2016">
+                  <caret line="153" column="21" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -151,20 +166,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="FormEvent.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chat/gui/FormEvent.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="340">
-                  <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chat/model/Server.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="384">
+                <state relative-caret-position="2380">
                   <caret line="470" column="44" selection-start-line="470" selection-start-column="44" selection-end-line="470" selection-end-column="44" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -188,56 +193,22 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="RegisterDialog.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chat/gui/RegisterDialog.java">
+          <file leaf-file-name="UserPanel.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chat/gui/UserPanel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="381">
-                  <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-                  <folding>
-                    <element signature="method#layoutControls#0;class#RegisterDialog#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="714">
+                  <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+                  <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Database.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/chat/model/Database.java">
+          <file leaf-file-name="UserPanelListener.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UserPanelListener.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="578">
-                  <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
-                  <folding>
-                    <marker date="1485017615130" expanded="true" signature="1791:1873" ph="select count... " />
-                    <marker date="1485017615130" expanded="true" signature="2343:2388" ph="Select count... " />
-                    <marker date="1485017615130" expanded="true" signature="2491:2538" ph="insert into user... " />
-                    <marker date="1485017615130" expanded="true" signature="2643:2691" ph="update user " />
-                    <marker date="1485017615130" expanded="true" signature="3887:3935" ph="select id, l... user" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ChatRoom.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/chat/model/ChatRoom.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
-                  <folding>
-                    <element signature="method#ChatRoom#1;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#appendMsg#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#getChatName#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#getAdmin#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#getUsersIn#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#getUsersAsString#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#getMessages#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#isPrivate#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#userExists#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#deleteUser#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#addUsersIn#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#setUsersIn#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#getAreAllowed#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#addAllowed#0;class#ChatRoom#0" expanded="false" />
-                    <element signature="method#toString#0;class#ChatRoom#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="204">
+                  <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -271,11 +242,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TestDatabase.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="TestDatabase.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/chat/TestDatabase.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="425">
-                  <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+                <state relative-caret-position="323">
+                  <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
@@ -295,6 +266,31 @@
                     <element signature="method#load#0;class#DbController#0" expanded="false" />
                     <element signature="method#connect#0;class#DbController#0" expanded="false" />
                     <element signature="method#disconnect#0;class#DbController#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PrivateMessageFrame.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/chat/gui/PrivateMessageFrame.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="503">
+                  <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#layoutComponents#0;class#PrivateMessageFrame#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="InboxFrame.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/chat/gui/InboxFrame.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="263">
+                  <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -329,9 +325,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/chat/client/ChatClientThread.java" />
-        <option value="$PROJECT_DIR$/src/chat/client/ChatServer.java" />
-        <option value="$PROJECT_DIR$/src/chat/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/chat/controller/DatabaseController.java" />
         <option value="$PROJECT_DIR$/src/chat/model/ChatServer.java" />
         <option value="$PROJECT_DIR$/src/chat/model/ChatServerThread.java" />
@@ -347,9 +340,6 @@
         <option value="$PROJECT_DIR$/src/chat/model/ChatClient.java" />
         <option value="$PROJECT_DIR$/src/chat/model/ChatType.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/CreateChatListener.java" />
-        <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UserPanelListener.java" />
-        <option value="$PROJECT_DIR$/src/chat/gui/UserPanel.java" />
-        <option value="$PROJECT_DIR$/src/chat/model/User.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/ChatsPanelListener.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/ChatsPanel.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/ActiveUsersListener.java" />
@@ -359,9 +349,7 @@
         <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/privateMessageListener.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/PrivateMessageListener.java" />
         <option value="$PROJECT_DIR$/src/chat/test.java" />
-        <option value="$PROJECT_DIR$/src/chat/gui/PrivateMessageFrame.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/InboxListener.java" />
-        <option value="$PROJECT_DIR$/src/chat/gui/InboxFrame.java" />
         <option value="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/src/chat/gui/ExitAdapter.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/PrefsListener.java" />
@@ -372,7 +360,6 @@
         <option value="$PROJECT_DIR$/src/chat/gui/CreateChatEvent.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java" />
         <option value="$PROJECT_DIR$/src/chat/controller/ClientController.java" />
-        <option value="$PROJECT_DIR$/src/chat/gui/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/chat/model/Client.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/ClientGUI.java" />
         <option value="$PROJECT_DIR$/src/chat/gui/RegisterDialog.java" />
@@ -380,6 +367,15 @@
         <option value="$PROJECT_DIR$/src/chat/model/Server.java" />
         <option value="$PROJECT_DIR$/src/chat/model/Database.java" />
         <option value="$PROJECT_DIR$/src/chat/TestDatabase.java" />
+        <option value="$PROJECT_DIR$/src/chat/model/User.java" />
+        <option value="$PROJECT_DIR$/src/chat/model/PrivateMessage.java" />
+        <option value="$PROJECT_DIR$/src/chat/gui/UserPanel.java" />
+        <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UserPanelListener.java" />
+        <option value="$PROJECT_DIR$/src/chat/gui/InboxFrame.java" />
+        <option value="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UsersFrameInterface.java" />
+        <option value="$PROJECT_DIR$/src/chat/gui/UsersFrame.java" />
+        <option value="$PROJECT_DIR$/src/chat/gui/MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/chat/gui/PrivateMessageFrame.java" />
       </list>
     </option>
   </component>
@@ -549,8 +545,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ClientGUI.java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+              <option name="myItemId" value="listenersinterfaces" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1168,14 +1164,7 @@
       <workItem from="1484913580174" duration="39402000" />
       <workItem from="1484962923061" duration="666000" />
       <workItem from="1484963634169" duration="76000" />
-      <workItem from="1485001416230" duration="15977000" />
-    </task>
-    <task id="LOCAL-00005" summary="added userPopupMenu to ActiveUsersPanel">
-      <created>1483808141042</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1483808141042</updated>
+      <workItem from="1485001416230" duration="18622000" />
     </task>
     <task id="LOCAL-00006" summary="layout adjustements in MainFrame - deleted borders from JPanels, revised UserPanel with buttons only">
       <created>1483809376178</created>
@@ -1513,15 +1502,22 @@
       <option name="project" value="LOCAL" />
       <updated>1485014849578</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="database not hardocded, loading userslist from it to server">
+      <created>1485017876916</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1485017876916</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="226752000" />
+    <option name="totallyTimeSpent" value="229397000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1536,7 +1532,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14479166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14479166" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1565,7 +1561,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="chatroom class implemented" />
     <MESSAGE value="chatrooms are getting real" />
     <MESSAGE value="adding users to list implemented" />
     <MESSAGE value="chatrooms implemented" />
@@ -1590,11 +1585,12 @@
     <MESSAGE value="showChatRoom refactor" />
     <MESSAGE value="connecttochat refactor" />
     <MESSAGE value="userleftserver working" />
-    <option name="LAST_COMMIT_MESSAGE" value="userleftserver working" />
+    <MESSAGE value="database not hardocded, loading userslist from it to server" />
+    <option name="LAST_COMMIT_MESSAGE" value="database not hardocded, loading userslist from it to server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1603,61 +1599,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/chat/model/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#start#0;class#Server#0" expanded="false" />
-            <element signature="method#broadcast#0;class#Server#0" expanded="false" />
-            <element signature="method#remove#0;class#Server#0" expanded="false" />
-            <element signature="method#createChatRoom#0;class#Server#0" expanded="false" />
-            <element signature="method#actualizeUsers#0;class#Server#0" expanded="false" />
-            <element signature="method#actualizeChatUsers#0;class#Server#0" expanded="false" />
-            <element signature="method#actualizeChats#0;class#Server#0" expanded="false" />
-            <element signature="method#showChatRoom#0;class#Server#0" expanded="false" />
-            <element signature="method#sendMessage#0;class#Server#0" expanded="false" />
-            <element signature="method#sendToAll#0;class#Server#0" expanded="false" />
-            <element signature="method#removeFromOldChat#0;class#Server#0" expanded="false" />
-            <element signature="method#inviteUser#0;class#Server#0" expanded="false" />
-            <element signature="method#ClientThread#0;class#ClientThread#0;class#Server#0" expanded="false" />
-            <element signature="method#close#0;class#ClientThread#0;class#Server#0" expanded="false" />
-            <element signature="method#writeMsg#0;class#ClientThread#0;class#Server#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/ClientGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#actionPerformed#0;class#Launcher#0" expanded="false" />
-            <element signature="class#WindowCloser#0;class#Launcher#0" expanded="false" />
-            <element signature="method#setPrefsListener#0;class#Launcher#0" expanded="false" />
-            <element signature="method#layoutComponents#0;class#Launcher#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/CreateChatEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/CreateChatFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat/gui/FormEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1682,13 +1623,13 @@
         <state relative-caret-position="1173">
           <caret line="83" column="53" selection-start-line="83" selection-start-column="53" selection-end-line="83" selection-end-column="53" />
           <folding>
-            <element signature="class#2058:2325" expanded="false" />
-            <element signature="class#2372:3336" expanded="false" />
-            <element signature="class#3380:3591" expanded="false" />
-            <element signature="class#3636:4052" expanded="false" />
-            <element signature="class#4100:4429" expanded="false" />
-            <element signature="class#4473:4896" expanded="false" />
-            <element signature="class#4944:5173" expanded="false" />
+            <element signature="class#2138:2405" expanded="false" />
+            <element signature="class#2452:3458" expanded="false" />
+            <element signature="class#3502:3713" expanded="false" />
+            <element signature="class#3758:4174" expanded="false" />
+            <element signature="class#4222:4551" expanded="false" />
+            <element signature="class#4595:5018" expanded="false" />
+            <element signature="class#5066:5295" expanded="false" />
             <element signature="method#sendMsg#0;class#MainFrame#0" expanded="false" />
             <element signature="method#sendRegistered#0;class#MainFrame#0" expanded="false" />
             <element signature="method#sendDissallowed#0;class#MainFrame#0" expanded="false" />
@@ -1791,14 +1732,12 @@
             <element signature="method#remove#0;class#Server#0" expanded="false" />
             <element signature="method#createChatRoom#0;class#Server#0" expanded="false" />
             <element signature="method#actualizeUsers#0;class#Server#0" expanded="false" />
-            <element signature="method#actualizeChatUsers#0;class#Server#0" expanded="false" />
             <element signature="method#actualizeChats#0;class#Server#0" expanded="false" />
             <element signature="method#showChatRoom#0;class#Server#0" expanded="false" />
             <element signature="method#sendMessage#0;class#Server#0" expanded="false" />
             <element signature="method#sendToAll#0;class#Server#0" expanded="false" />
             <element signature="method#removeFromOldChat#0;class#Server#0" expanded="false" />
             <element signature="method#inviteUser#0;class#Server#0" expanded="false" />
-            <element signature="method#ClientThread#0;class#ClientThread#0;class#Server#0" expanded="false" />
             <element signature="method#close#0;class#ClientThread#0;class#Server#0" expanded="false" />
             <element signature="method#writeMsg#0;class#ClientThread#0;class#Server#0" expanded="false" />
           </folding>
@@ -1830,14 +1769,12 @@
             <element signature="method#remove#0;class#Server#0" expanded="false" />
             <element signature="method#createChatRoom#0;class#Server#0" expanded="false" />
             <element signature="method#actualizeUsers#0;class#Server#0" expanded="false" />
-            <element signature="method#actualizeChatUsers#0;class#Server#0" expanded="false" />
             <element signature="method#actualizeChats#0;class#Server#0" expanded="false" />
             <element signature="method#showChatRoom#0;class#Server#0" expanded="false" />
             <element signature="method#sendMessage#0;class#Server#0" expanded="false" />
             <element signature="method#sendToAll#0;class#Server#0" expanded="false" />
             <element signature="method#removeFromOldChat#0;class#Server#0" expanded="false" />
             <element signature="method#inviteUser#0;class#Server#0" expanded="false" />
-            <element signature="method#ClientThread#0;class#ClientThread#0;class#Server#0" expanded="false" />
             <element signature="method#close#0;class#ClientThread#0;class#Server#0" expanded="false" />
             <element signature="method#writeMsg#0;class#ClientThread#0;class#Server#0" expanded="false" />
           </folding>
@@ -1870,13 +1807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UserPanelListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1943,35 +1873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/MessagePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-          <folding>
-            <element signature="method#layoutComponents#0;class#MessagePanel#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/PrivateMessageFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="80" column="32" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#layoutComponents#0;class#PrivateMessageFrame#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/UserPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="57" column="49" selection-start-line="57" selection-start-column="49" selection-end-line="57" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat/model/Message.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
@@ -1995,33 +1896,6 @@
             <element signature="method#getUser#0;class#Message#0" expanded="false" />
             <element signature="method#getListOfUndeclared#0;class#Message#0" expanded="false" />
             <element signature="method#setListOfUndeclared#0;class#Message#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-          <folding>
-            <element signature="method#getCount#0;class#User#0" expanded="false" />
-            <element signature="method#setCount#0;class#User#0" expanded="false" />
-            <element signature="method#getId#0;class#User#0" expanded="false" />
-            <element signature="method#setId#0;class#User#0" expanded="false" />
-            <element signature="method#getLogin#0;class#User#0" expanded="false" />
-            <element signature="method#setLogin#0;class#User#0" expanded="false" />
-            <element signature="method#getPass#0;class#User#0" expanded="false" />
-            <element signature="method#setPass#0;class#User#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/InboxFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2132,39 +2006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/gui/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="322" column="0" selection-start-line="322" selection-start-column="0" selection-end-line="322" selection-end-column="0" />
-          <folding>
-            <element signature="class#2058:2325" expanded="false" />
-            <element signature="class#2372:3336" expanded="false" />
-            <element signature="class#3380:3591" expanded="false" />
-            <element signature="class#3636:4052" expanded="false" />
-            <element signature="class#4100:4429" expanded="false" />
-            <element signature="class#4473:4896" expanded="false" />
-            <element signature="class#4944:5173" expanded="false" />
-            <element signature="method#sendMsg#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendRegistered#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendDissallowed#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendExists#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendAllowed#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendNotAllowed#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#notConnectedDialog#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#connectedDialog#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendUsersOfChat#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendInboxMessages#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendLeft#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendUserLeft#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#createMenuBar#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendChat#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#sendUser#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#getHost#0;class#MainFrame#0" expanded="false" />
-            <element signature="method#getPort#0;class#MainFrame#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/chat/gui/LoginDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="415">
@@ -2182,16 +2023,6 @@
           <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding>
             <element signature="method#layoutControls#0;class#RegisterDialog#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/model/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2227,18 +2058,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/TestDatabase.java">
+    <entry file="file://$PROJECT_DIR$/src/chat/model/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="1159">
+          <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
+          <folding>
+            <marker date="1485017615130" expanded="true" signature="1791:1873" ph="select count... " />
+            <marker date="1485017615130" expanded="true" signature="2343:2388" ph="Select count... " />
+            <marker date="1485017615130" expanded="true" signature="2491:2538" ph="insert into user... " />
+            <marker date="1485017615130" expanded="true" signature="2643:2691" ph="update user " />
+            <marker date="1485017615130" expanded="true" signature="3887:3935" ph="select id, l... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="54" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getCount#0;class#User#0" expanded="false" />
+            <element signature="method#setCount#0;class#User#0" expanded="false" />
+            <element signature="method#getId#0;class#User#0" expanded="false" />
+            <element signature="method#setId#0;class#User#0" expanded="false" />
+            <element signature="method#getLogin#0;class#User#0" expanded="false" />
+            <element signature="method#setLogin#0;class#User#0" expanded="false" />
+            <element signature="method#getPass#0;class#User#0" expanded="false" />
+            <element signature="method#setPass#0;class#User#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chat/model/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="470" column="44" selection-start-line="470" selection-start-column="44" selection-end-line="470" selection-end-column="44" />
+        <state relative-caret-position="535">
+          <caret line="466" column="5" selection-start-line="466" selection-start-column="5" selection-end-line="466" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#start#0;class#Server#0" expanded="false" />
@@ -2246,30 +2101,155 @@
             <element signature="method#remove#0;class#Server#0" expanded="false" />
             <element signature="method#createChatRoom#0;class#Server#0" expanded="false" />
             <element signature="method#actualizeUsers#0;class#Server#0" expanded="false" />
-            <element signature="method#actualizeChatUsers#0;class#Server#0" expanded="false" />
             <element signature="method#actualizeChats#0;class#Server#0" expanded="false" />
             <element signature="method#showChatRoom#0;class#Server#0" expanded="false" />
             <element signature="method#sendMessage#0;class#Server#0" expanded="false" />
             <element signature="method#sendToAll#0;class#Server#0" expanded="false" />
             <element signature="method#removeFromOldChat#0;class#Server#0" expanded="false" />
             <element signature="method#inviteUser#0;class#Server#0" expanded="false" />
-            <element signature="method#ClientThread#0;class#ClientThread#0;class#Server#0" expanded="false" />
             <element signature="method#close#0;class#ClientThread#0;class#Server#0" expanded="false" />
             <element signature="method#writeMsg#0;class#ClientThread#0;class#Server#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/chat/model/Database.java">
+    <entry file="file://$PROJECT_DIR$/src/chat/model/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="60" selection-end-column="17" />
+        <state relative-caret-position="2016">
+          <caret line="153" column="21" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
           <folding>
-            <marker date="1485017615130" expanded="true" signature="1791:1873" ph="select count... " />
-            <marker date="1485017615130" expanded="true" signature="2343:2388" ph="Select count... " />
-            <marker date="1485017615130" expanded="true" signature="2491:2538" ph="insert into user... " />
-            <marker date="1485017615130" expanded="true" signature="2643:2691" ph="update user " />
-            <marker date="1485017615130" expanded="true" signature="3887:3935" ph="select id, l... user" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/model/PrivateMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding>
+            <element signature="method#getUser#0;class#PrivateMessage#0" expanded="false" />
+            <element signature="method#setUser#0;class#PrivateMessage#0" expanded="false" />
+            <element signature="method#getMessage#0;class#PrivateMessage#0" expanded="false" />
+            <element signature="method#setMessage#0;class#PrivateMessage#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UserPanelListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/UsersFr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/MessagePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="48" column="35" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+          <folding>
+            <element signature="method#layoutComponents#0;class#MessagePanel#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/TestDatabase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/UserPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UsersFrameListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/UsersFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="68" column="50" selection-start-line="68" selection-start-column="50" selection-end-line="68" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1336#1744#0" expanded="true" />
+            <element signature="e#1743#1744#0" expanded="true" />
+            <element signature="method#getRow#0;class#UsersFrame#0" expanded="false" />
+            <element signature="method#setListener#0;class#UsersFrame#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/InboxFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="674">
+          <caret line="177" column="56" selection-start-line="177" selection-start-column="56" selection-end-line="177" selection-end-column="56" />
+          <folding>
+            <element signature="class#2138:2405" expanded="false" />
+            <element signature="class#2452:3458" expanded="false" />
+            <element signature="class#3502:3713" expanded="false" />
+            <element signature="class#3758:4174" expanded="false" />
+            <element signature="class#4222:4551" expanded="false" />
+            <element signature="class#4595:5018" expanded="false" />
+            <element signature="class#5066:5295" expanded="false" />
+            <element signature="method#sendMsg#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendRegistered#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendDissallowed#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendExists#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendAllowed#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendNotAllowed#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#notConnectedDialog#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#connectedDialog#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendUsersOfChat#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendInboxMessages#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendLeft#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendUserLeft#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#createMenuBar#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendChat#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#sendUser#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#getHost#0;class#MainFrame#0" expanded="false" />
+            <element signature="method#getPort#0;class#MainFrame#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/chat/gui/PrivateMessageFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#layoutComponents#0;class#PrivateMessageFrame#0" expanded="false" />
           </folding>
         </state>
       </provider>

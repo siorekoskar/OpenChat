@@ -1,6 +1,7 @@
 package chat.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Oskar on 08/01/2017.
@@ -12,6 +13,7 @@ public class User implements Serializable{
     private int id;
     private String login;
     private String pass;
+    private ArrayList<PrivateMessage> privateMessages;
 
     //////////////////CONSTRUCTORS////////////////////////////////
 

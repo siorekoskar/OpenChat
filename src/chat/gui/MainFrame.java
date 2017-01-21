@@ -30,6 +30,7 @@ public class MainFrame extends JFrame {
     private LoginDialog loginDialog;
     private CreateChatFrame frame;
     private InboxFrame inboxFrame;
+    private UsersFrame usersFrame;
     private PrivateMessageFrame privateMessageFrame;
 
     private String username;
@@ -40,7 +41,6 @@ public class MainFrame extends JFrame {
     private static String host;
 
     private boolean connected = false;
-
 
     public MainFrame(String host, int port) {
         super("Chat");
@@ -62,6 +62,7 @@ public class MainFrame extends JFrame {
         loginDialog = new LoginDialog(this, host, port);
         inboxFrame = new InboxFrame();
         privateMessageFrame = new PrivateMessageFrame();
+        usersFrame = new UsersFrame("Users");
 
         clientController = new ClientController(host, port, MainFrame.this);
 
@@ -111,8 +112,8 @@ public class MainFrame extends JFrame {
             }
 
             @Override
-            public void refreshEventOccured() {
-
+            public void usersEventOccured() {
+                usersFrame.setVisible(true);
             }
         });
 
@@ -169,6 +170,14 @@ public class MainFrame extends JFrame {
             @Override
             public void privateMessageOccured(String msg, String messageTo) {
                 clientController.sendPrivateMessage(msg, messageTo, username);
+            }
+        });
+
+        usersFrame.setListener(new UsersFrameListener() {
+            @Override
+            public void whisperEventOccured(String to) {
+                privateMessageFrame.setMessageTo(to);
+                privateMessageFrame.setVisible(true);
             }
         });
 
