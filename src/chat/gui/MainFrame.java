@@ -236,8 +236,8 @@ public class MainFrame extends JFrame {
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void notConnectedDialog(){
-        JOptionPane.showMessageDialog(MainFrame.this, "Connection not found",
+    public void notConnectedDialog(String msg){
+        JOptionPane.showMessageDialog(MainFrame.this, msg,
                 "Error", JOptionPane.ERROR_MESSAGE);
         Launcher launcher = new Launcher();
         dispose();

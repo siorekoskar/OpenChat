@@ -19,8 +19,8 @@ public class ClientController{
     private Client chatClient;
     private MainFrame frame;
 
-    public void notConnected(){
-        frame.notConnectedDialog();
+    public void notConnected(String msg){
+        frame.notConnectedDialog(msg);
     }
 
     public void connected(){

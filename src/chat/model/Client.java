@@ -4,7 +4,9 @@ import chat.controller.ClientController;
 import chat.gui.MainFrame;
 
 import java.io.*;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,14 +41,16 @@ public class Client {
 
     public boolean start() {
         try {
-            socket = new Socket(server, port);
+            socket = new Socket();
+            socket.connect(new InetSocketAddress(server,port),3000);
             cg.connected();
+
+        }catch(UnknownHostException e){;
+            cg.notConnected("Wrong format of ip");
         } catch (Exception ec) {
-            System.out.println("error connecting");
-            cg.notConnected();
+            cg.notConnected("Server unreachable");
             return false;
         }
-
         String msg = "Con accepted" + socket.getInetAddress() + ":" + socket.getPort();
         System.out.println(msg);
 
@@ -71,6 +75,7 @@ public class Client {
             System.out.println(msg.getMessage() + "SENDMESSAGECLIENT");
             sOutput.writeObject(msg);
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -150,9 +155,11 @@ public class Client {
 
                 } catch (IOException e) {
                     e.printStackTrace();
+                    cg.notConnected("Connection lost");
                     break;
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
+                    cg.notConnected("Unknown file received");
                     break;
                 }
             }
