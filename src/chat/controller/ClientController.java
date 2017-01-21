@@ -4,9 +4,7 @@ import chat.gui.CreateChatEvent;
 import chat.gui.MainFrame;
 import chat.model.*;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Created by Oskar on 10/01/2017.
@@ -33,28 +31,28 @@ public class ClientController {
         chatClient.sendPrivateMessage(privateMessage);
     }
 
-    public void sendUserLeft(Message msg) {
-        frame.sendUserLeft(msg);
+    public void sendUserLeft(List users) {
+        frame.sendUserLeft(users);
     }
 
-    public void sendDisallowed(Message msg) {
-        frame.sendDissallowed(msg);
+    public void sendDisallowed() {
+        frame.popWrongDataDialog();
     }
 
-    public void sendNotAllowed(Message msg) {
+    public void sendNotAllowed() {
         frame.sendNotAllowed();
     }
 
     public void sendAllowed(Message msg) {
-        frame.sendAllowed(msg);
+        frame.popLoggedDialog(msg);
     }
 
     public void sendRegistered(Message msg) {
-        frame.sendRegistered(msg);
+        frame.popRegisteredDialog(msg);
     }
 
-    public void sendExists(Message msg) {
-        frame.sendExists(msg);
+    public void sendExists() {
+        frame.popAlreadyExistsDialog();
     }
 
     public void sendInboxMessages(List messages) {
@@ -79,8 +77,6 @@ public class ClientController {
     public void sendMsg(Message msg) {
         frame.sendMsg(msg);
         if (msg.getType() == Message.CHATCONNECTION) {
-            System.out.println("CZATCONE");
-
             frame.sendUsersOfChat(msg.getChat().getUsersIn());
         }
     }
@@ -89,15 +85,8 @@ public class ClientController {
         chatClient.disconnect();
     }
 
-    public void sendChatUsers(Message msg) {
-
-        //List<String> items = Arrays.asList(msg.getUsersInChat().split("\\s*,\\s*"));
-
-        System.out.println(msg.getUsersIn());
-        String users = msg.getChat().getUsersAsString();
-        System.out.println(users);
-        //frame.sendChatUsers(users);
-        frame.sendUsersOfChat(msg.users);
+    public void sendChatUsers(List users) {
+        frame.sendUsersOfChat(users);
     }
 
     public void sendLeft(Message msg) {

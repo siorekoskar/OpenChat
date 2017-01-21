@@ -126,26 +126,26 @@ public class Client {
                                 cg.sendAllowed(msg);
                                 break;
                             case Message.DISALLOWED:
-                                cg.sendDisallowed(msg);
+                                cg.sendDisallowed();
                                 break;
                             case Message.REGISTER:
                                 cg.sendRegistered(msg);
                                 break;
                             case Message.EXISTS:
-                                cg.sendExists(msg);
+                                cg.sendExists();
                                 break;
                             case Message.CHATCONNECTION:
                                 cg.sendMsg(msg);
-                                cg.sendChatUsers(msg);
+                                cg.sendChatUsers(msg.users);
                                 break;
                             case Message.CHATLEFT:
                                 cg.sendLeft(msg);
                                 break;
                             case Message.NOTALLOWED:
-                                cg.sendNotAllowed(msg);
+                                cg.sendNotAllowed();
                                 break;
                             case Message.DISCONNECT:
-                                cg.sendUserLeft(msg);
+                                cg.sendUserLeft(msg.getUsersIn());
                                 break;
                             case Message.PRIVATEMESSAGE:
                                 cg.sendInboxMessages(msg.getListOfUndeclared());

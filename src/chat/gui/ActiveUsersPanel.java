@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Oskar on 07/01/2017.
@@ -139,12 +140,13 @@ public class ActiveUsersPanel extends JSplitPane{
         activeUsersModel.addElement(userName);
     }
 
-    public void setUsersInChat(ArrayList<String> users){
+    public void setUsersInChat(List users){
         currentChatUsersModel.removeAllElements();
         try {
-        for (String user :
-                users) {
 
+        for (Object obj :
+                users) {
+                String user = (String) obj;
                 currentChatUsersModel.addElement(user);
 
         }}catch(NullPointerException e){
@@ -152,10 +154,11 @@ public class ActiveUsersPanel extends JSplitPane{
         }
     }
 
-    public void actualizeAllUsers(ArrayList<String> users){
+    public void actualizeAllUsers(List users){
         activeUsersModel.removeAllElements();
-        for (String user :
+        for (Object obj:
                 users) {
+            String user = (String) obj;
             activeUsersModel.addElement(user);
         }
     }
