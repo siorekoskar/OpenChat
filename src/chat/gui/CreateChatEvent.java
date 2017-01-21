@@ -7,6 +7,10 @@ import java.util.EventObject;
  */
 public class CreateChatEvent extends EventObject {
 
+    private String chatName;
+    private boolean isPrivate;
+    private String admin;
+
     public String getChatName() {
         return chatName;
     }
@@ -14,9 +18,6 @@ public class CreateChatEvent extends EventObject {
     public boolean isPrivate() {
         return isPrivate;
     }
-
-    private String chatName;
-    private boolean isPrivate;
 
     public String getAdmin() {
         return admin;
@@ -26,14 +27,11 @@ public class CreateChatEvent extends EventObject {
         this.admin = admin;
     }
 
-    private String admin;
-
     public CreateChatEvent(Object source, String chatName, boolean isPrivate){
         super(source);
 
         this.chatName = chatName;
         this.isPrivate = isPrivate;
     }
-
 
 }

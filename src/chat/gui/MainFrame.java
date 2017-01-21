@@ -39,6 +39,8 @@ public class MainFrame extends JFrame {
     private static int port;
     private static String host;
 
+    private boolean connected = false;
+
 
     public MainFrame(String host, int port) {
         super("Chat");
@@ -49,7 +51,7 @@ public class MainFrame extends JFrame {
         setSize(800, 600);
         setMinimumSize(new Dimension(400, 400));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        setVisible(false);
         setLocationRelativeTo(null);
 
         //////////////create swing component/////////////////////
@@ -57,7 +59,7 @@ public class MainFrame extends JFrame {
         userPanel = new UserPanel();
         activeUsersPanel = new ActiveUsersPanel();
         messagePanel = new MessagePanel();
-        loginDialog = new LoginDialog(this);
+        loginDialog = new LoginDialog(this, host, port);
         inboxFrame = new InboxFrame();
         privateMessageFrame = new PrivateMessageFrame();
 
@@ -191,8 +193,6 @@ public class MainFrame extends JFrame {
         add(chatsPanel, BorderLayout.WEST);
         add(messagePanel, BorderLayout.CENTER);
         add(activeUsersPanel, BorderLayout.EAST);
-        loginDialog.setVisible(true);
-
 
     }
 
@@ -234,6 +234,21 @@ public class MainFrame extends JFrame {
     public void sendNotAllowed(){
         JOptionPane.showMessageDialog(MainFrame.this, "You are not allowed to join",
                 "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void notConnectedDialog(){
+        JOptionPane.showMessageDialog(MainFrame.this, "Connection not found",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        Launcher launcher = new Launcher();
+        dispose();
+        System.gc();
+    }
+
+    public void connectedDialog(){
+        JOptionPane.showMessageDialog(MainFrame.this, "Connected",
+                "Succes", JOptionPane.INFORMATION_MESSAGE);
+        loginDialog.setVisible(true);
+
     }
 
     public void sendUsersOfChat(ArrayList<String> users){
@@ -306,12 +321,19 @@ public class MainFrame extends JFrame {
         return menuBar;
     }
 
-
     public void sendChat(ChatRoom chat) {
         chatsPanel.addChat(chat);
     }
 
     public void sendUser(User user) {
         activeUsersPanel.addUser(user);
+    }
+
+    public String getHost(){
+        return host;
+    }
+
+    public int getPort(){
+        return  port;
     }
 }

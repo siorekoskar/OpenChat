@@ -51,7 +51,6 @@ public class Message implements Serializable{
         this.chat = chat;
     }
 
-
     public ArrayList<String> getUsersIn() {
         return usersIn;
     }
@@ -103,7 +102,5 @@ public class Message implements Serializable{
     public void setListOfUndeclared(ArrayList<String> listOfUndeclared) {
         this.listOfUndeclared = listOfUndeclared;
     }
-
-
 
 }

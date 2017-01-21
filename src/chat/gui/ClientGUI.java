@@ -45,7 +45,7 @@ class Launcher extends JFrame implements ActionListener{
 
     private PrefsListener prefsListener;
 
-    Launcher() {
+    public Launcher() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         hostField = new JTextField(10);
@@ -78,6 +78,7 @@ class Launcher extends JFrame implements ActionListener{
         //String host = prefs.get("host", "192.168.0.115");
         //Integer port = prefs.getInt("port", 3308);
         setDefaults("192.168.0.115", 3308);
+        setVisible(true);
 
         enterButton.addActionListener(this);
         quitButton.addActionListener(this);
@@ -124,7 +125,7 @@ class Launcher extends JFrame implements ActionListener{
         JPanel controlsPanel = new JPanel();
         JPanel buttonsPanel = new JPanel();
 
-        int space = 15;
+        int space = 8;
         Border titledBorder = BorderFactory.createTitledBorder("Connection details:");
         Border spaceBorder = BorderFactory.createEmptyBorder(space, space, space, space);
 

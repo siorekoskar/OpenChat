@@ -19,10 +19,17 @@ public class LoginDialog extends JFrame {
     private JButton registerButton;
     private RegisterDialog registerDialog;
 
+    private String host;
+    private int port;
+
     private FormListener formListener;
 
-    public LoginDialog(JFrame parent){
+    public LoginDialog(JFrame parent, String host, int port) {
         //super(parent, "Login", false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.host = host;
+        this.port = port;
+
         setTitle("Login");
 
         loginButton = new JButton("Login");
@@ -57,7 +64,7 @@ public class LoginDialog extends JFrame {
 
                 FormEvent ev = new FormEvent(this, login, password);
 
-                if(formListener != null){
+                if (formListener != null) {
                     formListener.loginEventOccured(ev);
                 }
 
@@ -67,7 +74,8 @@ public class LoginDialog extends JFrame {
 
         registerDialog.setFormListener(new FormListener() {
             @Override
-            public void loginEventOccured(FormEvent e) {}
+            public void loginEventOccured(FormEvent e) {
+            }
 
             @Override
             public void registeredEventOccured(FormEvent e) {
@@ -76,30 +84,31 @@ public class LoginDialog extends JFrame {
 
                 FormEvent ev = new FormEvent(this, login, password);
 
-                if(formListener != null){
+                if (formListener != null) {
                     formListener.registeredEventOccured(ev);
                 }
             }
         });
 
         layoutControls();
-        setSize(340, 250);
+        setPreferredSize(new Dimension(300, 220));
+        setMinimumSize(new Dimension(300, 220));
         setLocationRelativeTo(parent);
 
 
     }
 
-    public void setFormListener(FormListener formListener){
+    public void setFormListener(FormListener formListener) {
         this.formListener = formListener;
     }
 
-    private void layoutControls(){
+    private void layoutControls() {
         JPanel controlsPanel = new JPanel();
         JPanel buttonsPanel = new JPanel();
 
-        int space = 15;
+        int space = 8;
         Border titledBorder = BorderFactory.createTitledBorder("Login details");
-        Border spaceBorder = BorderFactory.createEmptyBorder(space,space,space,space);
+        Border spaceBorder = BorderFactory.createEmptyBorder(space, space, space, space);
 
         controlsPanel.setBorder(BorderFactory.createCompoundBorder(spaceBorder, titledBorder));
 
@@ -121,13 +130,32 @@ public class LoginDialog extends JFrame {
 
         gc.gridx = 0;
         gc.anchor = GridBagConstraints.EAST;
-        gc.insets = rightPadding;
+        controlsPanel.add(new JLabel("Host: "), gc);
+        gc.gridx++;
+        gc.anchor = GridBagConstraints.WEST;
+        controlsPanel.add(new JLabel(host), gc);
+
+        gc.gridy++;
+
+        gc.gridx = 0;
+        gc.anchor = GridBagConstraints.EAST;
+        controlsPanel.add(new JLabel("Port: "), gc);
+
+        gc.gridx++;
+        gc.anchor = GridBagConstraints.WEST;
+        controlsPanel.add(new JLabel(Integer.toString(port)), gc);
+
+        gc.gridy++;
+
+        gc.gridx = 0;
+        gc.anchor = GridBagConstraints.EAST;
+        //gc.insets = rightPadding;
         controlsPanel.add(new JLabel("User: "), gc);
 
         gc.gridx++;
         gc.anchor = GridBagConstraints.WEST;
         gc.insets = noPadding;
-        controlsPanel.add(userField,gc);
+        controlsPanel.add(userField, gc);
 
         ///////////next row/////////
         gc.gridy++;
@@ -139,13 +167,13 @@ public class LoginDialog extends JFrame {
         gc.gridx = 0;
 
         gc.anchor = GridBagConstraints.EAST;
-        gc.insets = rightPadding;
+        //gc.insets = rightPadding;
         controlsPanel.add(new JLabel("Password: "), gc);
 
         gc.gridx++;
         gc.anchor = GridBagConstraints.WEST;
         gc.insets = noPadding;
-        controlsPanel.add(passField,gc);
+        controlsPanel.add(passField, gc);
 
         ///////////////////////buttons panel///////////
 

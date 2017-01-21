@@ -40,8 +40,10 @@ public class Client {
     public boolean start() {
         try {
             socket = new Socket(server, port);
+            cg.connected();
         } catch (Exception ec) {
             System.out.println("error connecting");
+            cg.notConnected();
             return false;
         }
 

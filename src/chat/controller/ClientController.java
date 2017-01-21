@@ -19,6 +19,14 @@ public class ClientController{
     private Client chatClient;
     private MainFrame frame;
 
+    public void notConnected(){
+        frame.notConnectedDialog();
+    }
+
+    public void connected(){
+        frame.connectedDialog();
+    }
+
     public void sendPrivateMessage(String msg, String messageTo, String messageFrom){
         System.out.println("Message from: " + messageFrom + " to: " + messageTo + ": " + msg);
     }
@@ -34,7 +42,6 @@ public class ClientController{
     public void sendNotAllowed(Message msg){
         frame.sendNotAllowed();
     }
-
 
     public void sendAllowed(Message msg){
         frame.sendAllowed( msg);
@@ -75,6 +82,7 @@ public class ClientController{
             frame.sendUsersOfChat(msg.getChat().getUsersIn());
         }
     }
+
     public void disconnect(){
         chatClient.disconnect();
     }

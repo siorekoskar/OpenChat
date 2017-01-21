@@ -86,8 +86,6 @@ public class ActiveUsersPanel extends JSplitPane{
             }
         });
 
-
-
         ////////////////TEMP//////////////////
 
 
@@ -140,7 +138,6 @@ public class ActiveUsersPanel extends JSplitPane{
         }
         activeUsersModel.addElement(userName);
     }
-
 
     public void setUsersInChat(ArrayList<String> users){
         currentChatUsersModel.removeAllElements();

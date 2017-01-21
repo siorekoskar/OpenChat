@@ -69,7 +69,6 @@ public class ChatRoom implements Serializable {
         usersIn.remove(user);
     }
 
-
     public void addUsersIn(String user) {
         usersIn.add(user);
     }
@@ -78,7 +77,6 @@ public class ChatRoom implements Serializable {
         this.usersIn = usersIn;
     }
 
-
     public ArrayList<String> getAreAllowed() {
         return areAllowed;
     }
@@ -86,7 +84,6 @@ public class ChatRoom implements Serializable {
     public void addAllowed(String user) {
         areAllowed.add(user);
     }
-
 
     public String toString() {
         return "Admin: " + getAdmin() + "\nChatname: " + getChatName() + "\nIsPrivate: " + isPrivate() + "\n";

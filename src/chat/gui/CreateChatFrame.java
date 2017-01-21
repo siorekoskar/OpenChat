@@ -33,7 +33,6 @@ public class CreateChatFrame extends JFrame{
 
         layoutComponents();
 
-
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
