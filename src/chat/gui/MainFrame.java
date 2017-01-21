@@ -228,6 +228,11 @@ public class MainFrame extends JFrame {
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    public void popAlreadyLoggedDialog(String username){
+        JOptionPane.showMessageDialog(MainFrame.this, "User " + username + " already logged",
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
     public void sendAllowed(Message msg) {
         loginDialog.setVisible(false);
         JOptionPane.showMessageDialog(MainFrame.this, "Logged",
@@ -338,6 +343,8 @@ public class MainFrame extends JFrame {
     public void sendUser(User user) {
         activeUsersPanel.addUser(user);
     }
+
+
 
     public String getHost(){
         return host;

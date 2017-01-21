@@ -16,7 +16,7 @@ public class ClientController {
     private Client chatClient;
     private MainFrame frame;
 
-    public void sendPrivateMsgToGui(String msg){
+    public void sendPrivateMsgToGui(String msg) {
         frame.sendPrivateMsgToGui(msg);
     }
 
@@ -122,8 +122,12 @@ public class ClientController {
         frame.sendUser(user);
     }
 
-    public void sendUsersRegisteredList(List list){
+    public void sendUsersRegisteredList(List list) {
         frame.sendUsersRegisteredList(list);
+    }
+
+    public void sendAlreadyLogged(String username) {
+        frame.popAlreadyLoggedDialog(username);
     }
 
 }

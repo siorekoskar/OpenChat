@@ -328,6 +328,16 @@ public class Server {
         }
     }
 
+    synchronized boolean checkIfLogged(String user){
+        for (ClientThread ct :
+                clientThreads) {
+            if(ct.getUsername().equals(user)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     class ClientThread extends Thread {
         Socket socket;
         ObjectInputStream sInput;
@@ -371,17 +381,21 @@ public class Server {
                             sOutput.writeObject(new Message(Message.REGISTER, userString, ""));
 
                         } else if (dbController.checkIfUserExistsServ(userString)) {
-                            sOutput.writeObject(new Message(Message.ALLOWED, userString, ""));
-                            username = userString;
-                            User userFound = findUser(username);
-                            List pms = userFound.getPrivateMessages();
-                            for (Object obj :
-                                    pms) {
-                                PrivateMessage pm = (PrivateMessage) obj;
-                                //sendPrivateMessageTo(username, );
-                                sOutput.writeObject(pm);
+                            if(checkIfLogged(userString)){
+                                sOutput.writeObject(new Message(Message.ALREADYLOGGED, userString, ""));
+                            } else {
+                                sOutput.writeObject(new Message(Message.ALLOWED, userString, ""));
+                                username = userString;
+                                User userFound = findUser(username);
+                                List pms = userFound.getPrivateMessages();
+                                for (Object obj :
+                                        pms) {
+                                    PrivateMessage pm = (PrivateMessage) obj;
+                                    //sendPrivateMessageTo(username, );
+                                    sOutput.writeObject(pm);
+                                }
+                                break;
                             }
-                            break;
                         } else {
                             sOutput.writeObject(new Message(Message.DISALLOWED));
                         }

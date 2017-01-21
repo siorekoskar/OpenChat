@@ -153,6 +153,9 @@ public class Client {
                             case Message.USERSREGISTEREDLIST:
                                 cg.sendUsersRegisteredList(msg.getUsersIn());
                                 break;
+                            case Message.ALREADYLOGGED:
+                                cg.sendAlreadyLogged(msg.getUser());
+                                break;
                             default:
                                 cg.sendMsg(msg);
                                 break;
