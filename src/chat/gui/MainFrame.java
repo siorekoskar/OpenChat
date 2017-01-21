@@ -142,7 +142,6 @@ public class MainFrame extends JFrame {
             @Override
             public void messageSent(String msg) {
                 clientController.sendMessage(new Message(Message.MESSAGE, username, msg));
-
             }
 
             @Override
@@ -205,17 +204,18 @@ public class MainFrame extends JFrame {
 
     }
 
-    public void actualizeAllUsers(ArrayList<String> arr){
-        activeUsersPanel.actualizeAllUsers(arr);
+    public void popChatAlreadyExistsDialog(String chatname){
+        JOptionPane.showMessageDialog(MainFrame.this, "Error",
+                "Chat " + chatname + " already exists", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void sendMsg(Message msg) {
         messagePanel.append(msg);
     }
 
-    public void popRegisteredDialog(Message msg){
+    public void popRegisteredDialog(String user){
         JOptionPane.showMessageDialog(MainFrame.this, "Registered",
-                "Your username: " + msg.getUser(), JOptionPane.INFORMATION_MESSAGE);
+                "Your username: " + user, JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void popWrongDataDialog() {
@@ -246,12 +246,12 @@ public class MainFrame extends JFrame {
         usersFrame.setUsername(username);
     }
 
-    public void sendNotAllowed(){
+    public void popNotAllowedToJoinPrivateChat(){
         JOptionPane.showMessageDialog(MainFrame.this, "You are not allowed to join",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void notConnectedDialog(String msg){
+    public void popNotConnectedDialog(String msg){
         JOptionPane.showMessageDialog(MainFrame.this, msg,
                 "Error", JOptionPane.ERROR_MESSAGE);
         Launcher launcher = new Launcher();
@@ -259,14 +259,14 @@ public class MainFrame extends JFrame {
         System.gc();
     }
 
-    public void connectedDialog(){
+    public void popConnectedDialog(){
         JOptionPane.showMessageDialog(MainFrame.this, "Connected",
                 "Succes", JOptionPane.INFORMATION_MESSAGE);
         loginDialog.setVisible(true);
 
     }
 
-    public void sendUsersOfChat(List users){
+    public void setUsersInChat(List users){
         activeUsersPanel.setUsersInChat(users);
     }
 
@@ -274,11 +274,11 @@ public class MainFrame extends JFrame {
         inboxFrame.setMessagesList(messages);
     }
 
-    public void sendLeft(List users){
+    public void userLeftChat(List users){
         activeUsersPanel.setUsersInChat(users);
     }
 
-    public void sendUserLeft(List users){
+    public void actualizeCauseUserLeftServer(List users){
         activeUsersPanel.actualizeAllUsers(users);
     }
 
@@ -336,22 +336,12 @@ public class MainFrame extends JFrame {
         return menuBar;
     }
 
-    public void sendChat(ChatRoom chat) {
+    public void addChatToPanel(ChatRoom chat) {
         chatsPanel.addChat(chat);
     }
 
-    public void sendUser(User user) {
+    public void addUserWhoJoinedServer(User user) {
         activeUsersPanel.addUser(user);
-    }
-
-
-
-    public String getHost(){
-        return host;
-    }
-
-    public int getPort(){
-        return  port;
     }
 
     public void sendUsersRegisteredList(List list){
@@ -362,4 +352,6 @@ public class MainFrame extends JFrame {
         inboxFrame.addPrivateMessage(msg);
         userPanel.notifyUser("New message in inbox!");
     }
+
+
 }

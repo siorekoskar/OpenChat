@@ -137,6 +137,7 @@ public class Server {
     }
 
     private synchronized void createChatRoom(Message msg) throws IOException {
+
         for (int i = 0; i < clientThreads.size(); i++) {
             ClientThread ct = clientThreads.get(i);
 
@@ -447,6 +448,15 @@ public class Server {
             return false;
         }
 
+        boolean checkIfChatRoomExists(String newChat){
+            for (ChatRoom chat :
+                    chatRooms) {
+                if (chat.getChatName().equals(newChat)) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
         public void run() {
             boolean keepGoing = true;
@@ -464,7 +474,12 @@ public class Server {
                                 sendMessage(message, currentChat);
                                 break;
                             case Message.CREATECHAT:
-                                createChatRoom(cm);
+                                String chatName = cm.getChatRoom().getChatName();
+                                if(!checkIfChatRoomExists(chatName)) {
+                                    createChatRoom(cm);
+                                } else {
+                                    writeMsg(new Message(Message.CHATROOMEXISTS, "", chatName));
+                                }
                                 break;
                             case Message.CONNECTTOCHAT:
                                 if (!connectToChat(cm.getUser(), cm.getMessage(), false)) {

@@ -129,7 +129,7 @@ public class Client {
                                 cg.sendDisallowed();
                                 break;
                             case Message.REGISTER:
-                                cg.sendRegistered(msg);
+                                cg.sendRegistered(msg.getUser());
                                 break;
                             case Message.EXISTS:
                                 cg.sendExists();
@@ -155,6 +155,9 @@ public class Client {
                                 break;
                             case Message.ALREADYLOGGED:
                                 cg.sendAlreadyLogged(msg.getUser());
+                                break;
+                            case Message.CHATROOMEXISTS:
+                                cg.sendChatExists(msg.getMessage());
                                 break;
                             default:
                                 cg.sendMsg(msg);

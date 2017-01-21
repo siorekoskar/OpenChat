@@ -12,7 +12,7 @@ public class Message implements Serializable{
     public static final int MESSAGE = 1, CREATECHAT = 2, CONNECTTOCHAT=3, CHATCONNECTION=4, LOGINMSG=5,
             ALLOWED=6, REGISTER=7, DISALLOWED=8, EXISTS=9, CHATLEFT=10, NOTALLOWED=11,
             USERINVITED = 12, DISCONNECT = 13, PRIVATEMESSAGE=14, USERSREGISTEREDLIST=15,
-            ALREADYLOGGED = 16;
+            ALREADYLOGGED = 16, CHATROOMEXISTS=17;
 
     private int type;
     private String message;

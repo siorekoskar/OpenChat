@@ -64,23 +64,6 @@ public class ChatsPanel extends JSplitPane {
                 }
             }
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-                /*if (SwingUtilities.isRightMouseButton(e)) {
-                    publicChatsList.setSelectedIndex(getRow(e.getPoint(), publicChatsList));
-                    popupMenu.show(publicChatsList, e.getX(), e.getY());
-
-                } else if (SwingUtilities.isLeftMouseButton(e)) {
-
-                    if (publicChatsList.isSelectedIndex(getRow(e.getPoint(), publicChatsList))) {
-                        String selected = (String) publicChatsList.getSelectedValue();
-                        System.out.println(selected + "-- SELECTED CHAT");
-                    } else {
-                        publicChatsList.setSelectedIndex(getRow(e.getPoint(), publicChatsList));
-                    }
-                }*/
-            }
         });
 
         privateChatsList.addMouseListener(new MouseAdapter() {

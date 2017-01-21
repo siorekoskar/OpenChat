@@ -19,11 +19,11 @@ public class ClientController {
     }
 
     public void notConnected(String msg) {
-        frame.notConnectedDialog(msg);
+        frame.popNotConnectedDialog(msg);
     }
 
     public void connected() {
-        frame.connectedDialog();
+        frame.popConnectedDialog();
     }
 
     public void sendPrivateMessage(String msg, String messageTo, String messageFrom) {
@@ -32,7 +32,7 @@ public class ClientController {
     }
 
     public void sendUserLeft(List users) {
-        frame.sendUserLeft(users);
+        frame.actualizeCauseUserLeftServer(users);
     }
 
     public void sendDisallowed() {
@@ -40,15 +40,15 @@ public class ClientController {
     }
 
     public void sendNotAllowed() {
-        frame.sendNotAllowed();
+        frame.popNotAllowedToJoinPrivateChat();
     }
 
     public void sendAllowed(String user) {
         frame.popLoggedDialog(user);
     }
 
-    public void sendRegistered(Message msg) {
-        frame.popRegisteredDialog(msg);
+    public void sendRegistered(String user) {
+        frame.popRegisteredDialog(user);
     }
 
     public void sendExists() {
@@ -77,7 +77,7 @@ public class ClientController {
     public void sendMsg(Message msg) {
         frame.sendMsg(msg);
         if (msg.getType() == Message.CHATCONNECTION) {
-            frame.sendUsersOfChat(msg.getChat().getUsersIn());
+            frame.setUsersInChat(msg.getChat().getUsersIn());
         }
     }
 
@@ -86,11 +86,11 @@ public class ClientController {
     }
 
     public void sendChatUsers(List users) {
-        frame.sendUsersOfChat(users);
+        frame.setUsersInChat(users);
     }
 
     public void sendLeft(List users) {
-        frame.sendLeft(users);
+        frame.userLeftChat(users);
     }
 
     public void newChatCreated(CreateChatEvent ev) {
@@ -104,11 +104,11 @@ public class ClientController {
     }
 
     public void sendChat(ChatRoom chat) {
-        frame.sendChat(chat);
+        frame.addChatToPanel(chat);
     }
 
     public void sendUser(User user) {
-        frame.sendUser(user);
+        frame.addUserWhoJoinedServer(user);
     }
 
     public void sendUsersRegisteredList(List list) {
@@ -117,6 +117,10 @@ public class ClientController {
 
     public void sendAlreadyLogged(String username) {
         frame.popAlreadyLoggedDialog(username);
+    }
+
+    public void sendChatExists(String chat){
+        frame.popChatAlreadyExistsDialog(chat);
     }
 
 }
