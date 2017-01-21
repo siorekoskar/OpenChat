@@ -169,11 +169,10 @@ public class Server {
         for (ClientThread ct :
                 clientThreads) {
 
-            //if(ct.currentChatS!= null)System.out.println(ct.currentChatS);
-            //System.out.println(ct. getUsername() +":" +ct.currentChatS);
             msg.setChat(chat);
-            if ( ct.currentChatS!= null && ct.currentChat.getChatName().equals(chat.getChatName())){
-               // System.out.println(ct.getUsername() + chat.getUsersIn() +"actualize");
+            if (ct.currentChatS!= null
+                    && ct.currentChat.getChatName().equals(chat.getChatName())){
+
                 ArrayList<String> users = new ArrayList<>(chat.getUsersIn());
                 msg.users = users;
                 if(!ct.writeMsg(msg)){
@@ -182,11 +181,11 @@ public class Server {
                 }
             } else if(ct.currentChatS!= null && ct.currentChat!= null
                     && oldChat!= null && ct.currentChat.getChatName().equals(oldChat.getChatName())){
+
                 ArrayList<String> users = new ArrayList<>(oldChat.getUsersIn());
                 Message oldMess = new Message(Message.CHATLEFT);
                 oldMess.setUsersIn(users);
                 oldMess.setChat(oldChat);
-              //  System.out.println("OLD USER" + oldMess.getUsersIn() + oldChat.getChatName());
                 if(!ct.writeMsg(oldMess)){
                     clientThreads.remove(ct);
                     users.remove(ct.getUsername());
@@ -283,10 +282,6 @@ public class Server {
         }
 
 
-        private void dbControl(Message user) throws SQLException{
-
-        }
-
         ClientThread(Socket socket){
 
             this.socket = socket;
@@ -325,7 +320,7 @@ public class Server {
                 }
                 //currentChat = chatRooms.get(0);
                 //currentChatS = "All Chat";
-                connectToChat(new Message(Message.CHATCONNECTION, username, chatRooms.get(0).getChatName()));
+                connectToChat(username, chatRooms.get(0).getChatName());
 
 
                 System.out.println(username + " connected");
@@ -338,13 +333,12 @@ public class Server {
             id = ++uniqueID;
         }
 
-        private boolean connectToChat(Message cm){
-            ChatRoom chat = showChatRoom(cm.getMessage());
-            String user = cm.getUser();
-            System.out.println(cm.getMessage() + cm.getUser() + cm.getMessage());
+        private boolean connectToChat(String user, String chatSearched){
+            ChatRoom chat = showChatRoom(chatSearched);
+         //   System.out.println(cm.getMessage() + cm.getUser() + cm.getMessage());
 
             if(!chat.isPrivate() || (chat.isPrivate() && chat.getAreAllowed().contains(user))){
-                System.out.println("inside"+cm.getMessage() + cm.getUser() + cm.getMessage());
+               // System.out.println("inside"+cm.getMessage() + cm.getUser() + cm.getMessage());
 
                 removeFromOldChat(user);
 
@@ -385,7 +379,7 @@ public class Server {
                             createChatRoom(cm);
                             break;
                         case Message.CONNECTTOCHAT:
-                            if(!connectToChat(cm)){
+                            if(!connectToChat(cm.getUser(), cm.getMessage())){
                                 this.writeMsg(new Message(Message.NOTALLOWED));
                             }
                             break;
@@ -396,7 +390,8 @@ public class Server {
 
                 } catch(IOException e){
                     e.printStackTrace();
-                    //actualizeChatUsers();
+                    //removeFromOldChat(cm.getUser());
+                  // connectToChat()
                     close();
                     break;
                 } catch (ClassNotFoundException e){
