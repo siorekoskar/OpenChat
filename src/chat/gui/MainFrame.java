@@ -27,7 +27,6 @@ public class MainFrame extends JFrame {
     private UserPanel userPanel;
     private ActiveUsersPanel activeUsersPanel;
     private MessagePanel messagePanel;
-    private Preferences preferenceLogin;
     private LoginDialog loginDialog;
     private CreateChatFrame frame;
     private InboxFrame inboxFrame;
@@ -35,15 +34,17 @@ public class MainFrame extends JFrame {
 
     private String username;
 
-    private DbController dbController;
     private ClientController clientController;
 
-    private static final int port = 3308;
-    private static final String host = "0.0.0.0";
+    private static int port;
+    private static String host;
 
 
-    public MainFrame() {
+    public MainFrame(String host, int port) {
         super("Chat");
+
+        this.host = host;
+        this.port = port;
 
         setSize(800, 600);
         setMinimumSize(new Dimension(400, 400));
@@ -60,8 +61,6 @@ public class MainFrame extends JFrame {
         inboxFrame = new InboxFrame();
         privateMessageFrame = new PrivateMessageFrame();
 
-
-        dbController = new DbController();
         clientController = new ClientController(host, port, MainFrame.this);
 
         setJMenuBar(createMenuBar());
@@ -177,6 +176,7 @@ public class MainFrame extends JFrame {
                 clientController.disconnect();
                 dispose();
                 System.gc();
+                System.exit(0);
             }
         });
 
