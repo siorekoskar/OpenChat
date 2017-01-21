@@ -158,8 +158,8 @@ public class MainFrame extends JFrame {
 
         privateMessageFrame.setListener(new PrivateMessageListener() {
             @Override
-            public void privateMessageOccured(String msg) {
-                clientController.sendPrivateMessage(msg);
+            public void privateMessageOccured(String msg, String messageTo) {
+                clientController.sendPrivateMessage(msg, messageTo, username);
             }
         });
 

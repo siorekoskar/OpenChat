@@ -17,8 +17,6 @@ public class PrivateMessageFrame extends JFrame implements ActionListener{
     private JScrollPane messagePane;
     private String messageTo;
 
-
-
     private PrivateMessageListener listener;
 
     PrivateMessageFrame(){
@@ -46,6 +44,10 @@ public class PrivateMessageFrame extends JFrame implements ActionListener{
         add(messagePane, BorderLayout.NORTH);
         add(jPanel, BorderLayout.SOUTH);
 
+        ////////////////////LISTENERS//////////////////
+        sendButton.addActionListener(this);
+        cancelButton.addActionListener(this);
+
     }
 
     void setMessageTo(String user){
@@ -65,11 +67,11 @@ public class PrivateMessageFrame extends JFrame implements ActionListener{
             JButton clicked = (JButton) obj;
             if(clicked == sendButton){
                 String message = messageArea.getText();
-
-                listener.privateMessageOccured(message);
+                listener.privateMessageOccured(message, messageTo);
 
             } else if(clicked == cancelButton){
                 setVisible(false);
+                messageArea.setText("");
             }
         }
     }

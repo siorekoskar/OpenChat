@@ -19,8 +19,8 @@ public class ClientController{
     private Client chatClient;
     private MainFrame frame;
 
-    public void sendPrivateMessage(String msg){
-        System.out.println(msg);
+    public void sendPrivateMessage(String msg, String messageTo, String messageFrom){
+        System.out.println("Message from: " + messageFrom + " to: " + messageTo + ": " + msg);
     }
 
     public void sendUserLeft(Message msg){
