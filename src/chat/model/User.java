@@ -2,6 +2,7 @@ package chat.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Oskar on 08/01/2017.
@@ -39,6 +40,14 @@ public class User implements Serializable{
     }
 
     ///////////////////GETTERS AND SETTERS//////////////////////////
+
+    public void addPrivateMessage(PrivateMessage pm){
+        privateMessages.add(pm);
+    }
+
+    public List getPrivateMessages(){
+        return this.privateMessages;
+    }
 
     public static int getCount() {
         return count;

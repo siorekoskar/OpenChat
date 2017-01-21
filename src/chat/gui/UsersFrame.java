@@ -1,6 +1,7 @@
 package chat.gui;
 
 import chat.gui.listenersinterfaces.UsersFrameListener;
+import chat.model.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 /**
  * Created by Oskar on 21/01/2017.
@@ -20,6 +22,7 @@ public class UsersFrame extends JFrame{
     private JPopupMenu popupMenu;
     private JScrollPane scrollPane;
     private UsersFrameListener listener;
+    private String username;
 
     UsersFrame(String users){
         super(users);
@@ -51,7 +54,9 @@ public class UsersFrame extends JFrame{
                 if (SwingUtilities.isRightMouseButton(ev)){
                     usersList.setSelectedIndex(getRow(ev.getPoint()));
                     selected = (String) usersList.getSelectedValue();
-                    popupMenu.show(usersList, ev.getX(), ev.getY());
+                    if (!selected.equals(username)) {
+                        popupMenu.show(usersList, ev.getX(), ev.getY());
+                    }
                 }
             }
         });
@@ -76,4 +81,16 @@ public class UsersFrame extends JFrame{
         this.listener = listener;
     }
 
+    public void setUsersRegisteredList(List list){
+        usersModel.removeAllElements();
+        for (Object obj:
+             list) {
+            String user = (String)obj;
+            usersModel.addElement(user);
+        }
+    }
+
+    void setUsername(String username){
+        this.username = username;
+    }
 }

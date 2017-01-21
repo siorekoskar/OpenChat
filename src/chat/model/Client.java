@@ -77,7 +77,14 @@ public class Client {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public void sendPrivateMessage(PrivateMessage msg){
+        try{
+            sOutput.writeObject(msg);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void disconnect() {
@@ -142,6 +149,10 @@ public class Client {
                                 break;
                             case Message.PRIVATEMESSAGE:
                                 cg.sendInboxMessages(msg.getListOfUndeclared());
+                                break;
+                            case Message.USERSREGISTEREDLIST:
+                                cg.sendUsersRegisteredList(msg.getUsersIn());
+                                break;
                             default:
                                 cg.sendMsg(msg);
                                 break;
@@ -151,6 +162,12 @@ public class Client {
                         cg.sendUser((User) obj);
                     } else if (obj instanceof ChatRoom) {
                         cg.sendChat((ChatRoom) obj);
+                    } else if (obj instanceof PrivateMessage){
+                        PrivateMessage pm = (PrivateMessage)obj;
+                        String messageFrom = pm.getMessageFrom();
+                        String message = pm.getMessage();
+                        String messageConstructed = messageFrom + ": " + message;
+                        cg.sendPrivateMsgToGui(messageConstructed);
                     }
 
                 } catch (IOException e) {

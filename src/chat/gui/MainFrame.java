@@ -238,6 +238,7 @@ public class MainFrame extends JFrame {
         MainFrame.this.setVisible(true);
         activeUsersPanel.setUsername(username);
         activeUsersPanel.setSelection(username);
+        usersFrame.setUsername(username);
     }
 
     public void sendNotAllowed(){
@@ -344,5 +345,14 @@ public class MainFrame extends JFrame {
 
     public int getPort(){
         return  port;
+    }
+
+    public void sendUsersRegisteredList(List list){
+        usersFrame.setUsersRegisteredList(list);
+    }
+
+    public void sendPrivateMsgToGui(String msg){
+        inboxFrame.addPrivateMessage(msg);
+        userPanel.notifyUser("New message in inbox!");
     }
 }

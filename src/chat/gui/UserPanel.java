@@ -16,6 +16,7 @@ public class UserPanel extends JPanel implements ActionListener{
     private JButton chatManagerButton;
     private JButton inboxButton;
     private JButton usersButton;
+    private JLabel notificationLabel;
 
     private UserPanelListener listener;
 
@@ -25,6 +26,7 @@ public class UserPanel extends JPanel implements ActionListener{
         inboxButton = new JButton("Inbox");
         logoutButton = new JButton("Logout");
         usersButton = new JButton("Users");
+        notificationLabel = new JLabel("");
 
         setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -32,6 +34,7 @@ public class UserPanel extends JPanel implements ActionListener{
         add(chatManagerButton);
         add(logoutButton);
         add(usersButton);
+        add(notificationLabel);
 
         ////////////////LISTENERS/////////////////
         logoutButton.addActionListener(this);
@@ -54,11 +57,16 @@ public class UserPanel extends JPanel implements ActionListener{
             } else if (clicked == chatManagerButton){
                 listener.chatboxEventOccured();
             } else if (clicked == inboxButton) {
+                notificationLabel.setText("");
                 listener.inboxEventOccured();
             } else if (clicked == usersButton){
                 listener.usersEventOccured();
             }
         }
+    }
+
+    void notifyUser(String notification){
+        notificationLabel.setText(notification);
     }
 
 }

@@ -24,7 +24,6 @@ public class InboxFrame extends JFrame {
 
     InboxFrame(){
         super("Inbox");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dim = new Dimension(350,300);
         Dimension dim2 = new Dimension(300,260);
         setMinimumSize(dim);
@@ -35,8 +34,6 @@ public class InboxFrame extends JFrame {
         messagesScrollPane = new JScrollPane(messagesList);
         messagesScrollPane.setPreferredSize(dim2);
         messagesScrollPane.setMinimumSize(dim2);
-
-        messagesModel.addElement("TEST");
 
         popupMenu = new JPopupMenu();
         JMenuItem respondItem = new JMenuItem("Respond");
@@ -87,5 +84,9 @@ public class InboxFrame extends JFrame {
                 messages) {
             messagesModel.addElement(message);
         }
+    }
+
+    void addPrivateMessage(String msg){
+        messagesModel.addElement(msg);
     }
 }
