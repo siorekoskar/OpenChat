@@ -244,8 +244,8 @@ public class Server {
         }
     }
 
-    private synchronized void removeFromOldChat(Message cm) {
-        String username = cm.getUser();
+    private synchronized void removeFromOldChat(String username) {
+        //String username = cm.getUser();
         for (ChatRoom chat :
                 chatRooms) {
             if(chat.userExists(username)){
@@ -346,9 +346,7 @@ public class Server {
             if(!chat.isPrivate() || (chat.isPrivate() && chat.getAreAllowed().contains(user))){
                 System.out.println("inside"+cm.getMessage() + cm.getUser() + cm.getMessage());
 
-                removeFromOldChat(cm);
-
-
+                removeFromOldChat(user);
 
                 if (!chat.userExists(user)) {
                     chat.addUsersIn(user);
@@ -398,6 +396,7 @@ public class Server {
 
                 } catch(IOException e){
                     e.printStackTrace();
+                    //actualizeChatUsers();
                     close();
                     break;
                 } catch (ClassNotFoundException e){
