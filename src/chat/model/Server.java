@@ -209,10 +209,10 @@ public class Server {
 
     }
 
-    private synchronized ChatRoom showChatRoom(Message msg){
+    private synchronized ChatRoom showChatRoom(String chatSearched){
         for (ChatRoom chat :
                 chatRooms) {
-            if (chat.getChatName().equals(msg.getMessage())) {
+            if (chat.getChatName().equals(chatSearched)) {
                 return chat;
             }
         }
@@ -339,7 +339,7 @@ public class Server {
         }
 
         private boolean connectToChat(Message cm){
-            ChatRoom chat = showChatRoom(cm);
+            ChatRoom chat = showChatRoom(cm.getMessage());
             String user = cm.getUser();
             System.out.println(cm.getMessage() + cm.getUser() + cm.getMessage());
 
