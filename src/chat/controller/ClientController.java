@@ -14,6 +14,10 @@ public class ClientController {
     private Client chatClient;
     private MainFrame frame;
 
+    public void sendYourChatRooms(List chatRooms){
+        frame.setYourChatRooms(chatRooms);
+    }
+
     public void sendPrivateMsgToGui(String msg) {
         frame.sendPrivateMsgToGui(msg);
     }
@@ -48,20 +52,20 @@ public class ClientController {
     }
 
     public void sendRegistered(String user) {
-        frame.popSucces("Registered as: " + user);
+        frame.popSuccess("Registered as: " + user);
     }
 
     public void sendExists() {
-        frame.popSucces("User already exists");
+        frame.popSuccess("User already exists");
     }
 
     public void sendInboxMessages(List messages) {
         frame.sendInboxMessages(messages);
     }
 
-    public void userInvited(String selected, String username) {
+    public void userInvited(String selected, String toChat, String username) {
         System.out.println("You invited " + selected);
-        chatClient.userInvited(selected, username);
+        chatClient.userInvited(selected, toChat, username);
     }
 
     public ClientController(String serverName, int serverPort, MainFrame frame) {

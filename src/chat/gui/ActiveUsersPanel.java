@@ -29,7 +29,6 @@ public class ActiveUsersPanel extends JSplitPane{
     private String selection;
     private String username;
 
-
     public ActiveUsersPanel(){
 
         super(JSplitPane.VERTICAL_SPLIT);

@@ -32,6 +32,7 @@ public class MainFrame extends JFrame {
     private InboxFrame inboxFrame;
     private UsersFrame usersFrame;
     private PrivateMessageFrame privateMessageFrame;
+    private YourChatsFrame yourChatsFrame;
 
     private String username;
 
@@ -63,6 +64,7 @@ public class MainFrame extends JFrame {
         inboxFrame = new InboxFrame();
         privateMessageFrame = new PrivateMessageFrame();
         usersFrame = new UsersFrame("Users");
+        yourChatsFrame = new YourChatsFrame();
 
         clientController = new ClientController(host, port, MainFrame.this);
 
@@ -79,6 +81,15 @@ public class MainFrame extends JFrame {
                 clientController.sendMessage(message);
 
 
+            }
+        });
+
+        yourChatsFrame.setListener(new YourChatsFrameListener() {
+            @Override
+            public void invited(String invited, String chat) {
+                clientController.userInvited(invited, chat, username);
+                //System.out.println("invited user " + invited + " to chat " + chat + " by "+ username);
+                yourChatsFrame.setVisible(false);
             }
         });
 
@@ -128,8 +139,12 @@ public class MainFrame extends JFrame {
         activeUsersPanel.setListener(new ActiveUsersPanelListener() {
             @Override
             public void userInvitedOccured(String selected) {
-                clientController.userInvited(selected, username);
+                //
+                yourChatsFrame.setInvited(selected);
+                yourChatsFrame.setVisible(true);
+
             }
+
 
             @Override
             public void whisperEventOccured(String username) {
@@ -218,7 +233,7 @@ public class MainFrame extends JFrame {
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void popSucces(String msg){
+    public void popSuccess(String msg){
         JOptionPane.showMessageDialog(MainFrame.this, msg,
                 "Succes", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -336,6 +351,10 @@ public class MainFrame extends JFrame {
     public void sendPrivateMsgToGui(String msg){
         inboxFrame.addPrivateMessage(msg);
         userPanel.notifyUser("New message in inbox!");
+    }
+
+    public void setYourChatRooms(List chatRooms){
+        yourChatsFrame.setChatList(chatRooms);
     }
 
 

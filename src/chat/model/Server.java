@@ -3,6 +3,7 @@ package chat.model;
 import chat.controller.ClientController;
 import chat.controller.DbController;
 import chat.gui.FormEvent;
+import chat.gui.PrivateMessageFrame;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -237,7 +238,7 @@ public class Server {
         }
     }
 
-    public synchronized void sendToAll(Message msg) {
+    synchronized void sendToAll(Message msg) {
 
         msg.setUsersIn(users);
         for (ClientThread ct :
@@ -259,17 +260,15 @@ public class Server {
         }
     }
 
-    public synchronized void inviteUser(Message msg) {
+    synchronized void inviteUser(String admin, String toInvite, String toChat) {
 
-        String toAdd = msg.getMessage();
-        System.out.println("invited  " + toAdd);
-        for (ChatRoom chat :
-                chatRooms) {
-            if (chat.getAdmin().equals(msg.getUser()) && !chat.getAreAllowed().contains(toAdd)) {
-                System.out.println("added " + toAdd + " to chat " + chat.getChatName());
-                chat.addAllowed(toAdd);
-            }
-        }
+        ChatRoom chatToInvite = findChat(toChat);
+        chatToInvite.addAllowed(toInvite);
+        ClientThread invitedClient = findClientThread(toInvite);
+        PrivateMessage pm = new PrivateMessage(admin, "invited you to chat: ", toChat.toUpperCase());
+        invitedClient.writeMsg(pm);
+
+
     }
 
     synchronized void userLeftActualise(String username, ChatRoom chat) {
@@ -337,6 +336,38 @@ public class Server {
             }
         }
         return false;
+    }
+
+    synchronized ChatRoom findChat(String chatName){
+        for (ChatRoom chat :
+                chatRooms) {
+            if (chatName.equals(chat.getChatName())) {
+                return chat;
+            }
+        }
+        return null;
+    }
+
+    synchronized List findChatsOf(String username){
+        ArrayList<ChatRoom> chatsOfUser = new ArrayList();
+        for (ChatRoom chat :
+                chatRooms) {
+            if(chat.getAdmin().equals(username)){
+                chatsOfUser.add(chat);
+            }
+        }
+
+        return chatsOfUser;
+    }
+
+    private ClientThread findClientThread(String username){
+        for (ClientThread ct :
+                clientThreads) {
+            if (ct.getUsername().equals(username)) {
+                return ct;
+            }
+        }
+        return null;
     }
 
     class ClientThread extends Thread {
@@ -421,6 +452,8 @@ public class Server {
             id = ++uniqueID;
         }
 
+
+
         private boolean connectToChat(String user, String chatSearched, boolean userLeft) {
             ChatRoom chat = showChatRoom(chatSearched);
 
@@ -477,17 +510,30 @@ public class Server {
                                 String chatName = cm.getChatRoom().getChatName();
                                 if(!checkIfChatRoomExists(chatName)) {
                                     createChatRoom(cm);
+                                    Message msg = findListOfChats();
+                                    writeMsg(msg);
                                 } else {
                                     writeMsg(new Message(Message.CHATROOMEXISTS, "", chatName));
                                 }
                                 break;
                             case Message.CONNECTTOCHAT:
-                                if (!connectToChat(cm.getUser(), cm.getMessage(), false)) {
+                                String user = cm.getUser();
+                                String connectToChat = cm.getMessage();
+                                if (!connectToChat(user, connectToChat, false)) {
                                     this.writeMsg(new Message(Message.NOTALLOWED));
+                                    askForInvite(connectToChat);
                                 }
                                 break;
                             case Message.USERINVITED:
-                                inviteUser(cm);
+                                /*for (Object obj1:
+                                        findChatsOf(cm.getUser())) {
+                                    ChatRoom chat = (ChatRoom) obj1;
+                                    System.out.println(chat.getChatName());
+                                }*/
+                                String admin = cm.getUser();
+                                String toInvite = cm.getMessage();
+                                String toChat = cm.getSentToChat();
+                                inviteUser(admin, toInvite, toChat);
                                 break;
                         }
                     } else if (obj instanceof PrivateMessage){
@@ -514,6 +560,14 @@ public class Server {
             remove(id);
             close();
             sendToAll(new Message(Message.DISCONNECT));
+        }
+
+        void askForInvite(String chatName){
+            ChatRoom chat = findChat(chatName);
+            String admin = chat.getAdmin();
+            ClientThread ct = findClientThread(admin);
+            ct.writeMsg(new PrivateMessage(username, " tried to join: "
+                    + chatName.toUpperCase(), admin));
         }
 
         private void close() {
@@ -551,6 +605,18 @@ public class Server {
             }
 
             return true;
+        }
+
+        Message findListOfChats(){
+            ArrayList<ChatRoom> listOfChats = (ArrayList)findChatsOf(username);
+            ArrayList<String> yourChatRooms = new ArrayList<>();
+            for (ChatRoom chat :
+                    listOfChats) {
+                yourChatRooms.add(chat.getChatName());
+            }
+            Message msg = new Message(Message.GETCHATROOMS);
+            msg.setListOfUndeclared(yourChatRooms);
+            return msg;
         }
     }
 

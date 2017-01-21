@@ -2,6 +2,7 @@ package chat.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Oskar on 14/01/2017.
@@ -12,11 +13,20 @@ public class Message implements Serializable{
     public static final int MESSAGE = 1, CREATECHAT = 2, CONNECTTOCHAT=3, CHATCONNECTION=4, LOGINMSG=5,
             ALLOWED=6, REGISTER=7, DISALLOWED=8, EXISTS=9, CHATLEFT=10, NOTALLOWED=11,
             USERINVITED = 12, DISCONNECT = 13, PRIVATEMESSAGE=14, USERSREGISTEREDLIST=15,
-            ALREADYLOGGED = 16, CHATROOMEXISTS=17;
+            ALREADYLOGGED = 16, CHATROOMEXISTS=17, GETCHATROOMS = 18;
 
     private int type;
     private String message;
     private String user;
+
+    public String getSentToChat() {
+        return sentToChat;
+    }
+
+    public void setSentToChat(String sentToChat) {
+        this.sentToChat = sentToChat;
+    }
+
     public String sentToChat;
     public ArrayList<String> users;
     private ArrayList<String> usersIn;

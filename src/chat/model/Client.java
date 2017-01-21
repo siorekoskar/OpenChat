@@ -105,8 +105,8 @@ public class Client {
 
     }
 
-    public void userInvited(String userInvited, String admin){
-        Message msg = new Message(Message.USERINVITED, admin, userInvited);
+    public void userInvited(String userInvited,String toChat, String admin){
+        Message msg = new Message(Message.USERINVITED, admin, userInvited, toChat);
         sendMessage(msg);
     }
 
@@ -158,6 +158,9 @@ public class Client {
                                 break;
                             case Message.CHATROOMEXISTS:
                                 cg.sendChatExists(msg.getMessage());
+                                break;
+                            case Message.GETCHATROOMS:
+                                cg.sendYourChatRooms(msg.getListOfUndeclared());
                                 break;
                             default:
                                 cg.sendMsg(msg);
