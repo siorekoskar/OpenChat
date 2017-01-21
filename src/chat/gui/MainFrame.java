@@ -213,24 +213,14 @@ public class MainFrame extends JFrame {
         messagePanel.append(msg);
     }
 
-    public void popRegisteredDialog(String user){
-        JOptionPane.showMessageDialog(MainFrame.this, "Registered",
-                "Your username: " + user, JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public void popWrongDataDialog() {
-        JOptionPane.showMessageDialog(MainFrame.this, "Wrong username/password",
+    public void popFail(String msg){
+        JOptionPane.showMessageDialog(MainFrame.this, msg,
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void popAlreadyExistsDialog(){
-        JOptionPane.showMessageDialog(MainFrame.this, "User already exists",
-                "Error", JOptionPane.ERROR_MESSAGE);
-    }
-
-    public void popAlreadyLoggedDialog(String username){
-        JOptionPane.showMessageDialog(MainFrame.this, "User " + username + " already logged",
-                "Error", JOptionPane.ERROR_MESSAGE);
+    public void popSucces(String msg){
+        JOptionPane.showMessageDialog(MainFrame.this, msg,
+                "Succes", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void popLoggedDialog(String user) {
@@ -244,11 +234,6 @@ public class MainFrame extends JFrame {
         activeUsersPanel.setUsername(username);
         activeUsersPanel.setSelection(username);
         usersFrame.setUsername(username);
-    }
-
-    public void popNotAllowedToJoinPrivateChat(){
-        JOptionPane.showMessageDialog(MainFrame.this, "You are not allowed to join",
-                "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     public void popNotConnectedDialog(String msg){

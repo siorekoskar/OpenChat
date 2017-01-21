@@ -36,11 +36,11 @@ public class ClientController {
     }
 
     public void sendDisallowed() {
-        frame.popWrongDataDialog();
+        frame.popFail("Wrong username/password");
     }
 
     public void sendNotAllowed() {
-        frame.popNotAllowedToJoinPrivateChat();
+        frame.popFail("You are not allowed to join");
     }
 
     public void sendAllowed(String user) {
@@ -48,11 +48,11 @@ public class ClientController {
     }
 
     public void sendRegistered(String user) {
-        frame.popRegisteredDialog(user);
+        frame.popSucces("Registered as: " + user);
     }
 
     public void sendExists() {
-        frame.popAlreadyExistsDialog();
+        frame.popSucces("User already exists");
     }
 
     public void sendInboxMessages(List messages) {
@@ -116,7 +116,8 @@ public class ClientController {
     }
 
     public void sendAlreadyLogged(String username) {
-        frame.popAlreadyLoggedDialog(username);
+        //frame.popAlreadyLoggedDialog(username);
+        frame.popFail("User " + username + " already logged");
     }
 
     public void sendChatExists(String chat){
