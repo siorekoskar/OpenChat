@@ -121,7 +121,7 @@ public class MainFrame extends JFrame {
             @Override
             public void respondOccured(String msg) {
                 privateMessageFrame.setVisible(true);
-                System.out.println(msg);
+                privateMessageFrame.setMessageTo(msg);
             }
         });
 

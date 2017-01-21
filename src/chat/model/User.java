@@ -14,7 +14,7 @@ public class User implements Serializable{
     private int id;
     private String login;
     private String pass;
-    private ArrayList<PrivateMessage> privateMessages;
+    private ArrayList<PrivateMessage> privateMessages = new ArrayList<>();
 
     //////////////////CONSTRUCTORS////////////////////////////////
 

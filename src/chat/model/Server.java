@@ -10,6 +10,7 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Oskar on 14/01/2017.
@@ -372,6 +373,14 @@ public class Server {
                         } else if (dbController.checkIfUserExistsServ(userString)) {
                             sOutput.writeObject(new Message(Message.ALLOWED, userString, ""));
                             username = userString;
+                            User userFound = findUser(username);
+                            List pms = userFound.getPrivateMessages();
+                            for (Object obj :
+                                    pms) {
+                                PrivateMessage pm = (PrivateMessage) obj;
+                                //sendPrivateMessageTo(username, );
+                                sOutput.writeObject(pm);
+                            }
                             break;
                         } else {
                             sOutput.writeObject(new Message(Message.DISALLOWED));
@@ -457,8 +466,7 @@ public class Server {
                         System.out.println("Message from: " + pm.getMessageFrom() + " to: " +
                                 pm.getMessageTo() + ": " + pm.getMessage());
                         User userTo = findUser(pm.getMessageTo());
-                        System.out.println(userTo.getLogin());
-                        //userTo.addPrivateMessage(new PrivateMessage(pm.getMessageFrom(), pm.getMessage(), pm.getMessageTo()));
+                        userTo.addPrivateMessage(pm);
                         sendPrivateMessageTo(userTo.getLogin(), pm);
                     }
 

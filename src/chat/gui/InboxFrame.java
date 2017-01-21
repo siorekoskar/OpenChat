@@ -69,7 +69,8 @@ public class InboxFrame extends JFrame {
         public void actionPerformed(ActionEvent actionEvent) {
             String event = actionEvent.getActionCommand();
             if(event.equals("Respond")){
-                listener.respondOccured(selected);
+                String[] str = selected.split(":");
+                listener.respondOccured(str[1]);
             }
         }
     }
