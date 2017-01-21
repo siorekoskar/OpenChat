@@ -15,7 +15,7 @@ public class TestDatabase {
         Database db = new Database();
 
         try{
-            db.connect();
+            db.connect("localhost:3306/user","root", "shihtzu1");
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -35,7 +35,7 @@ public class Database{
 
 
     ///////////DO
-    public void connect() throws Exception{
+    public void connect(String url, String user, String password) throws Exception{
 
         if(conn!=null){
             return;
@@ -47,9 +47,11 @@ public class Database{
             throw new Exception("Driver not found");
         }
 
-        String url = "jdbc:mysql://localhost:3306/user";
+        //url = "jdbc:mysql://localhost:3306/user";
+        url = "jdbc:mysql://"+url;
+        conn = DriverManager.getConnection(url, user, password);
 
-        conn = DriverManager.getConnection(url, "root", "shihtzu1");
+        //conn = DriverManager.getConnection(url, "root", "shihtzu1");
 
         System.out.println("Connected: " + conn);
     }

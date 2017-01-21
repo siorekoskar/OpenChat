@@ -41,7 +41,7 @@ class Launcher extends JFrame implements ActionListener{
     private JLabel portLabel;
     private JButton enterButton;
     private JButton quitButton;
-    //private Preferences prefs;
+
 
     private PrefsListener prefsListener;
 
@@ -56,7 +56,6 @@ class Launcher extends JFrame implements ActionListener{
         quitButton = new JButton("Quit");
         quitButton.setPreferredSize(enterButton.getPreferredSize());
 
-        //prefs = Preferences.userRoot().node("connectionDetails");
 
         WindowCloser windowCloser = new WindowCloser();
 
@@ -67,16 +66,6 @@ class Launcher extends JFrame implements ActionListener{
 
         addWindowListener(windowCloser);
 
-        /*setPrefsListener(new PrefsListener() {
-            @Override
-            public void preferencesSet(String host, int port) {
-                prefs.put("host", host);
-                prefs.putInt("port", port);
-            }
-        });*/
-
-        //String host = prefs.get("host", "192.168.0.115");
-        //Integer port = prefs.getInt("port", 3308);
         setDefaults("192.168.0.115", 3308);
         setVisible(true);
 

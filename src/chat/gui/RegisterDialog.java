@@ -53,7 +53,8 @@ public class RegisterDialog extends JDialog {
         });
 
         layoutControls();
-        setSize(340, 250);
+        setPreferredSize(new Dimension(300, 220));
+        setMinimumSize(new Dimension(300, 220));
         setLocationRelativeTo(parent);
     }
 

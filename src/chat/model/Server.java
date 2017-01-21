@@ -20,22 +20,25 @@ public class Server {
     private ArrayList<ClientThread> clientThreads;
     private ArrayList<String> users;
     private ArrayList<ChatRoom> chatRooms;
+    private ArrayList<User> usersRegistered;
 
     private int port;
     private boolean keepGoing;
     private DbController dbController;
 
-    private HashMap<String, String> privateMessages;
 
-    public Server(int port) {
+    public Server(int port, String url, String admin, String password) {
+
         this.port = port;
         users = new ArrayList<>();
         clientThreads = new ArrayList<>();
         chatRooms = new ArrayList<>();
         dbController = new DbController();
-        privateMessages = new HashMap<>();
+
         try {
-            dbController.connect();
+            dbController.connect(url, admin, password);
+            dbController.load();
+            usersRegistered = new ArrayList<>(dbController.getUsers());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,7 +46,7 @@ public class Server {
         chatRooms.add(allChat);
     }
 
-    class HandleDB extends Thread{
+    private class HandleDB extends Thread{
 
         Socket socket;
         ClientThread ct;
@@ -320,6 +323,9 @@ public class Server {
                             }
                             dbController.addUser(new User(userString, pass));
                             dbController.save();
+                            dbController.load();
+                            usersRegistered = new ArrayList<>(dbController.getUsers());
+                            System.out.println(usersRegistered);
                             sOutput.writeObject(new Message(Message.REGISTER, userString, ""));
 
                         } else if (dbController.checkIfUserExistsServ(userString)) {
@@ -408,8 +414,6 @@ public class Server {
                 } catch(IOException e){
                     e.printStackTrace();
                     userLeftActualise(username,currentChat);
-                    //actualizeChatUsers(currentChat, new Message(Message.CHATCONNECTION), currentChat, true);
-                    //connectToChat(username, "All Chat", true);
                     close();
                     break;
                 } catch (ClassNotFoundException e){
@@ -466,9 +470,12 @@ public class Server {
 
     public static void main(String[] args) {
         int portNumber = 3308;
+        String url = "localhost:3306/user";
+        String admin = "root";
+        String password = "shihtzu1";
 
         // create a server object and start it
-        Server server = new Server(portNumber);
+        Server server = new Server(portNumber, url, admin, password);
         server.start();
     }
 }

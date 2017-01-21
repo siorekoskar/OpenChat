@@ -40,8 +40,8 @@ public class DbController {
         db.load();
     }
 
-    public void connect() throws Exception{
-        db.connect();
+    public void connect(String url, String user, String password) throws Exception{
+        db.connect(url, user, password);
     }
 
     public void disconnect(){
