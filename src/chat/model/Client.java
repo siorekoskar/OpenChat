@@ -72,7 +72,6 @@ public class Client {
 
     public void sendMessage(Message msg) {
         try {
-            System.out.println(msg.getMessage() + "SENDMESSAGECLIENT");
             sOutput.writeObject(msg);
         } catch (Exception e) {
             e.printStackTrace();
@@ -165,6 +164,8 @@ public class Client {
                             case Message.CHATACTUALISE:
                                 cg.sendChats(msg.getListOfUndeclared(), msg.getPrivateList());
                                 break;
+                            case Message.TOOMANYCHATS:
+                                cg.sendTooManyChats();
                             default:
                                 cg.sendMsg(msg);
                                 break;

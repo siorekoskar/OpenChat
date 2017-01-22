@@ -249,6 +249,7 @@ public class MainFrame extends JFrame {
         activeUsersPanel.setUsername(username);
         activeUsersPanel.setSelection(username);
         usersFrame.setUsername(username);
+        messagePanel.setUsername(username);
     }
 
     public void popNotConnectedDialog(String msg){

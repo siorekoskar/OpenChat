@@ -131,4 +131,7 @@ public class ClientController {
     public void sendChats(List chats, List privateList){
         frame.actualizeChats(chats, privateList);
     }
+    public void sendTooManyChats(){
+        frame.popFail("Too many chats. Max is 2");
+    }
 }

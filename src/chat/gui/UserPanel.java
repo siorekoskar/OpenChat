@@ -32,7 +32,7 @@ public class UserPanel extends JPanel implements ActionListener{
 
         add(inboxButton);
         add(chatManagerButton);
-        add(logoutButton);
+        //add(logoutButton);
         add(usersButton);
         add(notificationLabel);
 

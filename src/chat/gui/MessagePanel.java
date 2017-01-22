@@ -18,10 +18,17 @@ public class MessagePanel extends JPanel implements ActionListener{
     private JTextArea inputTextArea;
     private JTextArea messagesArea;
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String username;
+
 
     private MessageListener messageListener;
 
     MessagePanel(){
+
         inputTextArea = new JTextArea();
         messagesArea = new JTextArea();
         sendFileButton = new JButton("Upload File");
@@ -134,8 +141,12 @@ public class MessagePanel extends JPanel implements ActionListener{
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    clean();
-                    messagesArea.append(str.getMessage());
+                    if(str.getUser().equals(username)) {
+                        clean();
+                        messagesArea.append(str.getMessage());
+                    } else {
+                        messagesArea.append(str.getSentToChat()+"\n");
+                    }
                     messagesArea.setBorder(BorderFactory.createTitledBorder("Current chat: " + str.getChatName()));
                 }
             });

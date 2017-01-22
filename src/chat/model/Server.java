@@ -421,6 +421,7 @@ public class Server {
         public String currentChatS;
         private String username;
         private boolean firstLogged = true;
+        int chatsIHave = 0;
 
         public String getUsername() {
             return username;
@@ -505,7 +506,7 @@ public class Server {
                     Iterator<ChatRoom> iter = chatRooms.iterator();
                     while (iter.hasNext()) {
                         ChatRoom chatR = iter.next();
-                        if (isAnyUserInChat(chatR) ) {
+                        if (isAnyUserInChat(chatR)) {
                             iter.remove();
                             System.out.println(chatR.getChatName() + "removed");
                         }
@@ -520,9 +521,11 @@ public class Server {
                     currentChat = chat;
                     currentChatS = chat.getChatName();
 
+                   // chat.appendMsg(username + " joined the chat");
                     String chatStructure = chat.getMessages();
+
                     System.out.println(chat.getUsersAsString());
-                    Message msg = new Message(Message.CHATCONNECTION, "", chatStructure);
+                    Message msg = new Message(Message.CHATCONNECTION, username, chatStructure, username + " joined the chat");
                     msg.setChatName(currentChat.getChatName());
                     msg.setUsersIn(chat.getUsersIn());
                     actualizeChatUsers(chat, msg, oldChat);
@@ -562,10 +565,14 @@ public class Server {
                                 break;
                             case Message.CREATECHAT:
                                 String chatName = cm.getChatRoom().getChatName();
-                                if (!checkIfChatRoomExists(chatName) && !chatName.equals("")) {
+                                if (!checkIfChatRoomExists(chatName) && !chatName.equals("") && chatsIHave < 2) {
+                                    chatsIHave++;
+                                    System.out.println("CHATS " + chatsIHave);
                                     createChatRoom(cm);
                                     Message msg = findListOfChats();
                                     writeMsg(msg);
+                                } else if (chatsIHave > 2) {
+                                    writeMsg(new Message(Message.TOOMANYCHATS));
                                 } else {
                                     writeMsg(new Message(Message.CHATROOMEXISTS, "", chatName));
                                 }
