@@ -6,6 +6,7 @@ import java.util.EventObject;
  * Created by Oskar on 14/01/2017.
  */
 public class CreateChatEvent extends EventObject {
+    static final long serialVersionUID = 2133453L;
 
     private String chatName;
     private boolean isPrivate;

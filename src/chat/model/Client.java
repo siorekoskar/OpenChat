@@ -21,62 +21,56 @@ public class Client implements ClientInterface {
 
     private ClientControllerInterface cg;
 
-    private String server, username;
+    private String server;
     private int port;
 
     public void setController(ClientControllerInterface cg){
         this.cg = cg;
-    };
-
-
-    public Client(String server, int port, ClientControllerInterface frame, String username) {
-        this.server = server;
-        this.port = port;
-        this.cg = frame;
-        this.username = username;
     }
+
 
     public Client(String server, int port) {
         this.server = server;
         this.port = port;
-       // this.cg = frame;
 
     }
 
     public boolean start() {
-        try {
-            socket = new Socket();
-            socket.connect(new InetSocketAddress(server,port),3000);
-            cg.connected();
+        if(cg!= null) {
+            try {
+                socket = new Socket();
+                socket.connect(new InetSocketAddress(server, port), 3000);
+                cg.connected();
 
-        }catch(UnknownHostException e){;
-            cg.notConnected("Wrong format of ip");
-        } catch (Exception ec) {
-            cg.notConnected("Server unreachable");
+            } catch (UnknownHostException e) {
+                cg.notConnected("Wrong format of ip");
+            } catch (Exception ec) {
+                cg.notConnected("Server unreachable");
+                return false;
+            }
+            String msg = "Con accepted" + socket.getInetAddress() + ":" + socket.getPort();
+            System.out.println(msg);
+
+            try {
+                sInput = new ObjectInputStream(socket.getInputStream());
+                sOutput = new ObjectOutputStream(socket.getOutputStream());
+            } catch (IOException eIO) {
+                System.out.println("Fail");
+            }
+
+            new ListenFromServer().start();
+
+            return true;
+        } else{
             return false;
         }
-        String msg = "Con accepted" + socket.getInetAddress() + ":" + socket.getPort();
-        System.out.println(msg);
-
-        try {
-            sInput = new ObjectInputStream(socket.getInputStream());
-            sOutput = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException eIO) {
-            System.out.println("Fail");
-        }
-
-        new ListenFromServer().start();
-
-        return true;
     }
 
-    public void display(String msg) {
-        System.out.println(msg);
-    }
 
     public void sendMessage(Message msg) {
         try {
-            sOutput.writeObject(msg);
+            if(sOutput!=null)
+                sOutput.writeObject(msg);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,7 +78,7 @@ public class Client implements ClientInterface {
 
     public void sendPrivateMessage(PrivateMessage msg){
         try{
-            sOutput.writeObject(msg);
+           if(sOutput!=null) sOutput.writeObject(msg);
         } catch(Exception e){
             e.printStackTrace();
         }

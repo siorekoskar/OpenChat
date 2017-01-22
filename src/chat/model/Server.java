@@ -11,10 +11,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Oskar on 14/01/2017.
@@ -114,17 +111,7 @@ public class Server {
 
     }
 
-    private synchronized void broadcast(String msg) {
-        for (int i = clientThreads.size(); --i >= 0; ) {
-            ClientThread ct = clientThreads.get(i);
 
-            if (!ct.writeMsg(msg)) {
-                clientThreads.remove(i);
-                users.remove(i);
-                System.out.println("REMOVED CLIENT " + ct.username);
-            }
-        }
-    }
 
     synchronized void remove(int id) {
         for (int i = 0; i < clientThreads.size(); ++i) {
@@ -284,7 +271,7 @@ public class Server {
         ChatRoom chatToInvite = findChat(toChat);
         chatToInvite.addAllowed(toInvite);
         ClientThread invitedClient = findClientThread(toInvite);
-        PrivateMessage pm = new PrivateMessage(admin, "invited you to chat: " + toChat.toUpperCase(), toInvite);
+        PrivateMessage pm = new PrivateMessage(admin, "invited you to chat: " + toChat, toInvite);
         invitedClient.writeMsg(pm);
 
     }
@@ -419,7 +406,6 @@ public class Server {
         private ChatRoom currentChat;
         public String currentChatS;
         private String username;
-        private boolean firstLogged = true;
         int chatsIHave = 0;
 
         public String getUsername() {
@@ -531,7 +517,7 @@ public class Server {
 
                     return true;
                 }
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 actualizeChats();
             }
             return false;
@@ -590,6 +576,8 @@ public class Server {
                                 String toChat = cm.getSentToChat();
                                 inviteUser(admin, toInvite, toChat);
                                 break;
+                            default:
+                                break;
                         }
                     } else if (obj instanceof PrivateMessage) {
                         PrivateMessage pm = (PrivateMessage) obj;
@@ -621,7 +609,7 @@ public class Server {
             String admin = chat.getAdmin();
             ClientThread ct = findClientThread(admin);
             ct.writeMsg(new PrivateMessage(username, " tried to join: "
-                    + chatName.toUpperCase(), admin));
+                    + chatName, admin));
         }
 
         private void close() {
@@ -662,6 +650,7 @@ public class Server {
         }
 
         Message findListOfChats() {
+
             ArrayList<ChatRoom> listOfChats = (ArrayList) findChatsOf(username);
             ArrayList<String> yourChatRooms = new ArrayList<>();
             for (ChatRoom chat :

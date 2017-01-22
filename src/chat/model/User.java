@@ -9,6 +9,8 @@ import java.util.List;
  */
 public class User implements Serializable{
 
+    private static final long serialVersionUID = 42L;
+
     //////////////////FIELDS////////////////////////////////////
     private static int count = 1;
     private int id;

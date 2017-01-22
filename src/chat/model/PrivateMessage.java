@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * Created by Oskar on 21/01/2017.
  */
 public class PrivateMessage implements Serializable{
+    static final long serialVersionUID = 2133222223L;
 
     private String messageFrom;
     private String message;

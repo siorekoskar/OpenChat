@@ -117,7 +117,6 @@ class Launcher extends JFrame implements ActionListener{
             dispose();
         } else if (clicked == quitButton){
             dispose();
-            System.gc();
             System.exit(0);
         }
     }
@@ -126,12 +125,7 @@ class Launcher extends JFrame implements ActionListener{
         @Override
         public void windowClosing(WindowEvent e) {
             dispose();
-            System.gc();
         }
-    }
-
-    private void setPrefsListener(PrefsListener listener){
-        this.prefsListener = listener;
     }
 
     private void layoutComponents() {
@@ -150,7 +144,6 @@ class Launcher extends JFrame implements ActionListener{
         GridBagConstraints gc = new GridBagConstraints();
 
         Insets rightPadding = new Insets(0, 0, 0, 15);
-        Insets leftPadding = new Insets(0, 15, 0, 0);
         Insets noPadding = new Insets(0, 0, 0, 0);
 
 

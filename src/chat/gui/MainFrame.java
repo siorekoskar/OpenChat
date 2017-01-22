@@ -200,7 +200,6 @@ public class MainFrame extends JFrame implements GuiInterface{
             public void windowClosing(WindowEvent e) {
                 clientController.disconnect();
                 dispose();
-                System.gc();
                 System.exit(0);
             }
         });
@@ -255,9 +254,8 @@ public class MainFrame extends JFrame implements GuiInterface{
     public void popNotConnectedDialog(String msg){
         JOptionPane.showMessageDialog(MainFrame.this, msg,
                 "Error", JOptionPane.ERROR_MESSAGE);
-        Launcher launcher = new Launcher(clientController, this);
+        new Launcher(clientController, this);
         dispose();
-        System.gc();
     }
 
     public void popConnectedDialog(){

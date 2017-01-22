@@ -198,7 +198,6 @@ class Launcher extends JFrame implements ActionListener{
 
         } else if( clicked == quitButton){
             dispose();
-            System.gc();
             System.exit(0);
         }
     }
@@ -209,7 +208,6 @@ class Launcher extends JFrame implements ActionListener{
         @Override
         public void windowClosing(WindowEvent e) {
             dispose();
-            System.gc();
         }
     }
 
@@ -225,7 +223,6 @@ class ServerStop extends JFrame implements ActionListener{
 
         if(clicked == button){
             dispose();
-            System.gc();
             System.exit(0);
         }
     }

@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class ChatRoom implements Serializable {
     static final boolean PRIVATE = true, PUBLIC = false;
+    static final long serialVersionUID = 40L;
 
     private String chatName;
     private String admin;

@@ -123,8 +123,6 @@ public class LoginDialog extends JFrame {
 
         GridBagConstraints gc = new GridBagConstraints();
 
-        Insets rightPadding = new Insets(0, 0, 0, 15);
-        Insets leftPadding = new Insets(0, 15, 0, 0);
         Insets noPadding = new Insets(0, 0, 0, 0);
 
         gc.gridy = 0;

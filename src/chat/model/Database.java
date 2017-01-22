@@ -9,46 +9,46 @@ import java.util.List;
 /**
  * Created by Oskar on 08/01/2017.
  */
-public class Database{
+public class Database {
 
     //////////////////FIELDS//////////////////////////////////////
     private List<User> users;
     private Connection conn;
 
     //////////////////CONSTRUCTORS////////////////////////////////
-    public Database(){
+    public Database() {
         users = new LinkedList<>();
     }
 
     //////////////////METHODS/////////////////////////////////////
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return Collections.unmodifiableList(users);
     }
 
-    public void removeUser(int index){
+    public void removeUser(int index) {
         users.remove(index);
     }
 
-    public void addUser(User user){
+    public void addUser(User user) {
         users.add(user);
     }
 
 
     ///////////DO
-    public void connect(String url, String user, String password) throws Exception{
+    public void connect(String url, String user, String password) throws Exception {
 
-        if(conn!=null){
+        if (conn != null) {
             return;
         }
 
-        try{
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-        } catch(ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             throw new Exception("Driver not found");
         }
 
         //url = "jdbc:mysql://localhost:3306/user";
-        url = "jdbc:mysql://"+url;
+        url = "jdbc:mysql://" + url;
         conn = DriverManager.getConnection(url, user, password);
 
         //conn = DriverManager.getConnection(url, "root", "shihtzu1");
@@ -56,8 +56,8 @@ public class Database{
         System.out.println("Connected: " + conn);
     }
 
-    public void disconnect(){
-        if (conn != null){
+    public void disconnect() {
+        if (conn != null) {
             try {
                 conn.close();
             } catch (SQLException e) {
@@ -66,62 +66,63 @@ public class Database{
         }
     }
 
-    public boolean checkIfUserExists(User user) throws SQLException{
+    public boolean checkIfUserExists(User user) throws SQLException {
 
-            String login = user.getLogin();
+        String login = user.getLogin();
 
-            String checkIfExistsSql = "select count(*) as count from user where login = '"
-                    + login+"'";
-            PreparedStatement checkStmt = conn.prepareStatement(checkIfExistsSql);
+        final String checkIfExistsSql = "select count(*) as count from user where login = '"
+                + login + "'";
 
-           /* int id = user.getId();
-            checkStmt.setInt(1, id);*/
+        PreparedStatement checkStmt;
+        int count = 0;
 
+        if (conn != null) {
+            checkStmt = conn.prepareStatement(checkIfExistsSql);
             ResultSet checkResult = checkStmt.executeQuery();
             checkResult.next();
+            count = checkResult.getInt(1);
+        }
 
-            int count = checkResult.getInt(1);
-        System.out.println("znaleziono:" +count);
-
-            return (count != 0);
+        return (count != 0);
     }
 
 
-    public void save() throws SQLException{
+    public void save() throws SQLException {
+        if (conn != null) {
 
-        String checkSql = "Select count(*) as count from user where id=?";
-        PreparedStatement checkStmt = conn.prepareStatement(checkSql);
+            String checkSql = "Select count(*) as count from user where id=?";
+            PreparedStatement checkStmt = conn.prepareStatement(checkSql);
 
-        String insertSql = "insert into user (login, password) values (?,?)";
-        PreparedStatement insertStmt = conn.prepareStatement(insertSql);
+            String insertSql = "insert into user (login, password) values (?,?)";
+            PreparedStatement insertStmt = conn.prepareStatement(insertSql);
 
-        String updateSql = "update user set login=?, password=? where id = ?";
-        PreparedStatement updateStmt = conn.prepareStatement(updateSql);
+            String updateSql = "update user set login=?, password=? where id = ?";
+            //PreparedStatement updateStmt = conn.prepareStatement(updateSql);
 
 
-        for(User user: users){
-            int id = user.getId();
-            String login = user.getLogin();
-            String password = user.getPass();
+            for (User user : users) {
+                int id = user.getId();
+                String login = user.getLogin();
+                String password = user.getPass();
 
-            checkStmt.setInt(1, id);
+                checkStmt.setInt(1, id);
 
-            ResultSet checkResult = checkStmt.executeQuery();
-            checkResult.next();
+                ResultSet checkResult = checkStmt.executeQuery();
+                checkResult.next();
 
-            int count = checkResult.getInt(1);
+                try {
+                    int count = checkResult.getInt(1);
 
-            if(count == 0){
-                System.out.println("Inserting person with ID " + id);
+                    if (count == 0) {
+                        System.out.println("Inserting person with ID " + id);
 
-                int col = 1;
-                insertStmt.setInt(col, id);
-                insertStmt.setString(col++, login);
-                insertStmt.setString(col++, password);
+                        int col = 1;
+                        insertStmt.setInt(col, id);
+                        insertStmt.setString(col++, login);
+                        insertStmt.setString(col++, password);
 
-                insertStmt.executeUpdate();
-            }
-            else {/*
+                        insertStmt.executeUpdate();
+                    } else {/*
                 System.out.println("Updating person with ID" + id);
 
                 int col = 1;
@@ -130,36 +131,45 @@ public class Database{
                 updateStmt.setInt(col++, id);
 
                 updateStmt.executeUpdate();*/
+                    }
+                } finally {
+                    checkResult.close();
+                    checkStmt.close();
+                }
             }
         }
 
-
     }
 
-    public void load() throws SQLException{
-        users.clear();
+    public void load() throws SQLException {
 
-        String sql = "select id, login, password from user order by id";
+        if (conn != null) {
+            users.clear();
 
-        Statement selectStmt = conn.createStatement();
+            String sql = "select id, login, password from user order by id";
 
-        ResultSet results = selectStmt.executeQuery(sql);
+            Statement selectStmt=null;
+            ResultSet results=null;
+            try {
+                selectStmt = conn.createStatement();
+                results = selectStmt.executeQuery(sql);
 
-        while(results.next()){
-            int id = results.getInt("id");
-            String login = results.getString("login");
-            String password = results.getString("password");
+                while (results.next()) {
+                    int id = results.getInt("id");
+                    String login = results.getString("login");
+                    String password = results.getString("password");
 
-            User user = new User(id, login, password);
+                    User user = new User(id, login, password);
 
-            users.add(user);
+                    users.add(user);
 
-            //System.out.println(user);
+                }
+            } finally {
+                if(results!=null)results.close();
+                if(selectStmt!=null)selectStmt.close();
+            }
+
         }
-
-        results.close();
-        selectStmt.close();
-
     }
     /////////DO
 

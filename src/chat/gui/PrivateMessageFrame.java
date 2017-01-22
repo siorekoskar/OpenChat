@@ -37,6 +37,7 @@ public class PrivateMessageFrame extends JFrame implements ActionListener{
         setLocationRelativeTo(null);
 
         layoutComponents();
+        initialize();
 
         ////////////////////LISTENERS//////////////////
         sendButton.addActionListener(this);

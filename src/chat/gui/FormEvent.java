@@ -6,6 +6,7 @@ import java.util.EventObject;
  * Created by Oskar on 08/01/2017.
  */
 public class FormEvent extends EventObject{
+    static final long serialVersionUID = 21123453L;
 
     private String login;
     private String pass;
