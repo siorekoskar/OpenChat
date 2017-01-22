@@ -14,7 +14,7 @@ public class Message implements Serializable{
             ALLOWED=6, REGISTER=7, DISALLOWED=8, EXISTS=9, CHATLEFT=10, NOTALLOWED=11,
             USERINVITED = 12, DISCONNECT = 13, PRIVATEMESSAGE=14, USERSREGISTEREDLIST=15,
             ALREADYLOGGED = 16, CHATROOMEXISTS=17, GETCHATROOMS = 18, CHATACTUALISE = 19
-            ,TOOMANYCHATS = 20;
+            ,TOOMANYCHATS = 20, USERLEFT=21;
 
     private int type;
     private String message;

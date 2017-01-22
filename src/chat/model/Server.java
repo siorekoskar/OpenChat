@@ -1,6 +1,8 @@
 package chat.model;
 
 import chat.controller.ClientController;
+import chat.controller.DBControllerInterface;
+import chat.controller.DataBaseControllerFactory;
 import chat.controller.DbController;
 import chat.gui.FormEvent;
 import chat.gui.PrivateMessageFrame;
@@ -27,7 +29,7 @@ public class Server {
 
     private int port;
     private boolean keepGoing;
-    private DbController dbController;
+    private DBControllerInterface dbController;
 
 
     public Server(int port, String url, String admin, String password) {
@@ -36,7 +38,7 @@ public class Server {
         users = new ArrayList<>();
         clientThreads = new ArrayList<>();
         chatRooms = new ArrayList<>();
-        dbController = new DbController();
+        dbController = DataBaseControllerFactory.returnDBController(DataBaseControllerFactory.DBCONTROLLER);
 
         try {
             dbController.connect(url, admin, password);
@@ -571,7 +573,7 @@ public class Server {
                                     createChatRoom(cm);
                                     Message msg = findListOfChats();
                                     writeMsg(msg);
-                                } else if (chatsIHave > 2) {
+                                } else if (chatsIHave > 1) {
                                     writeMsg(new Message(Message.TOOMANYCHATS));
                                 } else {
                                     writeMsg(new Message(Message.CHATROOMEXISTS, "", chatName));
@@ -602,6 +604,7 @@ public class Server {
                 } catch (IOException e) {
                     e.printStackTrace();
                     userLeftActualise(username, currentChat);
+                    sendUserLeft(username, currentChat);
                     close();
                     break;
                 } catch (ClassNotFoundException e) {
@@ -672,6 +675,16 @@ public class Server {
             msg.setListOfUndeclared(yourChatRooms);
             return msg;
         }
+    }
+
+    private void sendUserLeft(String username, ChatRoom currentChat) {
+        for (ClientThread ct :
+                clientThreads) {
+            if(ct.currentChat.getChatName().equals(currentChat.getChatName())){
+                ct.writeMsg(new Message(Message.USERLEFT, username, "",username + " left the chat"));
+            }
+        }
+
     }
 
 

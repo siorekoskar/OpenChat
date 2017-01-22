@@ -1,6 +1,7 @@
 package chat.model;
 
 import chat.controller.ClientController;
+import chat.controller.ClientControllerInterface;
 import chat.gui.MainFrame;
 
 import java.io.*;
@@ -13,26 +14,26 @@ import java.util.List;
 /**
  * Created by Oskar on 14/01/2017.
  */
-public class Client {
+public class Client implements ClientInterface {
     private ObjectInputStream sInput;
     private ObjectOutputStream sOutput;
     private Socket socket;
 
-    private ClientController cg;
+    private ClientControllerInterface cg;
 
     private String server, username;
     private int port;
 
 
 
-    public Client(String server, int port, ClientController frame, String username) {
+    public Client(String server, int port, ClientControllerInterface frame, String username) {
         this.server = server;
         this.port = port;
         this.cg = frame;
         this.username = username;
     }
 
-    public Client(String server, int port, ClientController frame) {
+    public Client(String server, int port, ClientControllerInterface frame) {
         this.server = server;
         this.port = port;
         this.cg = frame;
@@ -166,6 +167,7 @@ public class Client {
                                 break;
                             case Message.TOOMANYCHATS:
                                 cg.sendTooManyChats();
+                                break;
                             default:
                                 cg.sendMsg(msg);
                                 break;

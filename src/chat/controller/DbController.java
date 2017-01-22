@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Oskar on 08/01/2017.
  */
-public class DbController {
+public class DbController implements DBControllerInterface {
 
     Database db = new Database();
 

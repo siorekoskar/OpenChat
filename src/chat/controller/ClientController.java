@@ -1,6 +1,7 @@
 package chat.controller;
 
 import chat.gui.CreateChatEvent;
+import chat.gui.GuiInterface;
 import chat.gui.MainFrame;
 import chat.model.*;
 
@@ -9,10 +10,16 @@ import java.util.List;
 /**
  * Created by Oskar on 10/01/2017.
  */
-public class ClientController {
+public class ClientController implements ClientControllerInterface{
 
-    private Client chatClient;
-    private MainFrame frame;
+    private ClientInterface chatClient;
+    private GuiInterface frame;
+
+    public ClientController(String serverName, int serverPort, GuiInterface frame) {
+        chatClient = ClientFactory.returnClient(serverName, serverPort,this, ClientFactory.CLIENT);
+        this.frame = frame;
+        chatClient.start();
+    }
 
     public void sendYourChatRooms(List chatRooms){
         frame.setYourChatRooms(chatRooms);
@@ -68,11 +75,7 @@ public class ClientController {
         chatClient.userInvited(selected, toChat, username);
     }
 
-    public ClientController(String serverName, int serverPort, MainFrame frame) {
-        chatClient = new Client(serverName, serverPort, this);
-        this.frame = frame;
-        chatClient.start();
-    }
+
 
     public void sendMessage(Message msg) {
         chatClient.sendMessage(msg);

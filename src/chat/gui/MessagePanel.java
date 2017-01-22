@@ -136,8 +136,7 @@ public class MessagePanel extends JPanel implements ActionListener{
     }
 
     void append(Message str){
-        if(str.getType() == Message.CHATCONNECTION){
-
+        if(str.getType() == Message.CHATCONNECTION || str.getType() == Message.USERLEFT){
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
@@ -150,11 +149,10 @@ public class MessagePanel extends JPanel implements ActionListener{
                     messagesArea.setBorder(BorderFactory.createTitledBorder("Current chat: " + str.getChatName()));
                 }
             });
+
         } else if(str.getMessage()!= null){
             messagesArea.append(str.getMessage() +"\n");
         }
-
-
     }
 
     private static final String TEXT_SUBMIT = "text-submit";

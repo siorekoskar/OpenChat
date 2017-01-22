@@ -1,7 +1,7 @@
 package chat.gui;
 
-import chat.controller.ClientController;
-import chat.controller.DbController;
+import chat.controller.ClientControllerInterface;
+import chat.controller.ClientControllerFactory;
 import chat.gui.listenersinterfaces.*;
 import chat.model.ChatRoom;
 import chat.model.Message;
@@ -13,15 +13,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.SQLException;
-import java.util.*;
-import java.util.prefs.Preferences;
 import java.util.List;
 
 /**
  * Created by Oskar on 07/01/2017.
  */
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements GuiInterface{
 
     private ChatsPanel chatsPanel;
     private UserPanel userPanel;
@@ -36,10 +33,10 @@ public class MainFrame extends JFrame {
 
     private String username;
 
-    private ClientController clientController;
+    private ClientControllerInterface clientController;
 
-    private static int port;
-    private static String host;
+    private int port;
+    private String host;
 
     private boolean connected = false;
 
@@ -66,7 +63,9 @@ public class MainFrame extends JFrame {
         usersFrame = new UsersFrame("Users");
         yourChatsFrame = new YourChatsFrame();
 
-        clientController = new ClientController(host, port, MainFrame.this);
+        //clientController = new ClientController(host, port, MainFrame.this);
+        clientController = ClientControllerFactory.returnController(host, port, MainFrame.this,
+                ClientControllerFactory.CLIENTCONTROLLER);
 
         setJMenuBar(createMenuBar());
         this.setVisible(false);
@@ -220,8 +219,8 @@ public class MainFrame extends JFrame {
     }
 
     public void popChatAlreadyExistsDialog(String chatname){
-        JOptionPane.showMessageDialog(MainFrame.this, "Error",
-                "Chat " + chatname + " already exists", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(MainFrame.this, "Chat " + chatname + " already exists",
+                "Error", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void sendMsg(Message msg) {
