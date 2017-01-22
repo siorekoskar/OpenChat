@@ -130,18 +130,24 @@ public class ChatsPanel extends JSplitPane {
     }
 
     void setChats(List chats, List privateList){
-        chatPublicModel.removeAllElements();
-        chatPrivateModel.removeAllElements();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                chatPublicModel.removeAllElements();
+                chatPrivateModel.removeAllElements();
 
-        for (int i = 0; i < chats.size(); i++) {
-            String chat = (String) chats.get(i);
-            Boolean isPrivate = (Boolean) privateList.get(i);
+                for (int i = 0; i < chats.size(); i++) {
+                    String chat = (String) chats.get(i);
+                    Boolean isPrivate = (Boolean) privateList.get(i);
 
-            if(isPrivate){
-                chatPrivateModel.addElement(chat);
-            } else {
-                chatPublicModel.addElement(chat);
+                    if(isPrivate){
+                        chatPrivateModel.addElement(chat);
+                    } else {
+                        chatPublicModel.addElement(chat);
+                    }
+                }
             }
-        }
+        });
+
     }
 }

@@ -11,6 +11,7 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -201,16 +202,17 @@ public class Server {
     }
 
     private synchronized void actualizeChats() {
+
         for (ClientThread ct :
                 clientThreads) {
-            for (ChatRoom chat :
+            /*for (ChatRoom chat :
                     chatRooms) {
                 if (!ct.writeMsg(chat)) {
                     clientThreads.remove(ct);
                     users.remove(ct.getUsername());
                 }
-            }
-            /*Message msg = new Message(Message.CHATACTUALISE, "", "");
+            }*/
+            Message msg = new Message(Message.CHATACTUALISE, "", "");
             ArrayList<String> chats = new ArrayList();
             ArrayList<Boolean> chatsPrivate = new ArrayList<Boolean>();
 
@@ -226,7 +228,7 @@ public class Server {
             if (!ct.writeMsg(msg)) {
                 clientThreads.remove(ct);
                 users.remove(ct.getUsername());
-            }*/
+            }
         }
 
     }
@@ -266,14 +268,16 @@ public class Server {
         }
     }
 
-    private synchronized void removeFromOldChat(String username) {
+    private synchronized ChatRoom removeFromOldChat(String username) {
         //String username = cm.getUser();
         for (ChatRoom chat :
                 chatRooms) {
             if (chat.userExists(username)) {
                 chat.deleteUser(username);
+                return chat;
             }
         }
+        return null;
     }
 
     synchronized void inviteUser(String admin, String toInvite, String toChat) {
@@ -281,36 +285,43 @@ public class Server {
         ChatRoom chatToInvite = findChat(toChat);
         chatToInvite.addAllowed(toInvite);
         ClientThread invitedClient = findClientThread(toInvite);
-        PrivateMessage pm = new PrivateMessage(admin, "invited you to chat: "+toChat.toUpperCase(),toInvite );
+        PrivateMessage pm = new PrivateMessage(admin, "invited you to chat: " + toChat.toUpperCase(), toInvite);
         invitedClient.writeMsg(pm);
 
     }
 
+
     synchronized void userLeftActualise(String username, ChatRoom chat) {
 
+        removeFromOldChat(username);
+
+        Iterator<ChatRoom> iter = chatRooms.iterator();
+        while (iter.hasNext()) {
+            ChatRoom chatR = iter.next();
+            if (chatR.getAdmin().equals(username)) {
+                if (chatR.getUsersIn().isEmpty()) {
+                    iter.remove();
+                    System.out.println(chatR.getChatName() + "removed");
+                }
+            }
+        }
+
+        actualizeChats();
         for (ClientThread ct :
                 clientThreads) {
-            if (chat != null) {
-                removeFromOldChat(username);
-              /*  if(isAnyUserInChat(chat)){
-                    chatRooms.remove(chat);
-                    actualizeChats();
-                    return;
-                }*/
 
-                ArrayList<String> users = new ArrayList<>(chat.getUsersIn());
-                Message msg = new Message(Message.CHATLEFT);
-                msg.setUsersIn(users);
-                msg.setChat(chat);
-                if (!ct.writeMsg(msg)) {
-                    clientThreads.remove(ct);
-                    users.remove(ct.getUsername());
-                }
+            ArrayList<String> users = new ArrayList<>(chat.getUsersIn());
+            Message msg = new Message(Message.CHATLEFT);
+            msg.setUsersIn(users);
+            msg.setChat(chat);
+            if (!ct.writeMsg(msg)) {
+                clientThreads.remove(ct);
+                users.remove(ct.getUsername());
             }
         }
     }
 
-    synchronized boolean isAnyUserInChat(ChatRoom chat){
+    synchronized boolean isAnyUserInChat(ChatRoom chat) {
         System.out.println(chat.getUsersIn());
         boolean isEmpty = chat.getUsersIn().isEmpty();
         ClientThread ct = findClientThread(chat.getAdmin());
@@ -318,7 +329,7 @@ public class Server {
 
     }
 
-    synchronized void sendUsersRegistered(){
+    synchronized void sendUsersRegistered() {
         for (ClientThread ct :
                 clientThreads) {
             Message msg = new Message(Message.USERSREGISTEREDLIST);
@@ -328,14 +339,14 @@ public class Server {
                 usersRegisteredString.add(user.getLogin());
             }
             msg.setUsersIn(usersRegisteredString);
-            if(!ct.writeMsg(msg)){
+            if (!ct.writeMsg(msg)) {
                 clientThreads.remove(ct);
                 users.remove(ct.getUsername());
             }
         }
     }
-    
-    synchronized User findUser(String messageTo){
+
+    synchronized User findUser(String messageTo) {
         for (User user :
                 usersRegistered) {
             if (user.getLogin().equals(messageTo)) {
@@ -345,11 +356,11 @@ public class Server {
         return null;
     }
 
-    synchronized void sendPrivateMessageTo(String userTo, PrivateMessage pm){
+    synchronized void sendPrivateMessageTo(String userTo, PrivateMessage pm) {
         for (ClientThread ct :
                 clientThreads) {
-            if(ct.getUsername().equals(userTo)){
-                if(!ct.writeMsg(pm)){
+            if (ct.getUsername().equals(userTo)) {
+                if (!ct.writeMsg(pm)) {
                     clientThreads.remove(ct);
                     users.remove(ct.getUsername());
                 }
@@ -358,17 +369,17 @@ public class Server {
         }
     }
 
-    synchronized boolean checkIfLogged(String user){
+    synchronized boolean checkIfLogged(String user) {
         for (ClientThread ct :
                 clientThreads) {
-            if(ct.getUsername().equals(user)){
+            if (ct.getUsername().equals(user)) {
                 return true;
             }
         }
         return false;
     }
 
-    synchronized ChatRoom findChat(String chatName){
+    synchronized ChatRoom findChat(String chatName) {
         for (ChatRoom chat :
                 chatRooms) {
             if (chatName.equals(chat.getChatName())) {
@@ -378,11 +389,11 @@ public class Server {
         return null;
     }
 
-    synchronized List findChatsOf(String username){
+    synchronized List findChatsOf(String username) {
         ArrayList<ChatRoom> chatsOfUser = new ArrayList();
         for (ChatRoom chat :
                 chatRooms) {
-            if(chat.getAdmin().equals(username)){
+            if (chat.getAdmin().equals(username)) {
                 chatsOfUser.add(chat);
             }
         }
@@ -390,7 +401,7 @@ public class Server {
         return chatsOfUser;
     }
 
-    private ClientThread findClientThread(String username){
+    private ClientThread findClientThread(String username) {
         for (ClientThread ct :
                 clientThreads) {
             if (ct.getUsername().equals(username)) {
@@ -443,7 +454,7 @@ public class Server {
                             sOutput.writeObject(new Message(Message.REGISTER, userString, ""));
 
                         } else if (dbController.checkIfUserExistsServ(userString)) {
-                            if(checkIfLogged(userString)){
+                            if (checkIfLogged(userString)) {
                                 sOutput.writeObject(new Message(Message.ALREADYLOGGED, userString, ""));
                             } else {
                                 sOutput.writeObject(new Message(Message.ALLOWED, userString, ""));
@@ -483,19 +494,24 @@ public class Server {
         }
 
 
-
         private boolean connectToChat(String user, String chatSearched, boolean userLeft) {
             ChatRoom chat = showChatRoom(chatSearched);
 
             try {
                 if ((!chat.isPrivate() || (chat.isPrivate() && chat.getAreAllowed().contains(user)))) {
 
-                    removeFromOldChat(user);
-                   /* if (isAnyUserInChat(chat)) {
-                        chatRooms.remove(chat);
-                        actualizeChats();
-                    }*/
+                    removeFromOldChat(username);
 
+                    Iterator<ChatRoom> iter = chatRooms.iterator();
+                    while (iter.hasNext()) {
+                        ChatRoom chatR = iter.next();
+                        if (isAnyUserInChat(chatR) ) {
+                            iter.remove();
+                            System.out.println(chatR.getChatName() + "removed");
+                        }
+                    }
+
+                    actualizeChats();
                     if (!chat.userExists(user)) {
                         chat.addUsersIn(user);
                     }
@@ -513,13 +529,13 @@ public class Server {
 
                     return true;
                 }
-            } catch(Exception e){
+            } catch (Exception e) {
                 actualizeChats();
             }
             return false;
         }
 
-        boolean checkIfChatRoomExists(String newChat){
+        boolean checkIfChatRoomExists(String newChat) {
             for (ChatRoom chat :
                     chatRooms) {
                 if (chat.getChatName().equals(newChat)) {
@@ -546,11 +562,8 @@ public class Server {
                                 break;
                             case Message.CREATECHAT:
                                 String chatName = cm.getChatRoom().getChatName();
-                                System.out.println(chatRooms.toString() + "1111");
-                                if(!checkIfChatRoomExists(chatName) && !chatName.equals("")) {
-                                    System.out.println(chatRooms.toString() + "2222");
+                                if (!checkIfChatRoomExists(chatName) && !chatName.equals("")) {
                                     createChatRoom(cm);
-                                    System.out.println(chatRooms.toString() + "3333");
                                     Message msg = findListOfChats();
                                     writeMsg(msg);
                                 } else {
@@ -572,8 +585,8 @@ public class Server {
                                 inviteUser(admin, toInvite, toChat);
                                 break;
                         }
-                    } else if (obj instanceof PrivateMessage){
-                        PrivateMessage pm = (PrivateMessage)obj;
+                    } else if (obj instanceof PrivateMessage) {
+                        PrivateMessage pm = (PrivateMessage) obj;
                         User userTo = findUser(pm.getMessageTo());
                         userTo.addPrivateMessage(pm);
                         sendPrivateMessageTo(userTo.getLogin(), pm);
@@ -596,7 +609,7 @@ public class Server {
             sendToAll(new Message(Message.DISCONNECT));
         }
 
-        void askForInvite(String chatName){
+        void askForInvite(String chatName) {
             ChatRoom chat = findChat(chatName);
             String admin = chat.getAdmin();
             ClientThread ct = findClientThread(admin);
@@ -641,8 +654,8 @@ public class Server {
             return true;
         }
 
-        Message findListOfChats(){
-            ArrayList<ChatRoom> listOfChats = (ArrayList)findChatsOf(username);
+        Message findListOfChats() {
+            ArrayList<ChatRoom> listOfChats = (ArrayList) findChatsOf(username);
             ArrayList<String> yourChatRooms = new ArrayList<>();
             for (ChatRoom chat :
                     listOfChats) {
