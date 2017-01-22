@@ -56,7 +56,7 @@ class Launcher extends JFrame implements ActionListener{
 
     private PrefsListener prefsListener;
 
-    public Launcher(ClientControllerInterface controller, GuiInterface gui) {
+    Launcher(ClientControllerInterface controller, GuiInterface gui) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.controller = controller;
@@ -101,7 +101,7 @@ class Launcher extends JFrame implements ActionListener{
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    ;//new MainFrame();//hostField.getText(), Integer.parseInt(portField.getText()));
+
                     ClientInterface client = ClientFactory.returnClient(hostField.getText(),
                             Integer.parseInt(portField.getText()), ClientFactory.CLIENT);
 

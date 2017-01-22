@@ -32,13 +32,13 @@ public class Server {
     private DBControllerInterface dbController;
 
 
-    public Server(int port, String url, String admin, String password) {
+    public Server(int port, String url, String admin, String password, DBControllerInterface dbControllerInterface) {
 
         this.port = port;
         users = new ArrayList<>();
         clientThreads = new ArrayList<>();
         chatRooms = new ArrayList<>();
-        dbController = DataBaseControllerFactory.returnDBController(DataBaseControllerFactory.DBCONTROLLER);
+        dbController = dbControllerInterface;
 
         try {
             dbController.connect(url, admin, password);
@@ -88,10 +88,7 @@ public class Server {
 
                 HandleDB handler = new HandleDB(socket);
                 handler.start();
-                //ClientThread t = new ClientThread(socket);
-                //ClientThread t = handler.getCt();
-                // clientThreads.add(t);
-                /// t.start();
+
             }
             try {
                 serverSocket.close();
@@ -694,8 +691,9 @@ public class Server {
         String admin = "root";
         String password = "shihtzu1";
 
+        DBControllerInterface dbController = DataBaseControllerFactory.returnDBController(DataBaseControllerFactory.DBCONTROLLER);
         // create a server object and start it
-        Server server = new Server(portNumber, url, admin, password);
+        Server server = new Server(portNumber, url, admin, password, dbController);
         server.start();
     }
 }

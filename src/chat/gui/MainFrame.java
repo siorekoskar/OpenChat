@@ -48,7 +48,7 @@ public class MainFrame extends JFrame implements GuiInterface{
 
     private boolean connected = false;
 
-    public MainFrame(){//String host, int port, ClientControllerInterface clientController1) {
+    public MainFrame(){
         super("Chat");
 
         setSize(800, 600);
@@ -67,11 +67,6 @@ public class MainFrame extends JFrame implements GuiInterface{
         privateMessageFrame = new PrivateMessageFrame();
         usersFrame = new UsersFrame("Users");
         yourChatsFrame = new YourChatsFrame();
-        //this.clientController = clientController1;
-
-        //clientController = new ClientController(host, port, MainFrame.this);
-        //clientController = ClientControllerFactory.returnController(host, port, MainFrame.this,
-               // ClientControllerFactory.CLIENTCONTROLLER);
 
         setJMenuBar(createMenuBar());
         this.setVisible(false);
