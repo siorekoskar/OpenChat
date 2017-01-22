@@ -162,6 +162,9 @@ public class Client {
                             case Message.GETCHATROOMS:
                                 cg.sendYourChatRooms(msg.getListOfUndeclared());
                                 break;
+                          //  case Message.CHATACTUALISE:
+                                //cg.sendChats(msg.getListOfUndeclared(), msg.getPrivateList());
+                             //   break;
                             default:
                                 cg.sendMsg(msg);
                                 break;

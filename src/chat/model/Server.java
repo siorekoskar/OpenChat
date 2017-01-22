@@ -139,14 +139,13 @@ public class Server {
 
     private synchronized void createChatRoom(Message msg) throws IOException {
 
+        ChatRoom chatRoom = msg.getChatRoom();
+        ChatRoom chatToAdd = new ChatRoom(chatRoom.isPrivate(), chatRoom.getAdmin(),
+                chatRoom.getChatName());
+        chatToAdd.addAllowed(chatRoom.getAdmin());
+        chatRooms.add(chatToAdd);
         for (int i = 0; i < clientThreads.size(); i++) {
             ClientThread ct = clientThreads.get(i);
-
-            ChatRoom chatRoom = msg.getChatRoom();
-            ChatRoom chatToAdd = new ChatRoom(chatRoom.isPrivate(), chatRoom.getAdmin(),
-                    chatRoom.getChatName());
-            chatToAdd.addAllowed(chatRoom.getAdmin());
-            chatRooms.add(chatToAdd);
 
             for (ChatRoom chat :
                     chatRooms) {
@@ -211,6 +210,23 @@ public class Server {
                     users.remove(ct.getUsername());
                 }
             }
+            /*Message msg = new Message(Message.CHATACTUALISE, "", "");
+            ArrayList<String> chats = new ArrayList();
+            ArrayList<Boolean> chatsPrivate = new ArrayList<Boolean>();
+
+            for (ChatRoom chat :
+                    chatRooms) {
+                String name = chat.getChatName();
+                chats.add(name);
+                chatsPrivate.add(chat.isPrivate());
+            }
+            msg.setListOfUndeclared(chats);
+            msg.setPrivateList(chatsPrivate);
+
+            if (!ct.writeMsg(msg)) {
+                clientThreads.remove(ct);
+                users.remove(ct.getUsername());
+            }*/
         }
 
     }
@@ -265,17 +281,23 @@ public class Server {
         ChatRoom chatToInvite = findChat(toChat);
         chatToInvite.addAllowed(toInvite);
         ClientThread invitedClient = findClientThread(toInvite);
-        PrivateMessage pm = new PrivateMessage(admin, "invited you to chat: ", toChat.toUpperCase());
+        PrivateMessage pm = new PrivateMessage(admin, "invited you to chat: "+toChat.toUpperCase(),toInvite );
         invitedClient.writeMsg(pm);
-
 
     }
 
     synchronized void userLeftActualise(String username, ChatRoom chat) {
+
         for (ClientThread ct :
                 clientThreads) {
             if (chat != null) {
                 removeFromOldChat(username);
+              /*  if(isAnyUserInChat(chat)){
+                    chatRooms.remove(chat);
+                    actualizeChats();
+                    return;
+                }*/
+
                 ArrayList<String> users = new ArrayList<>(chat.getUsersIn());
                 Message msg = new Message(Message.CHATLEFT);
                 msg.setUsersIn(users);
@@ -286,6 +308,14 @@ public class Server {
                 }
             }
         }
+    }
+
+    synchronized boolean isAnyUserInChat(ChatRoom chat){
+        System.out.println(chat.getUsersIn());
+        boolean isEmpty = chat.getUsersIn().isEmpty();
+        ClientThread ct = findClientThread(chat.getAdmin());
+        return ((isEmpty && ct == null) && !chat.getChatName().equals("All Chat"));
+
     }
 
     synchronized void sendUsersRegistered(){
@@ -457,26 +487,34 @@ public class Server {
         private boolean connectToChat(String user, String chatSearched, boolean userLeft) {
             ChatRoom chat = showChatRoom(chatSearched);
 
-            if ((!chat.isPrivate() || (chat.isPrivate() && chat.getAreAllowed().contains(user)))) {
+            try {
+                if ((!chat.isPrivate() || (chat.isPrivate() && chat.getAreAllowed().contains(user)))) {
 
-                removeFromOldChat(user);
+                    removeFromOldChat(user);
+                   /* if (isAnyUserInChat(chat)) {
+                        chatRooms.remove(chat);
+                        actualizeChats();
+                    }*/
 
-                if (!chat.userExists(user)) {
-                    chat.addUsersIn(user);
+                    if (!chat.userExists(user)) {
+                        chat.addUsersIn(user);
+                    }
+                    ChatRoom oldChat = null;
+                    if (currentChat != null) oldChat = currentChat;
+                    currentChat = chat;
+                    currentChatS = chat.getChatName();
+
+                    String chatStructure = chat.getMessages();
+                    System.out.println(chat.getUsersAsString());
+                    Message msg = new Message(Message.CHATCONNECTION, "", chatStructure);
+                    msg.setChatName(currentChat.getChatName());
+                    msg.setUsersIn(chat.getUsersIn());
+                    actualizeChatUsers(chat, msg, oldChat);
+
+                    return true;
                 }
-                ChatRoom oldChat = null;
-                if (currentChat != null) oldChat = currentChat;
-                currentChat = chat;
-                currentChatS = chat.getChatName();
-
-                String chatStructure = chat.getMessages();
-                System.out.println(chat.getUsersAsString());
-                Message msg = new Message(Message.CHATCONNECTION, "", chatStructure);
-                msg.setChatName(currentChat.getChatName());
-                msg.setUsersIn(chat.getUsersIn());
-                actualizeChatUsers(chat, msg, oldChat);
-
-                return true;
+            } catch(Exception e){
+                actualizeChats();
             }
             return false;
         }
@@ -508,8 +546,11 @@ public class Server {
                                 break;
                             case Message.CREATECHAT:
                                 String chatName = cm.getChatRoom().getChatName();
-                                if(!checkIfChatRoomExists(chatName)) {
+                                System.out.println(chatRooms.toString() + "1111");
+                                if(!checkIfChatRoomExists(chatName) && !chatName.equals("")) {
+                                    System.out.println(chatRooms.toString() + "2222");
                                     createChatRoom(cm);
+                                    System.out.println(chatRooms.toString() + "3333");
                                     Message msg = findListOfChats();
                                     writeMsg(msg);
                                 } else {
@@ -525,11 +566,6 @@ public class Server {
                                 }
                                 break;
                             case Message.USERINVITED:
-                                /*for (Object obj1:
-                                        findChatsOf(cm.getUser())) {
-                                    ChatRoom chat = (ChatRoom) obj1;
-                                    System.out.println(chat.getChatName());
-                                }*/
                                 String admin = cm.getUser();
                                 String toInvite = cm.getMessage();
                                 String toChat = cm.getSentToChat();
@@ -538,8 +574,6 @@ public class Server {
                         }
                     } else if (obj instanceof PrivateMessage){
                         PrivateMessage pm = (PrivateMessage)obj;
-                        System.out.println("Message from: " + pm.getMessageFrom() + " to: " +
-                                pm.getMessageTo() + ": " + pm.getMessage());
                         User userTo = findUser(pm.getMessageTo());
                         userTo.addPrivateMessage(pm);
                         sendPrivateMessageTo(userTo.getLogin(), pm);

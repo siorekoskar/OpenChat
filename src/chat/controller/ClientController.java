@@ -128,4 +128,7 @@ public class ClientController {
         frame.popChatAlreadyExistsDialog(chat);
     }
 
+    public void sendChats(List chats, List privateList){
+        frame.actualizeChats(chats, privateList);
+    }
 }

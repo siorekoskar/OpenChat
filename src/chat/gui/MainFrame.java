@@ -357,5 +357,9 @@ public class MainFrame extends JFrame {
         yourChatsFrame.setChatList(chatRooms);
     }
 
+    public void actualizeChats(List chats, List privateList){
+        chatsPanel.setChats(chats, privateList);
+    }
+
 
 }
