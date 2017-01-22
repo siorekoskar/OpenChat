@@ -8,10 +8,9 @@ import chat.controller.ClientControllerInterface;
 public class ClientFactory {
     public static final int CLIENT = 1;
 
-    public static ClientInterface returnClient(String serverName, int port,
-                                               ClientControllerInterface frame, int type){
+    public static ClientInterface returnClient(String serverName, int port, int type){
         if(type == CLIENT){
-            return new Client(serverName, port, frame);
+            return new Client(serverName, port);
         }
         return null;
     }

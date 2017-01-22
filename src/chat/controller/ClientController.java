@@ -12,13 +12,32 @@ import java.util.List;
  */
 public class ClientController implements ClientControllerInterface{
 
+    public void setChatClient(ClientInterface chatClient) {
+        this.chatClient = chatClient;
+    }
+
+    public void setFrame(GuiInterface frame) {
+        this.frame = frame;
+    }
+
     private ClientInterface chatClient;
     private GuiInterface frame;
 
-    public ClientController(String serverName, int serverPort, GuiInterface frame) {
-        chatClient = ClientFactory.returnClient(serverName, serverPort,this, ClientFactory.CLIENT);
+   /* public ClientController() {
+        //chatClient = ClientFactory.returnClient(serverName, serverPort,this, ClientFactory.CLIENT);
         this.frame = frame;
-        chatClient.start();
+       // frame.setClientController(this);
+       // chatClient.start();
+    }*/
+
+    @Override
+    public void setClient(ClientInterface client) {
+        this.chatClient = client;
+    }
+
+    @Override
+    public void setGui(GuiInterface gui) {
+        this.frame = gui;
     }
 
     public void sendYourChatRooms(List chatRooms){
@@ -75,8 +94,6 @@ public class ClientController implements ClientControllerInterface{
         chatClient.userInvited(selected, toChat, username);
     }
 
-
-
     public void sendMessage(Message msg) {
         chatClient.sendMessage(msg);
     }
@@ -107,7 +124,6 @@ public class ClientController implements ClientControllerInterface{
         ChatRoom chatRoom = new ChatRoom(isPrivate, admin, chatName);
         Message msg = new Message(Message.CREATECHAT, admin, "", chatRoom);
         chatClient.sendMessage(msg);
-        //ystem.out.println(chatRoom.toString());
     }
 
     public void sendChat(ChatRoom chat) {

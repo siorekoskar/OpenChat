@@ -1,5 +1,6 @@
 package chat.gui;
 
+import chat.controller.ClientControllerInterface;
 import chat.model.ChatRoom;
 import chat.model.Message;
 import chat.model.User;
@@ -11,6 +12,7 @@ import java.util.List;
  * Created by Oskar on 22/01/2017.
  */
 public interface GuiInterface {
+     void setClientController(ClientControllerInterface clientController);
      void popChatAlreadyExistsDialog(String chatname);
      void sendMsg(Message msg);
      void popFail(String msg);
@@ -28,4 +30,5 @@ public interface GuiInterface {
      void sendPrivateMsgToGui(String msg);
      void setYourChatRooms(List chatRooms);
      void actualizeChats(List chats, List privateList);
+     void setHostAndPort(String host, int port);
 }

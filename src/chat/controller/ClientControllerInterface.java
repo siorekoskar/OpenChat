@@ -1,6 +1,7 @@
 package chat.controller;
 
 import chat.gui.CreateChatEvent;
+import chat.gui.GuiInterface;
 import chat.gui.MainFrame;
 import chat.model.*;
 
@@ -11,6 +12,8 @@ import java.util.List;
  */
 public interface ClientControllerInterface {
 
+     void setClient(ClientInterface client);
+     void setGui(GuiInterface gui);
      void sendYourChatRooms(List chatRooms);
      void sendPrivateMsgToGui(String msg);
      void notConnected(String msg);

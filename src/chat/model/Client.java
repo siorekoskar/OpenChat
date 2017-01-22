@@ -24,6 +24,9 @@ public class Client implements ClientInterface {
     private String server, username;
     private int port;
 
+    public void setController(ClientControllerInterface cg){
+        this.cg = cg;
+    };
 
 
     public Client(String server, int port, ClientControllerInterface frame, String username) {
@@ -33,10 +36,10 @@ public class Client implements ClientInterface {
         this.username = username;
     }
 
-    public Client(String server, int port, ClientControllerInterface frame) {
+    public Client(String server, int port) {
         this.server = server;
         this.port = port;
-        this.cg = frame;
+       // this.cg = frame;
 
     }
 

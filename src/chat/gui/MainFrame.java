@@ -33,18 +33,23 @@ public class MainFrame extends JFrame implements GuiInterface{
 
     private String username;
 
+    public void setClientController(ClientControllerInterface clientController) {
+        this.clientController = clientController;
+    }
+
     private ClientControllerInterface clientController;
+
+    public void setHostAndPort(String host, int port) {
+        loginDialog.setHostAndPort(host, port);
+    }
 
     private int port;
     private String host;
 
     private boolean connected = false;
 
-    public MainFrame(String host, int port) {
+    public MainFrame(){//String host, int port, ClientControllerInterface clientController1) {
         super("Chat");
-
-        this.host = host;
-        this.port = port;
 
         setSize(800, 600);
         setMinimumSize(new Dimension(400, 400));
@@ -57,15 +62,16 @@ public class MainFrame extends JFrame implements GuiInterface{
         userPanel = new UserPanel();
         activeUsersPanel = new ActiveUsersPanel();
         messagePanel = new MessagePanel();
-        loginDialog = new LoginDialog(this, host, port);
+        loginDialog = new LoginDialog(this);
         inboxFrame = new InboxFrame();
         privateMessageFrame = new PrivateMessageFrame();
         usersFrame = new UsersFrame("Users");
         yourChatsFrame = new YourChatsFrame();
+        //this.clientController = clientController1;
 
         //clientController = new ClientController(host, port, MainFrame.this);
-        clientController = ClientControllerFactory.returnController(host, port, MainFrame.this,
-                ClientControllerFactory.CLIENTCONTROLLER);
+        //clientController = ClientControllerFactory.returnController(host, port, MainFrame.this,
+               // ClientControllerFactory.CLIENTCONTROLLER);
 
         setJMenuBar(createMenuBar());
         this.setVisible(false);
@@ -254,7 +260,7 @@ public class MainFrame extends JFrame implements GuiInterface{
     public void popNotConnectedDialog(String msg){
         JOptionPane.showMessageDialog(MainFrame.this, msg,
                 "Error", JOptionPane.ERROR_MESSAGE);
-        Launcher launcher = new Launcher();
+        Launcher launcher = new Launcher(clientController, this);
         dispose();
         System.gc();
     }

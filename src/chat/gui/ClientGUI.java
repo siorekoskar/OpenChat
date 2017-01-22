@@ -1,6 +1,10 @@
 package chat.gui;
 
+import chat.controller.ClientControllerFactory;
+import chat.controller.ClientControllerInterface;
 import chat.gui.listenersinterfaces.PrefsListener;
+import chat.model.ClientFactory;
+import chat.model.ClientInterface;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -27,7 +31,12 @@ public class ClientGUI {
             @Override
             public void run() {
                 //new MainFrame();
-                new Launcher();
+                ClientControllerInterface controller =
+                        ClientControllerFactory.returnController(ClientControllerFactory.CLIENTCONTROLLER);
+
+                GuiInterface gui = GuiFactory.returnGui(GuiFactory.MAINFRAME);
+
+                new Launcher(controller, gui);
             }
         });
     }
@@ -42,11 +51,16 @@ class Launcher extends JFrame implements ActionListener{
     private JButton enterButton;
     private JButton quitButton;
 
+    private ClientControllerInterface controller;
+    private GuiInterface gui;
 
     private PrefsListener prefsListener;
 
-    public Launcher() {
+    public Launcher(ClientControllerInterface controller, GuiInterface gui) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.controller = controller;
+        this.gui = gui;
 
         hostField = new JTextField(10);
         portField = new JTextField(5);
@@ -87,7 +101,17 @@ class Launcher extends JFrame implements ActionListener{
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    new MainFrame(hostField.getText(), Integer.parseInt(portField.getText()));
+                    ;//new MainFrame();//hostField.getText(), Integer.parseInt(portField.getText()));
+                    ClientInterface client = ClientFactory.returnClient(hostField.getText(),
+                            Integer.parseInt(portField.getText()), ClientFactory.CLIENT);
+
+                    client.setController(controller);
+                    gui.setClientController(controller);
+                    gui.setHostAndPort(hostField.getText(), Integer.parseInt(portField.getText()));
+                    controller.setClient(client);
+                    controller.setGui(gui);
+                    client.start();
+
                 }
             });
             dispose();

@@ -8,10 +8,9 @@ import chat.gui.MainFrame;
 public class ClientControllerFactory {
     public static final int CLIENTCONTROLLER = 1;
 
-    public static ClientControllerInterface returnController(String serverName, int serverPort,
-                                                      MainFrame frame, int type){
+    public static ClientControllerInterface returnController(int type){
         if(type == CLIENTCONTROLLER){
-            return new ClientController(serverName, serverPort, frame);
+            return new ClientController();
         }
         return null;
     }

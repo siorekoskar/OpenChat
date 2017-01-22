@@ -1,5 +1,7 @@
 package chat.model;
 
+import chat.controller.ClientControllerInterface;
+
 /**
  * Created by Oskar on 22/01/2017.
  */
@@ -9,4 +11,5 @@ public interface ClientInterface {
     public void sendPrivateMessage(PrivateMessage msg);
     public void disconnect();
     public void userInvited(String userInvited,String toChat, String admin);
+    void setController(ClientControllerInterface cg);
 }

@@ -18,17 +18,24 @@ public class LoginDialog extends JFrame {
     private JPasswordField passField;
     private JButton registerButton;
     private RegisterDialog registerDialog;
+    JPanel controlsPanel;
+    JPanel buttonsPanel;
+
+    public void setHostAndPort(String host, int port) {
+        this.host = host;
+        this.port = port;
+        layoutControls();
+    }
+
 
     private String host;
     private int port;
 
     private FormListener formListener;
 
-    public LoginDialog(JFrame parent, String host, int port) {
-        //super(parent, "Login", false);
+    public LoginDialog(JFrame parent) {
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.host = host;
-        this.port = port;
 
         setTitle("Login");
 
@@ -90,7 +97,7 @@ public class LoginDialog extends JFrame {
             }
         });
 
-        layoutControls();
+       // layoutControls();
         setPreferredSize(new Dimension(300, 220));
         setMinimumSize(new Dimension(300, 220));
         setLocationRelativeTo(parent);
@@ -103,8 +110,8 @@ public class LoginDialog extends JFrame {
     }
 
     private void layoutControls() {
-        JPanel controlsPanel = new JPanel();
-        JPanel buttonsPanel = new JPanel();
+        controlsPanel = new JPanel();
+        buttonsPanel = new JPanel();
 
         int space = 8;
         Border titledBorder = BorderFactory.createTitledBorder("Login details");
