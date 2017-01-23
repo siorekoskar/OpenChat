@@ -8,53 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d1bbba1-6a5b-431b-bd5c-38d7032de415" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/chat/model/ChatRoom.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/chat/model/Database.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/chat/model/Message.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/chat/model/PrivateMessage.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/TestDatabase.java" afterPath="$PROJECT_DIR$/src/test/java/pl/edu/agh/kis/openchat/TestDatabase.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/controller/ClientController.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/ClientController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/controller/ClientControllerFactory.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/ClientControllerFactory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/controller/ClientControllerInterface.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/ClientControllerInterface.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/controller/DBControllerInterface.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DBControllerInterface.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/controller/DataBaseControllerFactory.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DataBaseControllerFactory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/controller/DbController.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DbController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/ActiveUsersPanel.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/ActiveUsersPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/ChatsPanel.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/ChatsPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/ClientGUI.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/ClientGUI.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/CreateChatEvent.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/CreateChatEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/CreateChatFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/CreateChatFrame.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/FormEvent.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/FormEvent.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/GuiFactory.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/GuiFactory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/GuiInterface.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/GuiInterface.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/InboxFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/InboxFrame.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/LoginDialog.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/LoginDialog.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/MainFrame.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/MessagePanel.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/MessagePanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/PrivateMessageFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/PrivateMessageFrame.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/RegisterDialog.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/RegisterDialog.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/UserPanel.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/UserPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/UsersFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/UsersFrame.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/YourChatsFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/YourChatsFrame.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/ActiveUsersPanelListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/ActiveUsersPanelListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/ChatsPanelListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/ChatsPanelListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/CreateChatListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/CreateChatListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/FormListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/FormListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/InboxListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/InboxListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/MessageListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/MessageListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/PrefsListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/PrefsListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/PrivateMessageListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/PrivateMessageListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UserPanelListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/UserPanelListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/UsersFrameListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/UsersFrameListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/listenersinterfaces/YourChatsFrameListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/YourChatsFrameListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/gui/servergui/ServerGui.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/servergui/ServerGui.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/model/Client.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Client.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/model/ClientFactory.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ClientFactory.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/model/ClientInterface.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ClientInterface.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/model/Server.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Server.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/chat/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/User.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OpenChat.iml" afterPath="$PROJECT_DIR$/OpenChat.iml" />
     </list>
     <ignored path="OpenChat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -237,7 +191,7 @@
           <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/MainFrame.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1343">
+                <state relative-caret-position="858">
                   <caret line="193" column="13" selection-start-line="193" selection-start-column="13" selection-end-line="193" selection-end-column="13" />
                   <folding>
                     <element signature="class#3109:4115" expanded="false" />
@@ -280,22 +234,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="FormEvent.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/FormEvent.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="13" column="49" selection-start-line="13" selection-start-column="49" selection-end-line="13" selection-end-column="49" />
-                  <folding>
-                    <element signature="method#FormEvent#0;class#FormEvent#0" expanded="false" />
-                    <element signature="method#setLogin#0;class#FormEvent#0" expanded="false" />
-                    <element signature="method#setPass#0;class#FormEvent#0" expanded="false" />
-                    <element signature="method#getLogin#0;class#FormEvent#0" expanded="false" />
-                    <element signature="method#getPass#0;class#FormEvent#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="PrivateMessage.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/PrivateMessage.java">
               <provider selected="true" editor-type-id="text-editor">
@@ -330,11 +268,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ChatRoom.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Message.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Message.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ChatRoom.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ChatRoom.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
-                  <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+                <state relative-caret-position="187">
+                  <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
                   <folding />
                 </state>
               </provider>
@@ -549,9 +497,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -571,24 +517,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="OpenChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OpenChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OpenChat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="openchat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -645,9 +573,37 @@
               <option name="myItemId" value="openchat" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gui" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OpenChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="OpenChat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openchat" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1266,14 +1222,8 @@
       <workItem from="1485115099599" duration="2885000" />
       <workItem from="1485119014858" duration="610000" />
       <workItem from="1485170149505" duration="731000" />
-      <workItem from="1485188548172" duration="1410000" />
-    </task>
-    <task id="LOCAL-00022" summary="object sending implemented">
-      <created>1484419701960</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1484419701960</updated>
+      <workItem from="1485188548172" duration="1479000" />
+      <workItem from="1485191223417" duration="10000" />
     </task>
     <task id="LOCAL-00023" summary="chatroom class implemented">
       <created>1484429691734</created>
@@ -1611,11 +1561,18 @@
       <option name="project" value="LOCAL" />
       <updated>1485112369404</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="testsstart&#10;">
+      <created>1485191160765</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1485191160766</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289796000" />
+    <option name="totallyTimeSpent" value="289875000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
@@ -1623,13 +1580,12 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3245243" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23255815" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22093023" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" x="696" y="507" width="1025" height="313" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22093023" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" x="696" y="507" width="1025" height="313" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1644,6 +1600,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3245243" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="92" y="92" width="1736" height="856" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1663,7 +1620,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="private message frame working" />
     <MESSAGE value="whisper working" />
     <MESSAGE value="added launcher with port and host" />
     <MESSAGE value="slight refactor and connection status setter" />
@@ -1688,7 +1644,8 @@
     <MESSAGE value="added interfaces2" />
     <MESSAGE value="server gui smart added" />
     <MESSAGE value="refact" />
-    <option name="LAST_COMMIT_MESSAGE" value="refact" />
+    <MESSAGE value="testsstart&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="testsstart&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1976,13 +1933,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/CreateChatEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -2138,18 +2088,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/PrivateMessage.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ChatRoom.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="method#getMessage#0;class#PrivateMessage#0" expanded="false" />
-            <element signature="method#setMessage#0;class#PrivateMessage#0" expanded="false" />
-            <element signature="method#getMessageTo#0;class#PrivateMessage#0" expanded="false" />
-            <element signature="method#setMessageTo#0;class#PrivateMessage#0" expanded="false" />
-            <element signature="method#getMessageFrom#0;class#PrivateMessage#0" expanded="false" />
-            <element signature="method#setMessageFrom#0;class#PrivateMessage#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2168,10 +2111,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ChatRoom.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/PrivateMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
+        <state relative-caret-position="221">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="method#getMessage#0;class#PrivateMessage#0" expanded="false" />
+            <element signature="method#setMessage#0;class#PrivateMessage#0" expanded="false" />
+            <element signature="method#getMessageTo#0;class#PrivateMessage#0" expanded="false" />
+            <element signature="method#setMessageTo#0;class#PrivateMessage#0" expanded="false" />
+            <element signature="method#getMessageFrom#0;class#PrivateMessage#0" expanded="false" />
+            <element signature="method#setMessageFrom#0;class#PrivateMessage#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
           <folding />
         </state>
       </provider>
