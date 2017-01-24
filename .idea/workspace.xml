@@ -10,60 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d1bbba1-6a5b-431b-bd5c-38d7032de415" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/JUnit4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/main/java/pl/edu/agh/kis/openchat/controller/ClientControllerTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/main/java/pl/edu/agh/kis/openchat/model/ClientTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/main/java/pl/edu/agh/kis/openchat/model/DatabaseTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/main/java/pl/edu/agh/kis/openchat/model/MessageTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/main/java/pl/edu/agh/kis/openchat/model/PrivateMessageTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/main/java/pl/edu/agh/kis/openchat/model/UserTest.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/pl/edu/agh/kis/openchat/TestDatabase.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OpenChat.iml" afterPath="$PROJECT_DIR$/OpenChat.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/ClientController.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/ClientController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/ClientControllerFactory.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/ClientControllerFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/ClientControllerInterface.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/ClientControllerInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DBControllerInterface.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DBControllerInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DataBaseControllerFactory.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DataBaseControllerFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DbController.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DbController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/ActiveUsersPanel.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/ActiveUsersPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/ChatsPanel.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/ChatsPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/ClientGUI.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/ClientGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/CreateChatEvent.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/CreateChatEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/CreateChatFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/CreateChatFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/FormEvent.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/FormEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/GuiFactory.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/GuiFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/GuiInterface.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/GuiInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/InboxFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/InboxFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/LoginDialog.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/LoginDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/MainFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/MessagePanel.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/MessagePanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/PrivateMessageFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/PrivateMessageFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/RegisterDialog.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/RegisterDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/UserPanel.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/UserPanel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/UsersFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/UsersFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/YourChatsFrame.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/YourChatsFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/ActiveUsersPanelListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/ActiveUsersPanelListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/ChatsPanelListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/ChatsPanelListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/CreateChatListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/CreateChatListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/FormListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/FormListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/InboxListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/InboxListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/MessageListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/MessageListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/PrefsListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/PrefsListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/PrivateMessageListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/PrivateMessageListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/UserPanelListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/UserPanelListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/UsersFrameListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/UsersFrameListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/YourChatsFrameListener.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/listenersinterfaces/YourChatsFrameListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/servergui/ServerGui.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/servergui/ServerGui.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ChatRoom.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ChatRoom.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Client.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ClientFactory.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ClientFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ClientInterface.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ClientInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Database.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Database.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Message.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Message.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/PrivateMessage.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/PrivateMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Server.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/User.java" />
     </list>
     <ignored path="OpenChat.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1358,14 +1305,7 @@
       <workItem from="1485188548172" duration="1479000" />
       <workItem from="1485191223417" duration="1095000" />
       <workItem from="1485192335140" duration="10186000" />
-      <workItem from="1485203013902" duration="17875000" />
-    </task>
-    <task id="LOCAL-00024" summary="chatrooms are getting real">
-      <created>1484433400026</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1484433400026</updated>
+      <workItem from="1485203013902" duration="17901000" />
     </task>
     <task id="LOCAL-00025" summary="chatrooms are getting real">
       <created>1484437966709</created>
@@ -1703,7 +1643,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485191248728</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="ttbranch">
+      <created>1485220921139</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1485220921140</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1739,7 +1686,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="319021000" />
+    <option name="totallyTimeSpent" value="319047000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1787,7 +1734,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="whisper working" />
     <MESSAGE value="added launcher with port and host" />
     <MESSAGE value="slight refactor and connection status setter" />
     <MESSAGE value="server lost messages" />
@@ -1812,7 +1758,8 @@
     <MESSAGE value="server gui smart added" />
     <MESSAGE value="refact" />
     <MESSAGE value="testsstart&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="testsstart&#10;" />
+    <MESSAGE value="ttbranch" />
+    <option name="LAST_COMMIT_MESSAGE" value="ttbranch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
