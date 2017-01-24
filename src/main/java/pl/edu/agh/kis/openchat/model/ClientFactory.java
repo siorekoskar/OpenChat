@@ -3,6 +3,10 @@ package main.java.pl.edu.agh.kis.openchat.model;
 /**
  * Created by Oskar on 22/01/2017.
  */
+
+/**
+ * Factory returning type of client
+ */
 public class ClientFactory {
     public static final int CLIENT = 1;
 

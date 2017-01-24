@@ -1,8 +1,8 @@
 package main.java.pl.edu.agh.kis.openchat.gui.servergui;
 
 
-import main.java.pl.edu.agh.kis.openchat.controller.DBControllerInterface;
 import main.java.pl.edu.agh.kis.openchat.controller.DataBaseControllerFactory;
+import main.java.pl.edu.agh.kis.openchat.controller.DBControllerInterface;
 import main.java.pl.edu.agh.kis.openchat.model.Server;
 
 import javax.swing.*;

@@ -5,6 +5,12 @@ import java.io.Serializable;
 /**
  * Created by Oskar on 21/01/2017.
  */
+
+/**
+ * Private message class that has informations about who, to whom and what message
+ * has been sent.
+ * Implements Serializable interface
+ */
 public class PrivateMessage implements Serializable{
     static final long serialVersionUID = 2133222223L;
 
@@ -12,6 +18,12 @@ public class PrivateMessage implements Serializable{
     private String message;
     private String messageTo;
 
+    /**
+     * 3 parameter constructor
+     * @param messageFrom
+     * @param message
+     * @param messageTo
+     */
      public PrivateMessage(String messageFrom, String message, String messageTo){
         this.messageFrom = messageFrom;
         this.messageTo = messageTo;

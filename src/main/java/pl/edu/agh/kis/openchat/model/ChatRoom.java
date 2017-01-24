@@ -6,6 +6,12 @@ import java.util.ArrayList;
 /**
  * Created by Oskar on 14/01/2017.
  */
+
+/**
+ * Chatroom class that implements serializable,
+ * can be private or public
+ * Hold information about admin, chatname, active users, and messages inside
+ */
 public class ChatRoom implements Serializable {
     static final boolean PRIVATE = true, PUBLIC = false;
     static final long serialVersionUID = 40L;
@@ -17,6 +23,12 @@ public class ChatRoom implements Serializable {
     private boolean isPrivate;
     private ArrayList<String> areAllowed;
 
+    /**
+     * 4 parameter constructor
+     * @param chatType type of chat (public or private)
+     * @param admin admin of the chat
+     * @param chatName name of the chat
+     */
     public ChatRoom(boolean chatType, String admin, String chatName) {
         this.isPrivate = chatType;
         this.admin = admin;
@@ -26,11 +38,19 @@ public class ChatRoom implements Serializable {
         this.messages = "";
     }
 
+    /**
+     * 1 parameter constructor, lets you copy the chat
+     * @param chat
+     */
     public ChatRoom(ChatRoom chat) {
         this(chat.isPrivate(), chat.getAdmin(), chat.getChatName());
 
     }
 
+    /**
+     * Appends message to chat
+     * @param msg
+     */
     public void appendMsg(String msg) {
         messages += msg;
     }

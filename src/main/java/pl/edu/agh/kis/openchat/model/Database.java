@@ -8,6 +8,11 @@ import java.util.List;
 /**
  * Created by Oskar on 08/01/2017.
  */
+
+/**
+ * Database with methods allowing it to store users, add,
+ * load and save with database engine
+ */
 public class Database {
 
     //////////////////FIELDS//////////////////////////////////////
@@ -15,6 +20,10 @@ public class Database {
     private Connection conn;
 
     //////////////////CONSTRUCTORS////////////////////////////////
+
+    /**
+     * Constructor of the database, creates linkedlist
+     */
     public Database() {
         users = new LinkedList<>();
     }
@@ -24,20 +33,37 @@ public class Database {
         return Collections.unmodifiableList(users);
     }
 
-    public void removeUser(int index) {
-        users.remove(index);
+    /**
+     * Lets you remove user from list
+     * @param index index of user to be deleted
+     * @return returns that user in case that information is needed
+     */
+    public User removeUser(int index) {
+        User a = users.remove(index);
+        return a;
     }
 
+    /**
+     * Add user to list in the class object
+     * @param user user that is added
+     */
     public void addUser(User user) {
         users.add(user);
     }
 
 
-    ///////////DO
-    public void connect(String url, String user, String password) throws Exception {
+    /**
+     * Method that allows connection to database
+     * @param url host of database
+     * @param user login database information
+     * @param password password to database
+     * @return true if connected, false otherwise
+     * @throws Exception if connection problem exists
+     */
+    public boolean connect(String url, String user, String password) throws Exception {
 
         if (conn != null) {
-            return;
+            return false;
         }
 
         try {
@@ -53,18 +79,31 @@ public class Database {
         //conn = DriverManager.getConnection(url, "root", "shihtzu1");
 
         System.out.println("Connected: " + conn);
+        return true;
     }
 
-    public void disconnect() {
+    /**
+     * Lets you disconnect from database
+     * @return true if disconnected, false otherwise
+     */
+    public boolean disconnect() {
         if (conn != null) {
             try {
                 conn.close();
+                return true;
             } catch (SQLException e) {
                 System.out.println("Cant close connection");
             }
         }
+        return false;
     }
 
+    /**
+     * Check whether user exists in database
+     * @param user user that is wanted to be checked
+     * @return true if he exists, false otherwise
+     * @throws SQLException if there is a problem with connection
+     */
     public boolean checkIfUserExists(User user) throws SQLException {
 
         String login = user.getLogin();
@@ -94,6 +133,10 @@ public class Database {
     }
 
 
+    /**
+     * Save current list of users to database
+     * @throws SQLException if connection problem happens
+     */
     public void save() throws SQLException {
         if (conn != null) {
 
@@ -155,7 +198,12 @@ public class Database {
 
     }
 
-    public void load() throws SQLException {
+    /**
+     * Load users from database to list
+     * @return true if loaded, false otherwise
+     * @throws SQLException if connection problem happens
+     */
+    public boolean load() throws SQLException {
 
         if (conn != null) {
             users.clear();
@@ -184,8 +232,9 @@ public class Database {
             } finally {
                 if (selectStmt != null) selectStmt.close();
             }
-
+            return true;
         }
+        return false;
     }
     /////////DO
 

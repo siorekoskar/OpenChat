@@ -7,12 +7,18 @@ import java.util.List;
 /**
  * Created by Oskar on 08/01/2017.
  */
+
+/**
+ * Class that hold information about amount of users, its ids,
+ * login, password and his private messages
+ */
 public class User implements Serializable{
 
     private static final long serialVersionUID = 42L;
 
     //////////////////FIELDS////////////////////////////////////
-    private static int count = 1;
+
+    private static int count = 0;
     private int id;
     private String login;
     private String pass;
@@ -20,6 +26,11 @@ public class User implements Serializable{
 
     //////////////////CONSTRUCTORS////////////////////////////////
 
+    /**
+     * 2 parameter constructor of class
+     * @param login
+     * @param pass
+     */
     public User(String login, String pass) {
 
         this.login = login;
@@ -29,6 +40,12 @@ public class User implements Serializable{
         count++;
     }
 
+    /**
+     * 3 parameter constructor of class, starts constructor with 2 parameters
+     * @param id takes id which you want user to have
+     * @param login new users login
+     * @param pass new users password
+     */
     public User(int id, String login, String pass){
 
         this(login, pass);
@@ -37,16 +54,28 @@ public class User implements Serializable{
         count++;
     }
 
+    /**
+     * Constructor with 1 parameter
+     * @param username new users username
+     */
     public User(String username){
         this.login = username;
     }
 
     ///////////////////GETTERS AND SETTERS//////////////////////////
 
+    /**
+     * Method that adds private message to user
+     * @param pm private message with various informations
+     */
     public void addPrivateMessage(PrivateMessage pm){
         privateMessages.add(pm);
     }
 
+    /**
+     * List of private messages that user has received
+     * @return list of private messages
+     */
     public List getPrivateMessages(){
         return this.privateMessages;
     }

@@ -12,6 +12,11 @@ import java.util.*;
 /**
  * Created by Oskar on 14/01/2017.
  */
+
+/**
+ * Chat server class, holds all the informations about users, chatrooms, messages
+ * and connects to database
+ */
 public class Server {
 
     private static int uniqueID;
@@ -25,6 +30,14 @@ public class Server {
     private DBControllerInterface dbController;
 
 
+    /**
+     * Constructor of server
+     * @param port port on which you want to start the server
+     * @param url url of the host
+     * @param admin login to database
+     * @param password password to database on this server
+     * @param dbControllerInterface class implementing the controller of the database
+     */
     public Server(int port, String url, String admin, String password, DBControllerInterface dbControllerInterface) {
 
         this.port = port;
@@ -65,6 +78,9 @@ public class Server {
         }
     }
 
+    /**
+     * Method that allows you to start the server
+     */
     public void start() {
         keepGoing = true;
         try {
@@ -238,7 +254,7 @@ public class Server {
         }
     }
 
-    synchronized void sendToAll(Message msg) {
+    private synchronized void sendToAll(Message msg) {
 
         msg.setUsersIn(users);
         for (ClientThread ct :
@@ -262,7 +278,7 @@ public class Server {
         return null;
     }
 
-    synchronized void inviteUser(String admin, String toInvite, String toChat) {
+    private synchronized void inviteUser(String admin, String toInvite, String toChat) {
 
         ChatRoom chatToInvite = findChat(toChat);
         chatToInvite.addAllowed(toInvite);
@@ -273,7 +289,7 @@ public class Server {
     }
 
 
-    synchronized void userLeftActualise(String username, ChatRoom chat) {
+    private synchronized void userLeftActualise(String username, ChatRoom chat) {
 
         removeFromOldChat(username);
 
@@ -303,7 +319,7 @@ public class Server {
         }
     }
 
-    synchronized boolean isAnyUserInChat(ChatRoom chat) {
+    private synchronized boolean isAnyUserInChat(ChatRoom chat) {
         System.out.println(chat.getUsersIn());
         boolean isEmpty = chat.getUsersIn().isEmpty();
         ClientThread ct = findClientThread(chat.getAdmin());
@@ -311,7 +327,7 @@ public class Server {
 
     }
 
-    synchronized void sendUsersRegistered() {
+    private synchronized void sendUsersRegistered() {
         for (ClientThread ct :
                 clientThreads) {
             Message msg = new Message(Message.USERSREGISTEREDLIST);
@@ -328,7 +344,7 @@ public class Server {
         }
     }
 
-    synchronized User findUser(String messageTo) {
+    private synchronized User findUser(String messageTo) {
         for (User user :
                 usersRegistered) {
             if (user.getLogin().equals(messageTo)) {
@@ -338,7 +354,7 @@ public class Server {
         return null;
     }
 
-    synchronized void sendPrivateMessageTo(String userTo, PrivateMessage pm) {
+    private synchronized void sendPrivateMessageTo(String userTo, PrivateMessage pm) {
         for (ClientThread ct :
                 clientThreads) {
             if (ct.getUsername().equals(userTo)) {
@@ -351,7 +367,7 @@ public class Server {
         }
     }
 
-    synchronized boolean checkIfLogged(String user) {
+    private synchronized boolean checkIfLogged(String user) {
         for (ClientThread ct :
                 clientThreads) {
             if (ct.getUsername().equals(user)) {
@@ -361,7 +377,7 @@ public class Server {
         return false;
     }
 
-    synchronized ChatRoom findChat(String chatName) {
+    private synchronized ChatRoom findChat(String chatName) {
         for (ChatRoom chat :
                 chatRooms) {
             if (chatName.equals(chat.getChatName())) {
@@ -371,7 +387,7 @@ public class Server {
         return null;
     }
 
-    synchronized List findChatsOf(String username) {
+    private synchronized List findChatsOf(String username) {
         ArrayList<ChatRoom> chatsOfUser = new ArrayList();
         for (ChatRoom chat :
                 chatRooms) {
@@ -393,7 +409,7 @@ public class Server {
         return null;
     }
 
-    class ClientThread extends Thread {
+    private class ClientThread extends Thread {
         Socket socket;
         ObjectInputStream sInput;
         ObjectOutputStream sOutput;
@@ -475,12 +491,10 @@ public class Server {
             id = ++uniqueID;
         }
 
-
         private boolean connectToChat(String user, String chatSearched, boolean userLeft) {
             ChatRoom chat = showChatRoom(chatSearched);
 
             try {
-               // if ((!chat.isPrivate() || (chat.isPrivate() && chat.getAreAllowed().contains(user)))) {
                 if ((!chat.isPrivate() || chat.getAreAllowed().contains(user))) {
                     removeFromOldChat(username);
 
@@ -502,7 +516,6 @@ public class Server {
                     currentChat = chat;
                     currentChatS = chat.getChatName();
 
-                   // chat.appendMsg(username + " joined the chat");
                     String chatStructure = chat.getMessages();
 
                     System.out.println(chat.getUsersAsString());

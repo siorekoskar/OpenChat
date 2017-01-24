@@ -6,9 +6,20 @@ import java.util.ArrayList;
 /**
  * Created by Oskar on 14/01/2017.
  */
+
+/**
+ * Class holding various types of messages, class that is sent
+ * between server and the client with informations about the type
+ * of event occured and informations depending on it
+ * implements Serializable
+ */
 public class Message implements Serializable{
     protected static final long serialVersionUID = 1112122200L;
 
+    /**
+     * Types of messages that are used in the whole project
+     * which help communication between the server and client
+     */
     public static final int MESSAGE = 1, CREATECHAT = 2, CONNECTTOCHAT=3, CHATCONNECTION=4, LOGINMSG=5,
             ALLOWED=6, REGISTER=7, DISALLOWED=8, EXISTS=9, CHATLEFT=10, NOTALLOWED=11,
             USERINVITED = 12, DISCONNECT = 13, PRIVATEMESSAGE=14, USERSREGISTEREDLIST=15,
@@ -29,35 +40,37 @@ public class Message implements Serializable{
     private ArrayList<User> usersRegistered;
     private ArrayList<Boolean> privateList;
 
-    public ArrayList<Boolean> getPrivateList() {
-        return privateList;
-    }
-
-    public void setPrivateList(ArrayList<Boolean> privateList) {
-        this.privateList = privateList;
-    }
-
-
-    public String getSentToChat() {
-        return sentToChat;
-    }
-
-    public void setSentToChat(String sentToChat) {
-        this.sentToChat = sentToChat;
-    }
-
-
+    /**
+     * 3 parameter constructor
+     * @param type information about the type of message
+     * @param user user who sent the message or who the message is adressed to
+     * @param message string with message
+     */
     public Message(int type, String user, String message){
         this.type = type;
         this.message = message;
         this.user = user;
     }
 
+    /**
+     * 4 parameter constructor
+     * @param type information about the type of message
+     * @param user user who sent the message or who the message is adressed to
+     * @param message message to user
+     * @param chatRoom chatroom which the message is from
+     */
     public Message(int type, String user, String message, ChatRoom chatRoom){
         this(type, user, message);
         this.chatRoom = chatRoom;
     }
 
+    /**
+     * 4 parameter constructor
+     * @param type information about the type of message
+     * @param user user who sent the message or who the message is adressed to
+     * @param message message to user
+     * @param sentToChat string of chatName
+     */
     public Message(int type, String user, String message, String sentToChat){
         this(type,user,message);
         this.sentToChat = sentToChat;
@@ -83,6 +96,24 @@ public class Message implements Serializable{
 
     public String getUsersInChat() {
         return usersInChat;
+    }
+
+
+    public ArrayList<Boolean> getPrivateList() {
+        return privateList;
+    }
+
+    public void setPrivateList(ArrayList<Boolean> privateList) {
+        this.privateList = privateList;
+    }
+
+
+    public String getSentToChat() {
+        return sentToChat;
+    }
+
+    public void setSentToChat(String sentToChat) {
+        this.sentToChat = sentToChat;
     }
 
     public void setUsersInChat(String usersInChat) {
