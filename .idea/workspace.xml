@@ -79,8 +79,8 @@
           <file leaf-file-name="DbController.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DbController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="581">
-                  <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+                <state relative-caret-position="34">
+                  <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
                   <folding />
                 </state>
               </provider>
@@ -200,15 +200,10 @@
           <file leaf-file-name="Database.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Database.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+                <state relative-caret-position="2482">
+                  <caret line="146" column="27" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
                   <folding>
-                    <marker date="1485220281428" expanded="true" signature="2970:3052" ph="select count... " />
-                    <marker date="1485220281428" expanded="true" signature="3091:3139" ph="select count... " />
-                    <marker date="1485220281428" expanded="true" signature="3882:3927" ph="Select count... " />
-                    <marker date="1485220281428" expanded="true" signature="4038:4085" ph="insert into user... " />
-                    <marker date="1485220281428" expanded="true" signature="4198:4246" ph="update user " />
-                    <marker date="1485220281428" expanded="true" signature="6192:6240" ph="select id, l... user" />
+                    <element signature="imports" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -413,12 +408,12 @@
         <option value="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Server.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/PrivateMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Message.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Database.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ClientFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Client.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/ChatRoom.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/ClientControllerFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DataBaseControllerFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Database.java" />
       </list>
     </option>
   </component>
@@ -1305,14 +1300,7 @@
       <workItem from="1485188548172" duration="1479000" />
       <workItem from="1485191223417" duration="1095000" />
       <workItem from="1485192335140" duration="10186000" />
-      <workItem from="1485203013902" duration="17901000" />
-    </task>
-    <task id="LOCAL-00025" summary="chatrooms are getting real">
-      <created>1484437966709</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1484437966709</updated>
+      <workItem from="1485203013902" duration="18126000" />
     </task>
     <task id="LOCAL-00026" summary="chatrooms are getting real">
       <created>1484437975549</created>
@@ -1650,7 +1638,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485220921140</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="ttbranch">
+      <created>1485220936034</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1485220936035</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1686,7 +1681,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="319047000" />
+    <option name="totallyTimeSpent" value="319272000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -2252,14 +2247,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DbController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/gui/servergui/ServerGui.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -2268,17 +2255,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/controller/DbController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/edu/agh/kis/openchat/model/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
+        <state relative-caret-position="2482">
+          <caret line="146" column="27" selection-start-line="146" selection-start-column="27" selection-end-line="146" selection-end-column="27" />
           <folding>
-            <marker date="1485220281428" expanded="true" signature="2970:3052" ph="select count... " />
-            <marker date="1485220281428" expanded="true" signature="3091:3139" ph="select count... " />
-            <marker date="1485220281428" expanded="true" signature="3882:3927" ph="Select count... " />
-            <marker date="1485220281428" expanded="true" signature="4038:4085" ph="insert into user... " />
-            <marker date="1485220281428" expanded="true" signature="4198:4246" ph="update user " />
-            <marker date="1485220281428" expanded="true" signature="6192:6240" ph="select id, l... user" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
